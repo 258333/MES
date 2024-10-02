@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ContractsMapper">
+    
+    <resultMap type="Contracts" id="ContractsResult">
+        <result property="contractId"    column="contract_id"    />
+        <result property="contractNumber"    column="contract_number"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="contactPerson"    column="contact_person"    />
+        <result property="contactNumber"    column="contact_number"    />
+        <result property="address"    column="address"    />
+        <result property="startDate"    column="start_date"    />
+        <result property="endDate"    column="end_date"    />
+        <result property="totalValue"    column="total_value"    />
+        <result property="status"    column="status"    />
+        <result property="createdDate"    column="created_date"    />
+        <result property="modifiedDate"    column="modified_date"    />
+        <result property="productDetails"    column="product_details"    />
+        <result property="contractName"    column="contract_name"    />
+    </resultMap>
+
+    <sql id="selectContractsVo">
+        select contract_id, contract_number, customer_name, contact_person, contact_number, address, start_date, end_date, total_value, status, created_date, modified_date, product_details, contract_name from tb_contracts
+    </sql>
+
+    <select id="selectContractsList" parameterType="Contracts" resultMap="ContractsResult">
+        <include refid="selectContractsVo"/>
+        <where>  
+            <if test="contractNumber != null  and contractNumber != ''"> and contract_number = #{contractNumber}</if>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="contactPerson != null  and contactPerson != ''"> and contact_person like concat('%', #{contactPerson}, '%')</if>
+            <if test="startDate != null "> and start_date = #{startDate}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="contractName != null  and contractName != ''"> and contract_name like concat('%', #{contractName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectContractsByContractId" parameterType="Long" resultMap="ContractsResult">
+        <include refid="selectContractsVo"/>
+        where contract_id = #{contractId}
+    </select>
+
+    <insert id="insertContracts" parameterType="Contracts" useGeneratedKeys="true" keyProperty="contractId">
+        insert into tb_contracts
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractNumber != null and contractNumber != ''">contract_number,</if>
+            <if test="customerName != null and customerName != ''">customer_name,</if>
+            <if test="contactPerson != null">contact_person,</if>
+            <if test="contactNumber != null">contact_number,</if>
+            <if test="address != null">address,</if>
+            <if test="startDate != null">start_date,</if>
+            <if test="endDate != null">end_date,</if>
+            <if test="totalValue != null">total_value,</if>
+            <if test="status != null">status,</if>
+            <if test="createdDate != null">created_date,</if>
+            <if test="modifiedDate != null">modified_date,</if>
+            <if test="productDetails != null">product_details,</if>
+            <if test="contractName != null and contractName != ''">contract_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractNumber != null and contractNumber != ''">#{contractNumber},</if>
+            <if test="customerName != null and customerName != ''">#{customerName},</if>
+            <if test="contactPerson != null">#{contactPerson},</if>
+            <if test="contactNumber != null">#{contactNumber},</if>
+            <if test="address != null">#{address},</if>
+            <if test="startDate != null">#{startDate},</if>
+            <if test="endDate != null">#{endDate},</if>
+            <if test="totalValue != null">#{totalValue},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createdDate != null">#{createdDate},</if>
+            <if test="modifiedDate != null">#{modifiedDate},</if>
+            <if test="productDetails != null">#{productDetails},</if>
+            <if test="contractName != null and contractName != ''">#{contractName},</if>
+         </trim>
+    </insert>
+
+    <update id="updateContracts" parameterType="Contracts">
+        update tb_contracts
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="contractNumber != null and contractNumber != ''">contract_number = #{contractNumber},</if>
+            <if test="customerName != null and customerName != ''">customer_name = #{customerName},</if>
+            <if test="contactPerson != null">contact_person = #{contactPerson},</if>
+            <if test="contactNumber != null">contact_number = #{contactNumber},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="startDate != null">start_date = #{startDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="totalValue != null">total_value = #{totalValue},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createdDate != null">created_date = #{createdDate},</if>
+            <if test="modifiedDate != null">modified_date = #{modifiedDate},</if>
+            <if test="productDetails != null">product_details = #{productDetails},</if>
+            <if test="contractName != null and contractName != ''">contract_name = #{contractName},</if>
+        </trim>
+        where contract_id = #{contractId}
+    </update>
+
+    <delete id="deleteContractsByContractId" parameterType="Long">
+        delete from tb_contracts where contract_id = #{contractId}
+    </delete>
+
+    <delete id="deleteContractsByContractIds" parameterType="String">
+        delete from tb_contracts where contract_id in 
+        <foreach item="contractId" collection="array" open="(" separator="," close=")">
+            #{contractId}
+        </foreach>
+    </delete>
+</mapper>
