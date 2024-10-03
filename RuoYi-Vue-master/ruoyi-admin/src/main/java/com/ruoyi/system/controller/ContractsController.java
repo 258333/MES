@@ -2,6 +2,9 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.system.domain.ProductContract;
+import com.ruoyi.system.domain.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,4 +104,5 @@ public class ContractsController extends BaseController
     {
         return toAjax(contractsService.deleteContractsByContractIds(contractIds));
     }
+
 }
