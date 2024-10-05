@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.OrdersMapper">
+    
+    <resultMap type="Orders" id="OrdersResult">
+        <result property="id"    column="id"    />
+        <result property="orderNumber"    column="order_number"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="type"    column="type"    />
+        <result property="contractId"    column="contract_id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="quantity"    column="quantity"    />
+        <result property="batchNumber"    column="batch_number"    />
+        <result property="status"    column="status"    />
+        <result property="createdDate"    column="created_date"    />
+        <result property="modifiedDate"    column="modified_date"    />
+    </resultMap>
+
+    <sql id="selectOrdersVo">
+        select id, order_number, parent_id, type, contract_id, product_id, quantity, batch_number, status, created_date, modified_date from tb_orders
+    </sql>
+
+    <select id="selectOrdersList" parameterType="Orders" resultMap="OrdersResult">
+        <include refid="selectOrdersVo"/>
+        <where>  
+            <if test="orderNumber != null  and orderNumber != ''"> and order_number like concat('%', #{orderNumber}, '%')</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="batchNumber != null  and batchNumber != ''"> and batch_number = #{batchNumber}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectOrdersById" parameterType="Long" resultMap="OrdersResult">
+        <include refid="selectOrdersVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertOrders" parameterType="Orders" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNumber != null and orderNumber != ''">order_number,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="contractId != null">contract_id,</if>
+            <if test="productId != null">product_id,</if>
+            <if test="quantity != null">quantity,</if>
+            <if test="batchNumber != null">batch_number,</if>
+            <if test="status != null">status,</if>
+            <if test="createdDate != null">created_date,</if>
+            <if test="modifiedDate != null">modified_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNumber != null and orderNumber != ''">#{orderNumber},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="contractId != null">#{contractId},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="quantity != null">#{quantity},</if>
+            <if test="batchNumber != null">#{batchNumber},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createdDate != null">#{createdDate},</if>
+            <if test="modifiedDate != null">#{modifiedDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateOrders" parameterType="Orders">
+        update tb_orders
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderNumber != null and orderNumber != ''">order_number = #{orderNumber},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="contractId != null">contract_id = #{contractId},</if>
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="quantity != null">quantity = #{quantity},</if>
+            <if test="batchNumber != null">batch_number = #{batchNumber},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createdDate != null">created_date = #{createdDate},</if>
+            <if test="modifiedDate != null">modified_date = #{modifiedDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOrdersById" parameterType="Long">
+        delete from tb_orders where id = #{id}
+    </delete>
+
+    <delete id="deleteOrdersByIds" parameterType="String">
+        delete from tb_orders where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
