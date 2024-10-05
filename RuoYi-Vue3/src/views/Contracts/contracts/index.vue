@@ -236,14 +236,10 @@ const data = reactive({
 
 const { queryParams, form, rules } = toRefs(data);
 
-const products = reactive([{
-  productName: "",
-  quantity: 1,
-  allPrice: 0,
-},])
+const products = reactive([])
 
 /** 查询合同，存储合同相关信息及其产品详情列表 */
-function getProductsList() {
+function getList() {
   loading.value = true;
   listContracts(queryParams.value).then(response => {
     contractsList.value = response.rows;
@@ -252,7 +248,7 @@ function getProductsList() {
   });
 }
 /** 查询产品，存储产品相关信息列表 */
-function getList() {
+function getProductsList() {
   loading.value = true;
   listProducts(queryParams.value).then(response => {
     productsList.value = response.rows;
@@ -285,6 +281,7 @@ function reset() {
     productDetails: null,
     contractName: null
   };
+  products.splice(0, products.length);
   proxy.resetForm("contractsRef");
 }
 
@@ -316,7 +313,7 @@ function handleAdd() {
 
 /** 修改按钮操作 */
 function handleUpdate(row) {
-  console.log(row);
+  // console.log(row);
   reset();
   const _contractId = row.contractId || ids.value
   getContracts(_contractId).then(response => {
@@ -324,29 +321,49 @@ function handleUpdate(row) {
     open.value = true;
     title.value = "修改合同，存储合同相关信息及其产品详情";
   });
+  products.splice(0, products.length);
+  products.push(...row.productDetails)
+
+}
+
+//判断合同中的产品列表中的产品名称是否为空
+function checkProductName() {
+  //遍历产品列表
+  for (let i = 0; i < products.length; i++) {
+    //判断产品名称是否为空
+    if (products[i].productName == null || products[i].productName == "") {
+      proxy.$modal.msgError("产品名称不能为空");
+      return false;
+    }
+  }
+  return true;
 }
 
 /** 提交按钮 */
 function submitForm() {
-  form.value.productDetails = JSON.stringify(products);
+  form.value.productDetails = products;
   proxy.$refs["contractsRef"].validate(valid => {
     if (valid) {
       if (form.value.contractId != null) {
-        updateContracts(form.value).then(response => {
-          proxy.$modal.msgSuccess("修改成功");
-          open.value = false;
-          getList();
-        });
+        if (checkProductName()) {
+          console.log(checkProductName());
+          updateContracts(form.value).then(response => {
+            proxy.$modal.msgSuccess("修改成功");
+            open.value = false;
+            getList();
+          });
+        }
       } else {
-        addContracts(form.value).then(response => {
-          proxy.$modal.msgSuccess("新增成功");
-          open.value = false;
-          getList();
-        });
+        if (checkProductName()) {
+          addContracts(form.value).then(response => {
+            proxy.$modal.msgSuccess("新增成功");
+            open.value = false;
+            getList();
+          });
+        }
       }
     }
   });
-  console.log(form.value);
 }
 
 /** 删除按钮操作 */
@@ -369,10 +386,10 @@ function handleExport() {
 
 //在选择产品之后自动添加其他信息
 const onProductChange = (index, indexx) => {
-  console.log(indexx)
   products[index].unitPrice = productsList.value[indexx].price;
   products[index].productCode = productsList.value[indexx].productCode;
   products[index].allPrice = productsList.value[indexx].price * products[index].quantity;
+  products[index].productId = productsList.value[indexx].productId;
 }
 //根据数量修改总价
 const updateallPrice = (index) => {
@@ -390,7 +407,6 @@ const addProduct = () => {
     unitPrice: 0,
     allPrice: 0,
   });
-  console.log(products);
 };
 
 const removeProduct = (index) => {

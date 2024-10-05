@@ -2,6 +2,8 @@ package com.ruoyi.system.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -14,6 +16,10 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @author HongWei
  * @date 2024-10-02
  */
+//@EqualsAndHashCode(callSuper = true)
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Contracts extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -69,7 +75,7 @@ public class Contracts extends BaseEntity
 
     /** 产品编号及数量信息 (JSON格式) */
     @Excel(name = "产品编号及数量信息 (JSON格式)")
-    private String productDetails;
+    private List<ProductDetails> productDetails;
 
     /** 合同名称 */
     @Excel(name = "合同名称")
@@ -183,12 +189,12 @@ public class Contracts extends BaseEntity
     {
         return modifiedDate;
     }
-    public void setProductDetails(String productDetails)
+    public void setProductDetails(List<ProductDetails> productDetails)
     {
         this.productDetails = productDetails;
     }
 
-    public String getProductDetails()
+    public List<ProductDetails> getProductDetails()
     {
         return productDetails;
     }
