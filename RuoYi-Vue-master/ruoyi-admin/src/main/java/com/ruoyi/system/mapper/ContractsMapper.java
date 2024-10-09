@@ -1,6 +1,8 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.Contracts;
 
 /**
@@ -9,7 +11,7 @@ import com.ruoyi.system.domain.Contracts;
  * @author HongWei
  * @date 2024-10-02
  */
-public interface ContractsMapper 
+public interface ContractsMapper extends BaseMapper<Contracts>
 {
     /**
      * 查询合同，存储合同相关信息及其产品详情

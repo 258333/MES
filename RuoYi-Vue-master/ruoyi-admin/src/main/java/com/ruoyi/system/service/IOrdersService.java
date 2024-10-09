@@ -1,6 +1,9 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.ruoyi.system.domain.Contracts;
 import com.ruoyi.system.domain.Orders;
 
 /**
@@ -9,7 +12,7 @@ import com.ruoyi.system.domain.Orders;
  * @author HongWei
  * @date 2024-10-05
  */
-public interface IOrdersService 
+public interface IOrdersService extends IService<Orders>
 {
     /**
      * 查询制令，存储总制令、分制令和子制令的信息
@@ -58,4 +61,11 @@ public interface IOrdersService
      * @return 结果
      */
     public int deleteOrdersById(Long id);
+
+    /**
+     * 根据新增的合同自动生成三级制令
+     *
+     * @param contract 前端上传的合同内容
+     */
+    void insertOrdersByContract(Contracts contract);
 }

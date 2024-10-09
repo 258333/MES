@@ -44,7 +44,7 @@ public class ContractsController extends BaseController
     {
         startPage();
         List<Contracts> list = contractsService.selectContractsList(contracts);
-        System.out.println(list);
+
         return getDataTable(list);
     }
 

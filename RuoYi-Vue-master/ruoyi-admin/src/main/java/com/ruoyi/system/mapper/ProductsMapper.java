@@ -1,6 +1,8 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.Products;
 
 /**
@@ -9,7 +11,7 @@ import com.ruoyi.system.domain.Products;
  * @author HongWei
  * @date 2024-10-02
  */
-public interface ProductsMapper 
+public interface ProductsMapper extends BaseMapper<Products>
 {
     /**
      * 查询产品，存储产品相关信息

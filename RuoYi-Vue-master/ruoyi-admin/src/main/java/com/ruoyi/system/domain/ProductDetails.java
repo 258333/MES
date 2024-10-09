@@ -12,7 +12,7 @@ public class ProductDetails {
     private Long productId;
     private String productCode;
     private String productName;
-    private int quantity;
+    private long quantity;
     private double unitPrice;
     private double allPrice;
 }

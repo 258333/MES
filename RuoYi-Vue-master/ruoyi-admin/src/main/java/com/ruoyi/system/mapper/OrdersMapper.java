@@ -1,6 +1,8 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.Orders;
 
 /**
@@ -9,7 +11,7 @@ import com.ruoyi.system.domain.Orders;
  * @author HongWei
  * @date 2024-10-05
  */
-public interface OrdersMapper 
+public interface OrdersMapper extends BaseMapper<Orders>
 {
     /**
      * 查询制令，存储总制令、分制令和子制令的信息
