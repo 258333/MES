@@ -1,6 +1,7 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.Contracts;
@@ -29,6 +30,7 @@ public interface IOrdersService extends IService<Orders>
      * @return 制令，存储总制令、分制令和子制令的信息集合
      */
     public List<Orders> selectOrdersList(Orders orders);
+    public List<Map<String,Object>> selectOrdersAndDetailList(Orders orders);
 
     /**
      * 新增制令，存储总制令、分制令和子制令的信息

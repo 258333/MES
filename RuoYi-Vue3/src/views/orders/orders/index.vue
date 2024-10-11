@@ -2,39 +2,19 @@
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="制令编号" prop="orderNumber">
-        <el-input
-          v-model="queryParams.orderNumber"
-          placeholder="请输入制令编号"
-          clearable
-          @keyup.enter="handleQuery"
-        />
+        <el-input v-model="queryParams.orderNumber" placeholder="请输入制令编号" clearable @keyup.enter="handleQuery" />
       </el-form-item>
       <el-form-item label="制令类型" prop="type">
         <el-select v-model="queryParams.type" placeholder="请选择制令类型" clearable>
-          <el-option
-            v-for="dict in order_type"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
-          />
+          <el-option v-for="dict in order_type" :key="dict.value" :label="dict.label" :value="dict.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="批次号" prop="batchNumber">
-        <el-input
-          v-model="queryParams.batchNumber"
-          placeholder="请输入批次号"
-          clearable
-          @keyup.enter="handleQuery"
-        />
+        <el-input v-model="queryParams.batchNumber" placeholder="请输入批次号" clearable @keyup.enter="handleQuery" />
       </el-form-item>
       <el-form-item label="制令状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择制令状态" clearable>
-          <el-option
-            v-for="dict in order_status"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
-          />
+          <el-option v-for="dict in order_status" :key="dict.value" :label="dict.label" :value="dict.value" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -44,60 +24,58 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
+      <!-- <el-col :span="1.5">
+        <el-button type="primary" plain icon="Plus" @click="handleAdd" v-hasPermi="['orders:orders:add']">新增</el-button>
+      </el-col> -->
       <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="Plus"
-          @click="handleAdd"
-          v-hasPermi="['orders:orders:add']"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="info"
-          plain
-          icon="Sort"
-          @click="toggleExpandAll"
-        >展开/折叠</el-button>
+        <el-button type="info" plain icon="Sort" @click="toggleExpandAll">展开/折叠</el-button>
       </el-col>
       <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table
-      v-if="refreshTable"
-      v-loading="loading"
-      :data="ordersList"
-      row-key="id"
-      :default-expand-all="isExpandAll"
-      :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
-    >
-      <el-table-column label="制令编号" prop="orderNumber" />
-      <el-table-column label="父制令 ID" align="center" prop="parentId" />
-      <el-table-column label="制令类型" align="center" prop="type">
-        <template #default="scope">
-          <dict-tag :options="order_type" :value="scope.row.type"/>
-        </template>
+    <el-table v-if="refreshTable" v-loading="loading" :data="ordersList" row-key="id" :default-expand-all="isExpandAll"
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }">
+
+      <el-table-column label="制令编号" prop="orderNumber" width="200" /> <!-- 增加宽度 -->
+
+      <el-table-column label="制令类型" align="center" prop="type" width="80">
+        <!-- <template #default="scope">
+      <dict-tag :options="order_type" :value="scope.row.type" />
+    </template> -->
       </el-table-column>
-      <el-table-column label="关联的合同 ID" align="center" prop="contractId" />
-      <el-table-column label="关联的产品 ID" align="center" prop="productId" />
-      <el-table-column label="生产数量" align="center" prop="quantity" />
-      <el-table-column label="批次号" align="center" prop="batchNumber" />
-      <el-table-column label="制令状态" align="center" prop="status">
-        <template #default="scope">
-          <dict-tag :options="order_status" :value="scope.row.status"/>
-        </template>
+
+      <el-table-column label="合同" align="center" prop="contractName" width="80" /> <!-- 减少宽度 -->
+
+      <el-table-column label="产品" align="center" prop="productName" width="80" /> <!-- 减少宽度 -->
+
+      <el-table-column label="工序" align="center" prop="operation" width="80" />
+
+      <el-table-column label="数量" align="center" prop="quantity" width="80" />
+
+      <el-table-column label="批次号" align="center" prop="batchNumber" width="150" />
+
+      <el-table-column label="制令状态" align="center" prop="status" width="80">
+        <!-- <template #default="scope">
+      <dict-tag :options="order_status" :value="scope.row.status" />
+    </template> -->
       </el-table-column>
+
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
-          <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)" v-hasPermi="['orders:orders:edit']">修改</el-button>
-          <el-button link type="primary" icon="Plus" @click="handleAdd(scope.row)" v-hasPermi="['orders:orders:add']">新增</el-button>
-          <el-button link type="primary" icon="Delete" @click="handleDelete(scope.row)" v-hasPermi="['orders:orders:remove']">删除</el-button>
+          <el-button link type="primary" icon="Edit" @click="handleAssign(scope.row)">分配</el-button>
+          <!-- <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
+            v-hasPermi="['orders:orders:edit']">修改</el-button> -->
+          <!-- <el-button link type="primary" icon="Plus" @click="handleAdd(scope.row)"
+        v-hasPermi="['orders:orders:add']">新增</el-button> -->
+          <el-button link type="primary" icon="Delete" @click="handleDelete(scope.row)"
+            v-hasPermi="['orders:orders:remove']">删除</el-button>
         </template>
       </el-table-column>
+
     </el-table>
 
-    <!-- 添加或修改制令，存储总制令、分制令和子制令的信息对话框 -->
+
+    <!-- 分配任务的信息对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="ordersRef" :model="form" :rules="rules" label-width="80px">
       </el-form>
@@ -164,7 +142,7 @@ function getTreeselect() {
     ordersOptions.value.push(data);
   });
 }
-	
+
 // 取消按钮
 function cancel() {
   open.value = false;
@@ -259,12 +237,12 @@ function submitForm() {
 
 /** 删除按钮操作 */
 function handleDelete(row) {
-  proxy.$modal.confirm('是否确认删除制令，存储总制令、分制令和子制令的信息编号为"' + row.id + '"的数据项？').then(function() {
+  proxy.$modal.confirm('是否确认删除制令，存储总制令、分制令和子制令的信息编号为"' + row.id + '"的数据项？').then(function () {
     return delOrders(row.id);
   }).then(() => {
     getList();
     proxy.$modal.msgSuccess("删除成功");
-  }).catch(() => {});
+  }).catch(() => { });
 }
 
 getList();

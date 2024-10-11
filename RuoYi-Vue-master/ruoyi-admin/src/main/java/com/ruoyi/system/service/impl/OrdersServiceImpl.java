@@ -2,7 +2,10 @@ package com.ruoyi.system.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -27,8 +30,6 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
 
     private final OrdersMapper ordersMapper;
 
-    private long orderNumber = 100001;
-
     private final SysUserRoleMapper sysUserRoleMapper;
 
     private final ProductsMapper productMapper;
@@ -52,6 +53,35 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
      * @param orders 制令，存储总制令、分制令和子制令的信息
      * @return 制令，存储总制令、分制令和子制令的信息
      */
+    @Override
+    public List<Map<String,Object>> selectOrdersAndDetailList(Orders orders) {
+        return ordersMapper.selectOrdersList(orders).stream().map(order->{
+            // 创建一个 Map 来存储每个 Orders 对象的字段和值
+            Map<String,Object> map =new HashMap<>();
+            map.put("id",order.getId());
+            map.put("orderNumber",order.getOrderNumber());
+            map.put("type",order.getType());
+            map.put("status",order.getStatus());
+            map.put("parentId",order.getParentId());
+            map.put("quantity",order.getQuantity());
+            map.put("batchNumber",order.getBatchNumber());
+            map.put("operation",order.getOperation());
+            if(order.getContractId() != null ){
+                // 根据合同id查询合同信息
+                Contracts contract = contractsMapper.selectContractsByContractId(order.getContractId());
+                map.put("contractName",contract.getContractName());
+            }
+            map.put("contractId",order.getContractId());
+            if (order.getProductId() != null){
+                // 根据产品id查询产品信息
+                Products product = productMapper.selectProductsByProductId(order.getProductId());
+                map.put("productName",product.getProductName());
+            }
+            map.put("productId",order.getProductId());
+            return map;
+        }).collect(Collectors.toList());
+    }
+
     @Override
     public List<Orders> selectOrdersList(Orders orders) {
         return ordersMapper.selectOrdersList(orders);
@@ -108,42 +138,44 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
      */
     @Override
     public void insertOrdersByContract(Contracts contract) {
+        // 获取当前日期
+        String currentDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        String number = "";
         //查询刚刚插入的合同
-
-        contract =  contractsMapper.selectContractsList(contract).get(0);
+        contract = contractsMapper.selectContractsList(contract).get(0);
         // 1.根据合同生成唯一的总制令
         Orders orders = new Orders();
         orders.setContractId(contract.getContractId());
         orders.setType("总制令");
-        orders.setOrderNumber(Long.toString(orderNumber));
-        // 1. 获取当前日期
-        String currentDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        //编号
+        number = contract.getContractId() + "-" + currentDate + "-1";
+        orders.setOrderNumber(number);
         // 2. 生成生产批次号 (合同编号 + 当前日期 + (制令类型))
-        orders.setBatchNumber(contract.getContractId() + "-" + currentDate + "-1");
+        orders.setBatchNumber(number);
         orders.setStatus("待生产");
         // 3. 插入数据库
         ordersMapper.insertOrders(orders);
         // 4. 查询生成的总制令
         orders = ordersMapper.selectOrdersList(orders).get(0);
         // 5. orderNumber + 1
-        orderNumber++;
 
         // 2. 根据产品生成不同的分制令
 
         int i = 1;
+        int k = 1;
         for (ProductDetails product : contract.getProductDetails()) {
             Orders orders1 = new Orders();
             orders1.setType("分制令");
             orders1.setStatus("待生产");
             orders1.setParentId(orders.getId());
-            orders1.setOrderNumber(orderNumber + "");
+            number = contract.getContractId() + "-" + currentDate + "-2-" + i++;
+            orders1.setOrderNumber(number);
             orders1.setProductId(product.getProductId());
             orders1.setQuantity(product.getQuantity());
-            orders1.setBatchNumber(contract.getContractId() + "-" + currentDate + "-2-" + i++);
+            orders1.setBatchNumber(number);
             ordersMapper.insertOrders(orders1);
 
             orders1 = ordersMapper.selectOrdersList(orders1).get(0);
-            orderNumber++;
 
 //            //根据员工数量 将产品平均分给各个员工
 //            //查询角色为员工的id编号
@@ -162,8 +194,10 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
                 orders2.setType("子制令");
                 orders2.setStatus("待生产");
                 orders2.setParentId(orders1.getId());
-                orders2.setOrderNumber(orderNumber++ + "");
-                orders2.setBatchNumber(contract.getContractId() + "-" + currentDate + "-3-" + i++);
+                number = contract.getContractId() + "-" + currentDate + "-3-" + k++;
+                orders2.setOrderNumber(number);
+                orders2.setOperation("工序" + (j + 1));
+                orders2.setBatchNumber(number);
                 ordersMapper.insertOrders(orders2);
             }
 

@@ -1,6 +1,7 @@
 package com.ruoyi.system.controller;
 
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class OrdersController extends BaseController
     @GetMapping("/list")
     public AjaxResult list(Orders orders)
     {
-        List<Orders> list = ordersService.selectOrdersList(orders);
+        List<Map<String,Object>> list = ordersService.selectOrdersAndDetailList(orders);
         return success(list);
     }
 
