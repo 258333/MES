@@ -1,21 +1,15 @@
 package com.ruoyi.system.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.system.domain.*;
-import com.ruoyi.system.mapper.ContractsMapper;
-import com.ruoyi.system.mapper.ProductsMapper;
-import com.ruoyi.system.mapper.SysUserRoleMapper;
+import com.ruoyi.system.domain.dto.ProductOperation;
+import com.ruoyi.system.mapper.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.OrdersMapper;
 import com.ruoyi.system.service.IOrdersService;
 
 /**
@@ -35,6 +29,10 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     private final ProductsMapper productMapper;
 
     private final ContractsMapper contractsMapper;
+
+    private final OperationMapper operationMapper;
+
+    private final OtherMapper otherMapper;
 
     /**
      * 查询制令，存储总制令、分制令和子制令的信息
@@ -170,33 +168,29 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
             orders1.setParentId(orders.getId());
             number = contract.getContractId() + "-" + currentDate + "-2-" + i++;
             orders1.setOrderNumber(number);
-            orders1.setProductId(product.getProductId());
+            orders1.setProductId((long) product.getProductId());
             orders1.setQuantity(product.getQuantity());
             orders1.setBatchNumber(number);
             ordersMapper.insertOrders(orders1);
 
             orders1 = ordersMapper.selectOrdersList(orders1).get(0);
 
-//            //根据员工数量 将产品平均分给各个员工
-//            //查询角色为员工的id编号
-//            //此处100为角色为员工的id号
-//            int userNumber = sysUserRoleMapper.countUserRoleByRoleId(100L);
-//            //将产品平均分给各个员工
-//            AtomicInteger count = new AtomicInteger(0);
-
-            //根据不同的产品 判断需要几道工序 来生成子制令
-            //根据产品id查询产品种类
-            Products products = productMapper.selectProductsByProductId(product.getProductId());
-            //工序数量 n
-            int n = Integer.parseInt(products.getCategory()) + 3;
+            List<ProductOperation> productOperations = otherMapper.selectOperationByProductId(product.getProductId());
+            System.out.println("***********");
+            System.out.println(productOperations);
+            System.out.println("***********");
+//            工序数量 n
+            int n = productOperations.size();
             for (int j = 0; j < n; j++) {
                 Orders orders2 = new Orders();
                 orders2.setType("子制令");
                 orders2.setStatus("待生产");
                 orders2.setParentId(orders1.getId());
+                orders2.setQuantity(product.getQuantity());
                 number = contract.getContractId() + "-" + currentDate + "-3-" + k++;
                 orders2.setOrderNumber(number);
-                orders2.setOperation("工序" + (j + 1));
+                Operation operation = operationMapper.selectOperationByOperationId((long) productOperations.get(j).getOperationId());
+                orders2.setOperation(productOperations.get(j).getSequenceNumber() + " : " +operation.getOperationName());
                 orders2.setBatchNumber(number);
                 ordersMapper.insertOrders(orders2);
             }

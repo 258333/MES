@@ -25,7 +25,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 任务分配，存储每个子制令的任务分配情况Controller
  * 
  * @author HongWei
- * @date 2024-10-10
+ * @date 2024-10-12
  */
 @RestController
 @RequestMapping("/taskAssignment/taskAssignment")
@@ -63,10 +63,10 @@ public class TaskAssignmentController extends BaseController
      * 获取任务分配，存储每个子制令的任务分配情况详细信息
      */
     @PreAuthorize("@ss.hasPermi('taskAssignment:taskAssignment:query')")
-    @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id)
+    @GetMapping(value = "/{takeId}")
+    public AjaxResult getInfo(@PathVariable("takeId") Long takeId)
     {
-        return success(taskAssignmentService.selectTaskAssignmentById(id));
+        return success(taskAssignmentService.selectTaskAssignmentByTakeId(takeId));
     }
 
     /**
@@ -96,9 +96,9 @@ public class TaskAssignmentController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('taskAssignment:taskAssignment:remove')")
     @Log(title = "任务分配，存储每个子制令的任务分配情况", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids)
+	@DeleteMapping("/{takeIds}")
+    public AjaxResult remove(@PathVariable Long[] takeIds)
     {
-        return toAjax(taskAssignmentService.deleteTaskAssignmentByIds(ids));
+        return toAjax(taskAssignmentService.deleteTaskAssignmentByTakeIds(takeIds));
     }
 }

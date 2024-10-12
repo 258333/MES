@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.Products;
+import com.ruoyi.system.domain.dto.ProductOperation;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 产品，存储产品相关信息Mapper接口
@@ -11,6 +14,8 @@ import com.ruoyi.system.domain.Products;
  * @author HongWei
  * @date 2024-10-02
  */
+
+@Mapper
 public interface ProductsMapper extends BaseMapper<Products>
 {
     /**
@@ -60,4 +65,14 @@ public interface ProductsMapper extends BaseMapper<Products>
      * @return 结果
      */
     public int deleteProductsByProductIds(Long[] productIds);
+
+//    /**
+//     * 查询生产产品所需的工序
+//     *
+//     * @param productId 产品，存储产品相关信息主键
+//     * @return 结果
+//     */
+//
+//    @Select("select * from tb_product_operation where product_id = #{productId}")
+//    public List<ProductOperation> selectOperationByProductId(Long productId);
 }

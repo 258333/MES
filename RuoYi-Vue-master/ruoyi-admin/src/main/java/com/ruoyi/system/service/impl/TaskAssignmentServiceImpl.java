@@ -11,7 +11,7 @@ import com.ruoyi.system.service.ITaskAssignmentService;
  * 任务分配，存储每个子制令的任务分配情况Service业务层处理
  * 
  * @author HongWei
- * @date 2024-10-10
+ * @date 2024-10-12
  */
 @Service
 public class TaskAssignmentServiceImpl implements ITaskAssignmentService 
@@ -22,13 +22,13 @@ public class TaskAssignmentServiceImpl implements ITaskAssignmentService
     /**
      * 查询任务分配，存储每个子制令的任务分配情况
      * 
-     * @param id 任务分配，存储每个子制令的任务分配情况主键
+     * @param takeId 任务分配，存储每个子制令的任务分配情况主键
      * @return 任务分配，存储每个子制令的任务分配情况
      */
     @Override
-    public TaskAssignment selectTaskAssignmentById(Long id)
+    public TaskAssignment selectTaskAssignmentByTakeId(Long takeId)
     {
-        return taskAssignmentMapper.selectTaskAssignmentById(id);
+        return taskAssignmentMapper.selectTaskAssignmentByTakeId(takeId);
     }
 
     /**
@@ -70,24 +70,24 @@ public class TaskAssignmentServiceImpl implements ITaskAssignmentService
     /**
      * 批量删除任务分配，存储每个子制令的任务分配情况
      * 
-     * @param ids 需要删除的任务分配，存储每个子制令的任务分配情况主键
+     * @param takeIds 需要删除的任务分配，存储每个子制令的任务分配情况主键
      * @return 结果
      */
     @Override
-    public int deleteTaskAssignmentByIds(Long[] ids)
+    public int deleteTaskAssignmentByTakeIds(Long[] takeIds)
     {
-        return taskAssignmentMapper.deleteTaskAssignmentByIds(ids);
+        return taskAssignmentMapper.deleteTaskAssignmentByTakeIds(takeIds);
     }
 
     /**
      * 删除任务分配，存储每个子制令的任务分配情况信息
      * 
-     * @param id 任务分配，存储每个子制令的任务分配情况主键
+     * @param takeId 任务分配，存储每个子制令的任务分配情况主键
      * @return 结果
      */
     @Override
-    public int deleteTaskAssignmentById(Long id)
+    public int deleteTaskAssignmentByTakeId(Long takeId)
     {
-        return taskAssignmentMapper.deleteTaskAssignmentById(id);
+        return taskAssignmentMapper.deleteTaskAssignmentByTakeId(takeId);
     }
 }

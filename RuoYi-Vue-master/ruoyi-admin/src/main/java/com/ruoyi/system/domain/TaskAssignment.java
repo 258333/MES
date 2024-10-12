@@ -8,52 +8,51 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 任务分配，存储每个子制令的任务分配情况对象 tb_task_assignments
+ * 任务分配，存储每个子制令的任务分配情况对象 tb_task_assignment
  * 
  * @author HongWei
- * @date 2024-10-10
+ * @date 2024-10-12
  */
 public class TaskAssignment extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 任务分配ID */
-    private Long id;
+    private Long takeId;
 
-    /** 子制令ID */
-    @Excel(name = "子制令ID")
+    /** 制令ID */
+    @Excel(name = "制令ID")
     private Long orderId;
 
     /** 员工ID */
     @Excel(name = "员工ID")
     private Long userId;
 
+    /** 机器ID */
+    @Excel(name = "机器ID")
+    private Long machineId;
+
     /** 任务分配时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "任务分配时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date assignedDate;
 
-    /** 任务状态（待执行、进行中、已完成） */
-    @Excel(name = "任务状态", readConverterExp = "待=执行、进行中、已完成")
-    private String status;
-
-    /** 任务完成时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "任务完成时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date completedDate;
+    /** 是否完成工序 */
+    @Excel(name = "是否完成工序")
+    private Integer isCompleted;
 
     /** 备注 */
     @Excel(name = "备注")
     private String remarks;
 
-    public void setId(Long id) 
+    public void setTakeId(Long takeId) 
     {
-        this.id = id;
+        this.takeId = takeId;
     }
 
-    public Long getId() 
+    public Long getTakeId() 
     {
-        return id;
+        return takeId;
     }
     public void setOrderId(Long orderId) 
     {
@@ -73,6 +72,15 @@ public class TaskAssignment extends BaseEntity
     {
         return userId;
     }
+    public void setMachineId(Long machineId) 
+    {
+        this.machineId = machineId;
+    }
+
+    public Long getMachineId() 
+    {
+        return machineId;
+    }
     public void setAssignedDate(Date assignedDate) 
     {
         this.assignedDate = assignedDate;
@@ -82,23 +90,14 @@ public class TaskAssignment extends BaseEntity
     {
         return assignedDate;
     }
-    public void setStatus(String status) 
+    public void setIsCompleted(Integer isCompleted) 
     {
-        this.status = status;
+        this.isCompleted = isCompleted;
     }
 
-    public String getStatus() 
+    public Integer getIsCompleted() 
     {
-        return status;
-    }
-    public void setCompletedDate(Date completedDate) 
-    {
-        this.completedDate = completedDate;
-    }
-
-    public Date getCompletedDate() 
-    {
-        return completedDate;
+        return isCompleted;
     }
     public void setRemarks(String remarks) 
     {
@@ -113,12 +112,12 @@ public class TaskAssignment extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
+            .append("takeId", getTakeId())
             .append("orderId", getOrderId())
             .append("userId", getUserId())
+            .append("machineId", getMachineId())
             .append("assignedDate", getAssignedDate())
-            .append("status", getStatus())
-            .append("completedDate", getCompletedDate())
+            .append("isCompleted", getIsCompleted())
             .append("remarks", getRemarks())
             .toString();
     }

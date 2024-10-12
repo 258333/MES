@@ -62,7 +62,8 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
-          <el-button link type="primary" icon="Edit" @click="handleAssign(scope.row)">分配</el-button>
+          <el-button v-if="scope.row.type === '子制令'" link type="primary" icon="Edit"
+            @click="handleAssign(scope.row)">分配</el-button>
           <!-- <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['orders:orders:edit']">修改</el-button> -->
           <!-- <el-button link type="primary" icon="Plus" @click="handleAdd(scope.row)"
@@ -76,8 +77,11 @@
 
 
     <!-- 分配任务的信息对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
-      <el-form ref="ordersRef" :model="form" :rules="rules" label-width="80px">
+    <el-dialog :title="title" v-model="open" width="300px" append-to-body>
+      <el-form ref="ordersRef" :model="form_two" :rules="rules" label-width="80px">
+        <el-select v-model="value" placeholder="选择员工" size="large" style="width: 240px">
+          <el-option v-for="item in userInfoList" :key="item.userId" :label="item.userName" :value="item.userId" />
+        </el-select>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
@@ -91,6 +95,7 @@
 
 <script setup name="Orders">
 import { listOrders, getOrders, delOrders, addOrders, updateOrders } from "@/api/orders/orders";
+import { userInfoListApi } from "@/api/other";
 
 const { proxy } = getCurrentInstance();
 const { order_status, order_type } = proxy.useDict('order_status', 'order_type');
@@ -103,6 +108,8 @@ const showSearch = ref(true);
 const title = ref("");
 const isExpandAll = ref(true);
 const refreshTable = ref(true);
+const userInfoList = ref([])
+const form_two = ref({})
 
 const data = reactive({
   form: {},
@@ -124,6 +131,15 @@ const data = reactive({
 
 const { queryParams, form, rules } = toRefs(data);
 
+//获取用户信息
+function getUserInfoList() {
+  console.log(1)
+  userInfoListApi().then(response => {
+    userInfoList.value = response.data;
+  });
+  console.log("userInfoList :", userInfoList);
+}
+
 /** 查询制令，存储总制令、分制令和子制令的信息列表 */
 function getList() {
   loading.value = true;
@@ -131,6 +147,7 @@ function getList() {
     ordersList.value = proxy.handleTree(response.data, "id", "parentId");
     loading.value = false;
   });
+  // console.log("orderList :", ordersList)
 }
 
 /** 查询制令，存储总制令、分制令和子制令的信息下拉树结构 */
@@ -167,6 +184,12 @@ function reset() {
   proxy.resetForm("ordersRef");
 }
 
+// 表单重置
+function reset_two() {
+  form_two.value = {};
+  proxy.resetForm("ordersRef");
+}
+
 /** 搜索按钮操作 */
 function handleQuery() {
   getList();
@@ -178,18 +201,18 @@ function resetQuery() {
   handleQuery();
 }
 
-/** 新增按钮操作 */
-function handleAdd(row) {
-  reset();
-  getTreeselect();
-  if (row != null && row.id) {
-    form.value.parentId = row.id;
-  } else {
-    form.value.parentId = 0;
-  }
-  open.value = true;
-  title.value = "添加制令，存储总制令、分制令和子制令的信息";
-}
+// /** 新增按钮操作 */
+// function handleAdd(row) {
+//   reset();
+//   getTreeselect();
+//   if (row != null && row.id) {
+//     form.value.parentId = row.id;
+//   } else {
+//     form.value.parentId = 0;
+//   }
+//   open.value = true;
+//   title.value = "添加制令，存储总制令、分制令和子制令的信息";
+// }
 
 /** 展开/折叠操作 */
 function toggleExpandAll() {
@@ -200,19 +223,19 @@ function toggleExpandAll() {
   });
 }
 
-/** 修改按钮操作 */
-async function handleUpdate(row) {
-  reset();
-  await getTreeselect();
-  if (row != null) {
-    form.value.parentId = row.parentId;
-  }
-  getOrders(row.id).then(response => {
-    form.value = response.data;
-    open.value = true;
-    title.value = "修改制令，存储总制令、分制令和子制令的信息";
-  });
-}
+// /** 修改按钮操作 */
+// async function handleUpdate(row) {
+//   reset();
+//   await getTreeselect();
+//   if (row != null) {
+//     form.value.parentId = row.parentId;
+//   }
+//   getOrders(row.id).then(response => {
+//     form.value = response.data;
+//     open.value = true;
+//     title.value = "修改制令，存储总制令、分制令和子制令的信息";
+//   });
+// }
 
 /** 提交按钮 */
 function submitForm() {
@@ -245,5 +268,14 @@ function handleDelete(row) {
   }).catch(() => { });
 }
 
+
+//处理任务分配 
+function handleAssign(row) {
+  reset();
+  open.value = true;
+  title.value = "任务分配";
+  console.log("row :", row);
+}
 getList();
+getUserInfoList();
 </script>
