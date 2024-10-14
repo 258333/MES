@@ -26,7 +26,13 @@ public interface OtherMapper {
     @Select("select user_id from sys_user_role where role_id = #{roleId}")
     public List<Long> selectUserIdByRoleId(Long roleId);
 
+
     /**
-     * 通过用户id 查询用户角色
+     * 通过工序id 查询所有机器id
+     * @param operationId
+     * @return
      */
+    @Select("select machine_id from tb_operation_machine where operation_id = #{operationId}")
+    List<Long> selectMachineIdByOperationId(Long operationId);
+
 }

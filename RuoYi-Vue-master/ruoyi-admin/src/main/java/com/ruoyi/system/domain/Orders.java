@@ -45,6 +45,10 @@ public class Orders extends TreeEntity
     @Excel(name = "关联的产品 ID")
     private Long productId;
 
+    /** 工序ID */
+    @Excel(name = "工序ID")
+    private Long operationId;
+
     /** 生产数量 */
     @Excel(name = "生产数量")
     private Long quantity;

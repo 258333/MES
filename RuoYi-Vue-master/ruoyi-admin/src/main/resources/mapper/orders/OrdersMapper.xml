@@ -10,6 +10,7 @@
         <result property="parentId"    column="parent_id"    />
         <result property="type"    column="type"    />
         <result property="contractId"    column="contract_id"    />
+        <result property="operationId"    column="operation_id"    />
         <result property="productId"    column="product_id"    />
         <result property="quantity"    column="quantity"    />
         <result property="batchNumber"    column="batch_number"    />
@@ -20,7 +21,7 @@
     </resultMap>
 
     <sql id="selectOrdersVo">
-        select id, order_number, parent_id, type, contract_id, product_id, quantity, batch_number, status, created_date, modified_date, operation from tb_orders
+        select id, order_number, parent_id, type, contract_id, operation_id, product_id, quantity, batch_number, status, created_date, modified_date, operation from tb_orders
     </sql>
 
     <select id="selectOrdersList" parameterType="Orders" resultMap="OrdersResult">
@@ -30,6 +31,7 @@
             <if test="parentId != null "> and parent_id = #{parentId}</if>
             <if test="type != null  and type != ''"> and type = #{type}</if>
             <if test="contractId != null "> and contract_id = #{contractId}</if>
+            <if test="operationId != null "> and operation_id = #{operationId}</if>
             <if test="productId != null "> and product_id = #{productId}</if>
             <if test="quantity != null "> and quantity = #{quantity}</if>
             <if test="batchNumber != null  and batchNumber != ''"> and batch_number = #{batchNumber}</if>
@@ -52,6 +54,7 @@
             <if test="parentId != null">parent_id,</if>
             <if test="type != null and type != ''">type,</if>
             <if test="contractId != null">contract_id,</if>
+            <if test="operationId != null">operation_id,</if>
             <if test="productId != null">product_id,</if>
             <if test="quantity != null">quantity,</if>
             <if test="batchNumber != null">batch_number,</if>
@@ -65,6 +68,7 @@
             <if test="parentId != null">#{parentId},</if>
             <if test="type != null and type != ''">#{type},</if>
             <if test="contractId != null">#{contractId},</if>
+            <if test="operationId != null">#{operationId},</if>
             <if test="productId != null">#{productId},</if>
             <if test="quantity != null">#{quantity},</if>
             <if test="batchNumber != null">#{batchNumber},</if>
@@ -82,6 +86,7 @@
             <if test="parentId != null">parent_id = #{parentId},</if>
             <if test="type != null and type != ''">type = #{type},</if>
             <if test="contractId != null">contract_id = #{contractId},</if>
+            <if test="operationId != null">operation_id = #{operationId},</if>
             <if test="productId != null">product_id = #{productId},</if>
             <if test="quantity != null">quantity = #{quantity},</if>
             <if test="batchNumber != null">batch_number = #{batchNumber},</if>

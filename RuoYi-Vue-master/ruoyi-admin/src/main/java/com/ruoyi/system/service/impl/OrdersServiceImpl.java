@@ -64,6 +64,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
             map.put("quantity",order.getQuantity());
             map.put("batchNumber",order.getBatchNumber());
             map.put("operation",order.getOperation());
+            map.put("operationId",order.getOperationId());
             if(order.getContractId() != null ){
                 // 根据合同id查询合同信息
                 Contracts contract = contractsMapper.selectContractsByContractId(order.getContractId());
@@ -190,6 +191,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
                 number = contract.getContractId() + "-" + currentDate + "-3-" + k++;
                 orders2.setOrderNumber(number);
                 Operation operation = operationMapper.selectOperationByOperationId((long) productOperations.get(j).getOperationId());
+                orders2.setOperationId(operation.getOperationId());
                 orders2.setOperation(productOperations.get(j).getSequenceNumber() + " : " +operation.getOperationName());
                 orders2.setBatchNumber(number);
                 ordersMapper.insertOrders(orders2);

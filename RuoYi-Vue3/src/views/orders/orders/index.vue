@@ -62,7 +62,7 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
-          <el-button v-if="scope.row.type === '子制令'" link type="primary" icon="Edit"
+          <el-button v-if="scope.row.type === '子制令' && scope.row.status == '待生产'" link type="primary" icon="Edit"
             @click="handleAssign(scope.row)">分配</el-button>
           <!-- <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['orders:orders:edit']">修改</el-button> -->
@@ -78,14 +78,18 @@
 
     <!-- 分配任务的信息对话框 -->
     <el-dialog :title="title" v-model="open" width="300px" append-to-body>
-      <el-form ref="ordersRef" :model="form_two" :rules="rules" label-width="80px">
-        <el-select v-model="value" placeholder="选择员工" size="large" style="width: 240px">
+      <el-form ref="ordersRef" :model="formSecond" :rules="rules" label-width="80px">
+        <el-select v-model="formSecond.userId" placeholder="选择员工" size="large" style="width: 240px">
           <el-option v-for="item in userInfoList" :key="item.userId" :label="item.userName" :value="item.userId" />
+        </el-select>
+        <el-select v-model="formSecond.machineId" placeholder="选择机器" size="large" style="width: 240px">
+          <el-option v-for="item in machineList" :key="item.machineId" :label="item.machineName"
+            :value="item.machineId" />
         </el-select>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button type="primary" @click="submitForm">确 定</el-button>
+          <el-button type="primary" @click="submitFormSecond">确 定</el-button>
           <el-button @click="cancel">取 消</el-button>
         </div>
       </template>
@@ -95,7 +99,7 @@
 
 <script setup name="Orders">
 import { listOrders, getOrders, delOrders, addOrders, updateOrders } from "@/api/orders/orders";
-import { userInfoListApi } from "@/api/other";
+import { userInfoListApi, machineListApi, taskAssignmentApi } from "@/api/other";
 
 const { proxy } = getCurrentInstance();
 const { order_status, order_type } = proxy.useDict('order_status', 'order_type');
@@ -109,7 +113,8 @@ const title = ref("");
 const isExpandAll = ref(true);
 const refreshTable = ref(true);
 const userInfoList = ref([])
-const form_two = ref({})
+const machineList = ref([])
+const formSecond = ref({})
 
 const data = reactive({
   form: {},
@@ -133,12 +138,22 @@ const { queryParams, form, rules } = toRefs(data);
 
 //获取用户信息
 function getUserInfoList() {
-  console.log(1)
+  // console.log(1)
   userInfoListApi().then(response => {
     userInfoList.value = response.data;
   });
-  console.log("userInfoList :", userInfoList);
+  // console.log("userInfoList :", userInfoList);
 }
+
+//获取可以使用的机器列表
+function getMachineList(operationId) {
+  // console.log("operationId :", operationId)
+  machineListApi(operationId).then(response => {
+    machineList.value = response.data;
+  })
+  // console.log("machine", machineList);
+}
+
 
 /** 查询制令，存储总制令、分制令和子制令的信息列表 */
 function getList() {
@@ -185,8 +200,8 @@ function reset() {
 }
 
 // 表单重置
-function reset_two() {
-  form_two.value = {};
+function resetSecond() {
+  formSecond.value = {};
   proxy.resetForm("ordersRef");
 }
 
@@ -238,22 +253,15 @@ function toggleExpandAll() {
 // }
 
 /** 提交按钮 */
-function submitForm() {
+function submitFormSecond() {
   proxy.$refs["ordersRef"].validate(valid => {
+    // console.log("formSecond :", formSecond);
     if (valid) {
-      if (form.value.id != null) {
-        updateOrders(form.value).then(response => {
-          proxy.$modal.msgSuccess("修改成功");
-          open.value = false;
-          getList();
-        });
-      } else {
-        addOrders(form.value).then(response => {
-          proxy.$modal.msgSuccess("新增成功");
-          open.value = false;
-          getList();
-        });
-      }
+      taskAssignmentApi(formSecond.value).then(response => {
+        proxy.$modal.msgSuccess("分配成功");
+        getList();
+        open.value = false;
+      });
     }
   });
 }
@@ -274,8 +282,12 @@ function handleAssign(row) {
   reset();
   open.value = true;
   title.value = "任务分配";
-  console.log("row :", row);
+  // console.log("row :", row);
+  formSecond.value.orderId = row.id
+  formSecond.value.operationId = row.operationId
+  getUserInfoList();
+  getMachineList(row.operationId)
 }
 getList();
-getUserInfoList();
+
 </script>

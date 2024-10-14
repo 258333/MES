@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.TaskAssignmentMapper">
-    
+
     <resultMap type="TaskAssignment" id="TaskAssignmentResult">
         <result property="takeId"    column="take_id"    />
         <result property="orderId"    column="order_id"    />
@@ -12,24 +12,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="assignedDate"    column="assigned_date"    />
         <result property="isCompleted"    column="is_completed"    />
         <result property="remarks"    column="remarks"    />
+        <result property="operationId"    column="operation_id"    />
+        <result property="isStarted"    column="is_started"    />
     </resultMap>
 
     <sql id="selectTaskAssignmentVo">
-        select take_id, order_id, user_id, machine_id, assigned_date, is_completed, remarks from tb_task_assignment
+        select take_id, order_id, user_id, machine_id, assigned_date, is_completed, remarks, operation_id, is_started from tb_task_assignment
     </sql>
 
     <select id="selectTaskAssignmentList" parameterType="TaskAssignment" resultMap="TaskAssignmentResult">
         <include refid="selectTaskAssignmentVo"/>
-        <where>  
+        <where>
+            <if test="takeId != null "> and take_id = #{takeId}</if>
             <if test="orderId != null "> and order_id = #{orderId}</if>
             <if test="userId != null "> and user_id = #{userId}</if>
             <if test="machineId != null "> and machine_id = #{machineId}</if>
             <if test="assignedDate != null "> and assigned_date = #{assignedDate}</if>
             <if test="isCompleted != null "> and is_completed = #{isCompleted}</if>
             <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+            <if test="operationId != null "> and operation_id = #{operationId}</if>
+            <if test="isStarted != null "> and is_started = #{isStarted}</if>
         </where>
     </select>
-    
+
     <select id="selectTaskAssignmentByTakeId" parameterType="Long" resultMap="TaskAssignmentResult">
         <include refid="selectTaskAssignmentVo"/>
         where take_id = #{takeId}
@@ -44,7 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="assignedDate != null">assigned_date,</if>
             <if test="isCompleted != null">is_completed,</if>
             <if test="remarks != null">remarks,</if>
-         </trim>
+            <if test="operationId != null">operation_id,</if>
+            <if test="isStarted != null">is_started,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="orderId != null">#{orderId},</if>
             <if test="userId != null">#{userId},</if>
@@ -52,7 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="assignedDate != null">#{assignedDate},</if>
             <if test="isCompleted != null">#{isCompleted},</if>
             <if test="remarks != null">#{remarks},</if>
-         </trim>
+            <if test="operationId != null">#{operationId},</if>
+            <if test="isStarted != null">#{isStarted},</if>
+        </trim>
     </insert>
 
     <update id="updateTaskAssignment" parameterType="TaskAssignment">
@@ -64,6 +73,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="assignedDate != null">assigned_date = #{assignedDate},</if>
             <if test="isCompleted != null">is_completed = #{isCompleted},</if>
             <if test="remarks != null">remarks = #{remarks},</if>
+            <if test="operationId != null">operation_id = #{operationId},</if>
+            <if test="isStarted != null">is_started = #{isStarted},</if>
         </trim>
         where take_id = #{takeId}
     </update>
@@ -73,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteTaskAssignmentByTakeIds" parameterType="String">
-        delete from tb_task_assignment where take_id in 
+        delete from tb_task_assignment where take_id in
         <foreach item="takeId" collection="array" open="(" separator="," close=")">
             #{takeId}
         </foreach>

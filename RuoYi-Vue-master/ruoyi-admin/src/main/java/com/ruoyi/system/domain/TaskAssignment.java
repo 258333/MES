@@ -9,9 +9,9 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 任务分配，存储每个子制令的任务分配情况对象 tb_task_assignment
- * 
+ *
  * @author HongWei
- * @date 2024-10-12
+ * @date 2024-10-13
  */
 public class TaskAssignment extends BaseEntity
 {
@@ -45,80 +45,108 @@ public class TaskAssignment extends BaseEntity
     @Excel(name = "备注")
     private String remarks;
 
-    public void setTakeId(Long takeId) 
+    /** 工序ID */
+    @Excel(name = "工序ID")
+    private Long operationId;
+
+    /** 是否开始 */
+    @Excel(name = "是否开始")
+    private Integer isStarted;
+
+    public void setTakeId(Long takeId)
     {
         this.takeId = takeId;
     }
 
-    public Long getTakeId() 
+    public Long getTakeId()
     {
         return takeId;
     }
-    public void setOrderId(Long orderId) 
+    public void setOrderId(Long orderId)
     {
         this.orderId = orderId;
     }
 
-    public Long getOrderId() 
+    public Long getOrderId()
     {
         return orderId;
     }
-    public void setUserId(Long userId) 
+    public void setUserId(Long userId)
     {
         this.userId = userId;
     }
 
-    public Long getUserId() 
+    public Long getUserId()
     {
         return userId;
     }
-    public void setMachineId(Long machineId) 
+    public void setMachineId(Long machineId)
     {
         this.machineId = machineId;
     }
 
-    public Long getMachineId() 
+    public Long getMachineId()
     {
         return machineId;
     }
-    public void setAssignedDate(Date assignedDate) 
+    public void setAssignedDate(Date assignedDate)
     {
         this.assignedDate = assignedDate;
     }
 
-    public Date getAssignedDate() 
+    public Date getAssignedDate()
     {
         return assignedDate;
     }
-    public void setIsCompleted(Integer isCompleted) 
+    public void setIsCompleted(Integer isCompleted)
     {
         this.isCompleted = isCompleted;
     }
 
-    public Integer getIsCompleted() 
+    public Integer getIsCompleted()
     {
         return isCompleted;
     }
-    public void setRemarks(String remarks) 
+    public void setRemarks(String remarks)
     {
         this.remarks = remarks;
     }
 
-    public String getRemarks() 
+    public String getRemarks()
     {
         return remarks;
+    }
+    public void setOperationId(Long operationId)
+    {
+        this.operationId = operationId;
+    }
+
+    public Long getOperationId()
+    {
+        return operationId;
+    }
+    public void setIsStarted(Integer isStarted)
+    {
+        this.isStarted = isStarted;
+    }
+
+    public Integer getIsStarted()
+    {
+        return isStarted;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("takeId", getTakeId())
-            .append("orderId", getOrderId())
-            .append("userId", getUserId())
-            .append("machineId", getMachineId())
-            .append("assignedDate", getAssignedDate())
-            .append("isCompleted", getIsCompleted())
-            .append("remarks", getRemarks())
-            .toString();
+                .append("takeId", getTakeId())
+                .append("orderId", getOrderId())
+                .append("userId", getUserId())
+                .append("machineId", getMachineId())
+                .append("assignedDate", getAssignedDate())
+                .append("isCompleted", getIsCompleted())
+                .append("remarks", getRemarks())
+                .append("operationId", getOperationId())
+                .append("isStarted", getIsStarted())
+                .toString();
     }
 }
