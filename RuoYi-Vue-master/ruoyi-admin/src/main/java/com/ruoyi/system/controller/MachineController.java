@@ -37,7 +37,7 @@ public class MachineController extends BaseController
     /**
      * 查询机器，存储所有机器的相关信息列表
      */
-    @PreAuthorize("@ss.hasPermi('machine:machine:list')")
+//    @PreAuthorize("@ss.hasPermi('machine:machine:list')")
     @GetMapping("/list")
     public TableDataInfo list(Machine machine)
     {
@@ -62,7 +62,7 @@ public class MachineController extends BaseController
     /**
      * 获取机器，存储所有机器的相关信息详细信息
      */
-    @PreAuthorize("@ss.hasPermi('machine:machine:query')")
+//    @PreAuthorize("@ss.hasPermi('machine:machine:query')")
     @GetMapping(value = "/{machineId}")
     public AjaxResult getInfo(@PathVariable("machineId") Long machineId)
     {

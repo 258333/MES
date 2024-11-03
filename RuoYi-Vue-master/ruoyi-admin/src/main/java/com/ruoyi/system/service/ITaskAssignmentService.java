@@ -1,7 +1,10 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+
+import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.system.domain.TaskAssignment;
+import com.ruoyi.system.domain.dto.TaskMaterial;
 
 /**
  * 任务分配，存储每个子制令的任务分配情况Service接口
@@ -58,4 +61,7 @@ public interface ITaskAssignmentService
      * @return 结果
      */
     public int deleteTaskAssignmentByTakeId(Long takeId);
+
+    //添加任务物料关联信息
+    void insertTaskMaterials(List<TaskMaterial> taskMaterial);
 }

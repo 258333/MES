@@ -2,6 +2,9 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TaskAssignment;
+import com.ruoyi.system.domain.dto.TaskMaterial;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 任务分配，存储每个子制令的任务分配情况Mapper接口
@@ -9,6 +12,7 @@ import com.ruoyi.system.domain.TaskAssignment;
  * @author HongWei
  * @date 2024-10-12
  */
+@Mapper
 public interface TaskAssignmentMapper 
 {
     /**
@@ -58,4 +62,7 @@ public interface TaskAssignmentMapper
      * @return 结果
      */
     public int deleteTaskAssignmentByTakeIds(Long[] takeIds);
+
+    @Insert("insert into tb_task_material(material_id,task_id,quantity) values(#{materialId},#{taskId},#{quantity})")
+    void insertTaskMaterials(TaskMaterial material);
 }

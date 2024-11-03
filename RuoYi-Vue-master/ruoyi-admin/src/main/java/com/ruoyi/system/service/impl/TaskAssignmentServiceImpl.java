@@ -1,6 +1,9 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.List;
+
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.system.domain.dto.TaskMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.TaskAssignmentMapper;
@@ -89,5 +92,13 @@ public class TaskAssignmentServiceImpl implements ITaskAssignmentService
     public int deleteTaskAssignmentByTakeId(Long takeId)
     {
         return taskAssignmentMapper.deleteTaskAssignmentByTakeId(takeId);
+    }
+
+    //添加任务物料关联信息
+    @Override
+    public void insertTaskMaterials(List<TaskMaterial> taskMaterial) {
+        for (TaskMaterial material : taskMaterial) {
+            taskAssignmentMapper.insertTaskMaterials(material);
+        }
     }
 }

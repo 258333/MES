@@ -2,10 +2,7 @@ package com.ruoyi.system.service.impl;
 
 
 import com.ruoyi.common.core.domain.entity.SysUser;
-import com.ruoyi.system.domain.Machine;
-import com.ruoyi.system.domain.Operation;
-import com.ruoyi.system.domain.Orders;
-import com.ruoyi.system.domain.TaskAssignment;
+import com.ruoyi.system.domain.*;
 import com.ruoyi.system.mapper.*;
 import com.ruoyi.system.service.IOtherService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +23,7 @@ public class OtherServiceImpl implements IOtherService {
     private final OrdersMapper ordersMapper;
     private final TaskAssignmentMapper taskAssignmentMapper;
     private final OperationMapper operationMapper;
+    private final MaterialMapper materialMapper;
 
     @Override
     public List<SysUser> selectUserInfo() {
@@ -92,7 +90,9 @@ public class OtherServiceImpl implements IOtherService {
             //将这些信息整合到集合中
             Map<String, Object> map = new HashMap<>();
             map.put("machineName", machine.getMachineName());
+
             map.put("operationName", operation.getOperationName());
+            map.put("operationId",operation.getOperationId());
             map.put("quantity", orders.getQuantity());
             //将所有任务信息添加到集合中
             map.put("taskAssignment", assignment);
@@ -135,4 +135,30 @@ public class OtherServiceImpl implements IOtherService {
             ordersMapper.updateOrders(orders);
         }
     }
+
+
+     // 根据operationId查询物料信息
+    @Override
+    public List<Map<String, Object>> selectMaterialsByOperationId(Long operationId) {
+        System.out.println("operationId : " + operationId);
+        //在工序物料表中查询物料Id
+        List<Long> materialIds = operationMapper.selectMaterialIdsByOperationId(operationId);
+        System.out.println("materialIds : " + materialIds);
+        List<Map<String, Object>> maps = new ArrayList<>();
+        if (!materialIds.isEmpty()) {
+            //根据物料id查询物料信息
+            for (Long materialId : materialIds) {
+                Material material = materialMapper.selectMaterialByMaterialId(materialId);
+                Map<String, Object> map = new HashMap<>();
+                map.put("materialId", material.getMaterialId());
+                map.put("materialName", material.getMaterialName());
+                map.put("unit", material.getUnit());
+                maps.add(map);
+            }
+        }
+        System.out.println("maps : " + maps);
+        return maps;
+    }
+
+
 }

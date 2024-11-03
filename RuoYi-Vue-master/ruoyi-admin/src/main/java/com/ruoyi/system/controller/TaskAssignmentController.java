@@ -2,6 +2,10 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.system.domain.dto.TaskMaterial;
+import com.ruoyi.system.mapper.TaskAssignmentMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +32,12 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/taskAssignment/taskAssignment")
 public class TaskAssignmentController extends BaseController
 {
-    @Autowired
-    private ITaskAssignmentService taskAssignmentService;
+    private final ITaskAssignmentService taskAssignmentService;
+    private final TaskAssignmentMapper taskAssignmentMapper;
 
     /**
      * 查询任务分配，存储每个子制令的任务分配情况列表
@@ -100,5 +105,13 @@ public class TaskAssignmentController extends BaseController
     public AjaxResult remove(@PathVariable Long[] takeIds)
     {
         return toAjax(taskAssignmentService.deleteTaskAssignmentByTakeIds(takeIds));
+    }
+
+    //添加任务物料关联信息
+    @PostMapping("insertTaskMaterials")
+    public AjaxResult insertTaskMaterials(@RequestBody List<TaskMaterial> taskMaterial)
+    {
+        taskAssignmentService.insertTaskMaterials(taskMaterial);
+        return success("添加成功");
     }
 }

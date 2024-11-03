@@ -1,6 +1,8 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.system.domain.Operation;
 
 /**
@@ -58,4 +60,7 @@ public interface IOperationService
      * @return 结果
      */
     public int deleteOperationByOperationId(Long operationId);
+
+
+
 }

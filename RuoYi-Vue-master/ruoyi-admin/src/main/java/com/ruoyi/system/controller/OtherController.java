@@ -67,4 +67,9 @@ public class OtherController {
         return AjaxResult.success();
     }
 
+    //根据工序ID查询需要的物料
+    @GetMapping("material/{operationId}")
+    public AjaxResult getMaterialbyOperationId(@PathVariable Long operationId) {
+        return AjaxResult.success(otherService.selectMaterialsByOperationId(operationId));
+    }
 }

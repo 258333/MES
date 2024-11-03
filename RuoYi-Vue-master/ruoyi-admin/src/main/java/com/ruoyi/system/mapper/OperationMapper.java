@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.Operation;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 工序，存储工序及其相关信息Mapper接口
@@ -58,4 +59,7 @@ public interface OperationMapper
      * @return 结果
      */
     public int deleteOperationByOperationIds(Long[] operationIds);
+
+    @Select("select material_id from tb_operation_materials where operation_id = #{operationId}")
+    List<Long> selectMaterialIdsByOperationId(Long operationId);
 }
