@@ -1,0 +1,54 @@
+/**
+ * uni-app内置的常用样式变量
+ */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+body[data-v-abe738a3] {
+  background-color: #f8f8f8;
+}
+.help-container[data-v-abe738a3] {
+  margin-bottom: 3.125rem;
+  padding: 0.9375rem;
+}
+.list-title[data-v-abe738a3] {
+  margin-bottom: 0.9375rem;
+}
+.childList[data-v-abe738a3] {
+  background: #ffffff;
+  box-shadow: 0px 0px 0.3125rem rgba(193, 193, 193, 0.2);
+  border-radius: 0.5rem;
+  margin-top: 0.3125rem;
+}
+.line[data-v-abe738a3] {
+  width: 100%;
+  height: 0.03125rem;
+  background-color: #F5F5F5;
+}
+.text-title[data-v-abe738a3] {
+  color: #303133;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 0.3125rem;
+}
+.text-title .iconfont[data-v-abe738a3] {
+  font-size: 16px;
+  margin-right: 0.3125rem;
+}
+.text-item[data-v-abe738a3] {
+  font-size: 0.875rem;
+  padding: 0.75rem;
+}
+.question[data-v-abe738a3] {
+  color: #606266;
+  font-size: 0.875rem;
+}

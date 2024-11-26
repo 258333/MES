@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Map;
 
 @RestController
 @RequestMapping("other")
@@ -39,6 +40,7 @@ public class OtherController {
     public AjaxResult taskAssignment(@RequestBody TaskAssignment taskAssignment) {
         taskAssignment.setAssignedDate(new Date());
         taskAssignment.setIsCompleted(0);
+        taskAssignment.setMachineId(1L);
         //调用service层记录使用的参数
         otherService.updateDatabase(taskAssignment);
         return AjaxResult.success(taskAssignmentService.insertTaskAssignment(taskAssignment));
@@ -71,5 +73,12 @@ public class OtherController {
     @GetMapping("material/{operationId}")
     public AjaxResult getMaterialbyOperationId(@PathVariable Long operationId) {
         return AjaxResult.success(otherService.selectMaterialsByOperationId(operationId));
+    }
+
+    //计算工资
+    @GetMapping("salary")
+    public AjaxResult getSalary(@RequestParam Long userId) {
+        Map<String,Object> salary = otherService.getSalary(userId);
+        return AjaxResult.success(salary);
     }
 }

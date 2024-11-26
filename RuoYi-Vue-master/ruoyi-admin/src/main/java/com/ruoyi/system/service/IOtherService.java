@@ -22,4 +22,6 @@ public interface IOtherService {
     void finishTask(Long takeId, int quantity);
 
     List<Map<String,Object>> selectMaterialsByOperationId(Long operationId);
+
+    Map<String, Object> getSalary(Long userId);
 }

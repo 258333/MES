@@ -82,10 +82,10 @@
         <el-select v-model="formSecond.userId" placeholder="选择员工" size="large" style="width: 240px">
           <el-option v-for="item in userInfoList" :key="item.userId" :label="item.userName" :value="item.userId" />
         </el-select>
-        <el-select v-model="formSecond.machineId" placeholder="选择机器" size="large" style="width: 240px">
+        <!-- <el-select v-model="formSecond.machineId" placeholder="选择机器" size="large" style="width: 240px">
           <el-option v-for="item in machineList" :key="item.machineId" :label="item.machineName"
             :value="item.machineId" />
-        </el-select>
+        </el-select> -->
       </el-form>
       <template #footer>
         <div class="dialog-footer">

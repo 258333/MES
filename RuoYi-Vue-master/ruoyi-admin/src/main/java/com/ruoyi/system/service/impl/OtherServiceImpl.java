@@ -3,9 +3,11 @@ package com.ruoyi.system.service.impl;
 
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.system.domain.*;
+import com.ruoyi.system.domain.dto.TaskMaterial;
 import com.ruoyi.system.mapper.*;
 import com.ruoyi.system.service.IOtherService;
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class OtherServiceImpl implements IOtherService {
     private final TaskAssignmentMapper taskAssignmentMapper;
     private final OperationMapper operationMapper;
     private final MaterialMapper materialMapper;
+    private final WorkReportMapper workReportMapper;
 
     @Override
     public List<SysUser> selectUserInfo() {
@@ -92,7 +95,7 @@ public class OtherServiceImpl implements IOtherService {
             map.put("machineName", machine.getMachineName());
 
             map.put("operationName", operation.getOperationName());
-            map.put("operationId",operation.getOperationId());
+            map.put("operationId", operation.getOperationId());
             map.put("quantity", orders.getQuantity());
             //将所有任务信息添加到集合中
             map.put("taskAssignment", assignment);
@@ -121,7 +124,7 @@ public class OtherServiceImpl implements IOtherService {
             taskAssignmentMapper.updateTaskAssignment(taskAssignment);
             // TODO 将剩余产品加入库存中
             return;
-        }else if (orders.getQuantity() == quantity){
+        } else if (orders.getQuantity() == quantity) {
             //正好完成任务
             orders.setStatus("已完成");
             orders.setQuantity(0L);
@@ -129,7 +132,7 @@ public class OtherServiceImpl implements IOtherService {
             ordersMapper.updateOrders(orders);
             taskAssignmentMapper.updateTaskAssignment(taskAssignment);
             return;
-        }else{
+        } else {
             //任务未完成
             orders.setQuantity(orders.getQuantity() - quantity);
             ordersMapper.updateOrders(orders);
@@ -137,7 +140,7 @@ public class OtherServiceImpl implements IOtherService {
     }
 
 
-     // 根据operationId查询物料信息
+    // 根据operationId查询物料信息
     @Override
     public List<Map<String, Object>> selectMaterialsByOperationId(Long operationId) {
         System.out.println("operationId : " + operationId);
@@ -158,6 +161,38 @@ public class OtherServiceImpl implements IOtherService {
         }
         System.out.println("maps : " + maps);
         return maps;
+    }
+
+    @Override
+    public Map<String, Object> getSalary(Long userId) {
+        Map<String, Object> map = new HashMap<>();
+        WorkReport workReport = new WorkReport();
+        workReport.setUserId(userId);
+        workReport = workReportMapper.selectWorkReportList(workReport).get(0);
+        Machine machine = machineMapper.selectMachineByMachineId(workReport.getMachineId());
+
+        TaskAssignment taskAssignment = new TaskAssignment();
+        taskAssignment.setOperationId(workReport.getOperationId());
+        taskAssignment = taskAssignmentMapper.selectTaskAssignmentList(taskAssignment).get(0);
+
+        System.out.println("taskAssignment : " + taskAssignment);
+//        List<TaskMaterial> taskMaterials = otherMapper.selectMaterialsByTaskId(taskAssignment.getTakeId());
+        String material = "162蜡,168蜡,水溶蜡";
+//        float materialPrice = 0;
+//        System.out.println(taskMaterials);
+//        for (TaskMaterial taskMaterial : taskMaterials) {
+//            material += materialMapper.selectMaterialByMaterialId(taskMaterial.getMaterialId()).getMaterialName();
+////            materialPrice += (float) (taskMaterial.getQuantity() * 0.5);
+//        }
+        map.put("materials", material);
+        map.put("materialPrice", 21.0);
+        map.put("machine", machine.getMachineName());
+        map.put("machinePrice", 12.0);
+        map.put("startTime", workReport.getStartTime());
+        map.put("endTime", workReport.getEndTime());
+        map.put("operationName", operationMapper.selectOperationByOperationId(workReport.getOperationId()).getOperationName());
+        map.put("operationPrice",200);
+        return map;
     }
 
 

@@ -1,0 +1,96 @@
+/**
+ * uni-app内置的常用样式变量
+ */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.uni-section[data-v-2f279ad5] {
+  background-color: #fff;
+}
+.uni-section .uni-section-header[data-v-2f279ad5] {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 10px;
+  font-weight: normal;
+}
+.uni-section .uni-section-header__decoration[data-v-2f279ad5] {
+  margin-right: 6px;
+  background-color: #2979ff;
+}
+.uni-section .uni-section-header__decoration.line[data-v-2f279ad5] {
+  width: 4px;
+  height: 12px;
+  border-radius: 10px;
+}
+.uni-section .uni-section-header__decoration.circle[data-v-2f279ad5] {
+  width: 8px;
+  height: 8px;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.uni-section .uni-section-header__decoration.square[data-v-2f279ad5] {
+  width: 8px;
+  height: 8px;
+}
+.uni-section .uni-section-header__content[data-v-2f279ad5] {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: #333;
+}
+.uni-section .uni-section-header__content .distraction[data-v-2f279ad5] {
+  flex-direction: row;
+  align-items: center;
+}
+.uni-section .uni-section-header__content-sub[data-v-2f279ad5] {
+  margin-top: 2px;
+}
+.uni-section .uni-section-header__slot-right[data-v-2f279ad5] {
+  font-size: 14px;
+}
+.uni-section .uni-section-content[data-v-2f279ad5] {
+  font-size: 14px;
+}
+
+.attendance[data-v-a600a171] {
+	padding: 0.625rem;
+	background-color: #fff;
+}
+uni-button[data-v-a600a171] {
+	padding: 0.3125rem 0.625rem;
+	margin-right: 0.3125rem;
+	background-color: #007aff;
+	color: #fff;
+	border: none;
+	border-radius: 0.15625rem;
+}
+.dialog[data-v-a600a171] {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+.dialog-content[data-v-a600a171] {
+	text-align: center;
+}
+uni-button[data-v-a600a171] {
+	margin-top: 10px;
+}

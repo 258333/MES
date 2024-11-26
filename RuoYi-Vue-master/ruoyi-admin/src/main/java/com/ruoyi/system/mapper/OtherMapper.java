@@ -1,6 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.dto.ProductOperation;
+import com.ruoyi.system.domain.dto.TaskMaterial;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -35,4 +36,7 @@ public interface OtherMapper {
     @Select("select machine_id from tb_operation_machine where operation_id = #{operationId}")
     List<Long> selectMachineIdByOperationId(Long operationId);
 
+    //查询任务对应的所有的物料
+    @Select("select material_id,quantity,task_id from tb_task_material where task_id = #{taskId}")
+    List<TaskMaterial> selectMaterialsByTaskId(Long taskId);
 }
