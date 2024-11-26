@@ -49,10 +49,9 @@
       <el-table-column label="产品" align="center" prop="productName" width="80" /> <!-- 减少宽度 -->
 
       <el-table-column label="工序" align="center" prop="operation" width="80" />
+      <el-table-column label="工序顺序" align="center" prop="operationSequence" width="80" />
 
       <el-table-column label="数量" align="center" prop="quantity" width="80" />
-
-      <el-table-column label="批次号" align="center" prop="batchNumber" width="150" />
 
       <el-table-column label="制令状态" align="center" prop="status" width="80">
         <!-- <template #default="scope">
@@ -62,7 +61,7 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
-          <el-button v-if="scope.row.type === '子制令' && scope.row.status == '待生产'" link type="primary" icon="Edit"
+          <el-button v-if="scope.row.type === '子制令' && scope.row.status == '待分配'" link type="primary" icon="Edit"
             @click="handleAssign(scope.row)">分配</el-button>
           <!-- <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['orders:orders:edit']">修改</el-button> -->
@@ -82,10 +81,6 @@
         <el-select v-model="formSecond.userId" placeholder="选择员工" size="large" style="width: 240px">
           <el-option v-for="item in userInfoList" :key="item.userId" :label="item.userName" :value="item.userId" />
         </el-select>
-        <!-- <el-select v-model="formSecond.machineId" placeholder="选择机器" size="large" style="width: 240px">
-          <el-option v-for="item in machineList" :key="item.machineId" :label="item.machineName"
-            :value="item.machineId" />
-        </el-select> -->
       </el-form>
       <template #footer>
         <div class="dialog-footer">
@@ -286,7 +281,6 @@ function handleAssign(row) {
   formSecond.value.orderId = row.id
   formSecond.value.operationId = row.operationId
   getUserInfoList();
-  getMachineList(row.operationId)
 }
 getList();
 

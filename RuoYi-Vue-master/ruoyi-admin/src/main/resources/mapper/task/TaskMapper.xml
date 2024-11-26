@@ -2,13 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.TaskAssignmentMapper">
+<mapper namespace="com.ruoyi.system.mapper.TaskMapper">
 
-    <resultMap type="TaskAssignment" id="TaskAssignmentResult">
-        <result property="takeId"    column="take_id"    />
+    <resultMap type="Task" id="TaskResult">
+        <result property="taskId"    column="task_id"    />
         <result property="orderId"    column="order_id"    />
         <result property="userId"    column="user_id"    />
-        <result property="machineId"    column="machine_id"    />
         <result property="assignedDate"    column="assigned_date"    />
         <result property="isCompleted"    column="is_completed"    />
         <result property="remarks"    column="remarks"    />
@@ -16,17 +15,16 @@
         <result property="isStarted"    column="is_started"    />
     </resultMap>
 
-    <sql id="selectTaskAssignmentVo">
-        select take_id, order_id, user_id, machine_id, assigned_date, is_completed, remarks, operation_id, is_started from tb_task_assignment
+    <sql id="selectTaskVo">
+        select task_id, order_id, user_id, assigned_date, is_completed, remarks, operation_id, is_started from tb_task
     </sql>
 
-    <select id="selectTaskAssignmentList" parameterType="TaskAssignment" resultMap="TaskAssignmentResult">
-        <include refid="selectTaskAssignmentVo"/>
+    <select id="selectTaskList" parameterType="Task" resultMap="TaskResult">
+        <include refid="selectTaskVo"/>
         <where>
-            <if test="takeId != null "> and take_id = #{takeId}</if>
+            <if test="taskId != null "> and task_id = #{taskId}</if>
             <if test="orderId != null "> and order_id = #{orderId}</if>
             <if test="userId != null "> and user_id = #{userId}</if>
-            <if test="machineId != null "> and machine_id = #{machineId}</if>
             <if test="assignedDate != null "> and assigned_date = #{assignedDate}</if>
             <if test="isCompleted != null "> and is_completed = #{isCompleted}</if>
             <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
@@ -35,17 +33,16 @@
         </where>
     </select>
 
-    <select id="selectTaskAssignmentByTakeId" parameterType="Long" resultMap="TaskAssignmentResult">
-        <include refid="selectTaskAssignmentVo"/>
-        where take_id = #{takeId}
+    <select id="selectTaskByTaskId" parameterType="Long" resultMap="TaskResult">
+        <include refid="selectTaskVo"/>
+        where task_id = #{taskId}
     </select>
 
-    <insert id="insertTaskAssignment" parameterType="TaskAssignment" useGeneratedKeys="true" keyProperty="takeId">
-        insert into tb_task_assignment
+    <insert id="insertTask" parameterType="Task" useGeneratedKeys="true" keyProperty="taskId">
+        insert into tb_task
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="orderId != null">order_id,</if>
             <if test="userId != null">user_id,</if>
-            <if test="machineId != null">machine_id,</if>
             <if test="assignedDate != null">assigned_date,</if>
             <if test="isCompleted != null">is_completed,</if>
             <if test="remarks != null">remarks,</if>
@@ -55,7 +52,6 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="orderId != null">#{orderId},</if>
             <if test="userId != null">#{userId},</if>
-            <if test="machineId != null">#{machineId},</if>
             <if test="assignedDate != null">#{assignedDate},</if>
             <if test="isCompleted != null">#{isCompleted},</if>
             <if test="remarks != null">#{remarks},</if>
@@ -64,29 +60,28 @@
         </trim>
     </insert>
 
-    <update id="updateTaskAssignment" parameterType="TaskAssignment">
-        update tb_task_assignment
+    <update id="updateTask" parameterType="Task">
+        update tb_task
         <trim prefix="SET" suffixOverrides=",">
             <if test="orderId != null">order_id = #{orderId},</if>
             <if test="userId != null">user_id = #{userId},</if>
-            <if test="machineId != null">machine_id = #{machineId},</if>
             <if test="assignedDate != null">assigned_date = #{assignedDate},</if>
             <if test="isCompleted != null">is_completed = #{isCompleted},</if>
             <if test="remarks != null">remarks = #{remarks},</if>
             <if test="operationId != null">operation_id = #{operationId},</if>
             <if test="isStarted != null">is_started = #{isStarted},</if>
         </trim>
-        where take_id = #{takeId}
+        where task_id = #{taskId}
     </update>
 
-    <delete id="deleteTaskAssignmentByTakeId" parameterType="Long">
-        delete from tb_task_assignment where take_id = #{takeId}
+    <delete id="deleteTaskByTaskId" parameterType="Long">
+        delete from tb_task where task_id = #{taskId}
     </delete>
 
-    <delete id="deleteTaskAssignmentByTakeIds" parameterType="String">
-        delete from tb_task_assignment where take_id in
-        <foreach item="takeId" collection="array" open="(" separator="," close=")">
-            #{takeId}
+    <delete id="deleteTaskByTaskIds" parameterType="String">
+        delete from tb_task where task_id in
+        <foreach item="taskId" collection="array" open="(" separator="," close=")">
+            #{taskId}
         </foreach>
     </delete>
 </mapper>

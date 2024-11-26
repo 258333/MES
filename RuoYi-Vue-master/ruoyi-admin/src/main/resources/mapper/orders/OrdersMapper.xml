@@ -13,20 +13,21 @@
         <result property="operationId"    column="operation_id"    />
         <result property="productId"    column="product_id"    />
         <result property="quantity"    column="quantity"    />
-        <result property="batchNumber"    column="batch_number"    />
         <result property="status"    column="status"    />
         <result property="createdDate"    column="created_date"    />
         <result property="modifiedDate"    column="modified_date"    />
         <result property="operation"    column="operation"    />
+        <result property="operationSequence"    column="operation_sequence"    />
     </resultMap>
 
     <sql id="selectOrdersVo">
-        select id, order_number, parent_id, type, contract_id, operation_id, product_id, quantity, batch_number, status, created_date, modified_date, operation from tb_orders
+        select id, order_number, parent_id, type, contract_id, operation_id, product_id, quantity, status, created_date, modified_date, operation, operation_sequence from tb_orders
     </sql>
 
     <select id="selectOrdersList" parameterType="Orders" resultMap="OrdersResult">
         <include refid="selectOrdersVo"/>
         <where>
+            <if test="id != null "> and id = #{id}</if>
             <if test="orderNumber != null  and orderNumber != ''"> and order_number like concat('%', #{orderNumber}, '%')</if>
             <if test="parentId != null "> and parent_id = #{parentId}</if>
             <if test="type != null  and type != ''"> and type = #{type}</if>
@@ -34,11 +35,11 @@
             <if test="operationId != null "> and operation_id = #{operationId}</if>
             <if test="productId != null "> and product_id = #{productId}</if>
             <if test="quantity != null "> and quantity = #{quantity}</if>
-            <if test="batchNumber != null  and batchNumber != ''"> and batch_number = #{batchNumber}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
             <if test="createdDate != null "> and created_date = #{createdDate}</if>
             <if test="modifiedDate != null "> and modified_date = #{modifiedDate}</if>
             <if test="operation != null  and operation != ''"> and operation = #{operation}</if>
+            <if test="operationSequence != null "> and operation_sequence = #{operationSequence}</if>
         </where>
     </select>
 
@@ -57,11 +58,11 @@
             <if test="operationId != null">operation_id,</if>
             <if test="productId != null">product_id,</if>
             <if test="quantity != null">quantity,</if>
-            <if test="batchNumber != null">batch_number,</if>
             <if test="status != null">status,</if>
             <if test="createdDate != null">created_date,</if>
             <if test="modifiedDate != null">modified_date,</if>
             <if test="operation != null">operation,</if>
+            <if test="operationSequence != null">operation_sequence,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="orderNumber != null and orderNumber != ''">#{orderNumber},</if>
@@ -71,11 +72,11 @@
             <if test="operationId != null">#{operationId},</if>
             <if test="productId != null">#{productId},</if>
             <if test="quantity != null">#{quantity},</if>
-            <if test="batchNumber != null">#{batchNumber},</if>
             <if test="status != null">#{status},</if>
             <if test="createdDate != null">#{createdDate},</if>
             <if test="modifiedDate != null">#{modifiedDate},</if>
             <if test="operation != null">#{operation},</if>
+            <if test="operationSequence != null">#{operationSequence},</if>
         </trim>
     </insert>
 
@@ -89,11 +90,11 @@
             <if test="operationId != null">operation_id = #{operationId},</if>
             <if test="productId != null">product_id = #{productId},</if>
             <if test="quantity != null">quantity = #{quantity},</if>
-            <if test="batchNumber != null">batch_number = #{batchNumber},</if>
             <if test="status != null">status = #{status},</if>
             <if test="createdDate != null">created_date = #{createdDate},</if>
             <if test="modifiedDate != null">modified_date = #{modifiedDate},</if>
             <if test="operation != null">operation = #{operation},</if>
+            <if test="operationSequence != null">operation_sequence = #{operationSequence},</if>
         </trim>
         where id = #{id}
     </update>

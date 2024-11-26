@@ -8,17 +8,17 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 任务分配，存储每个子制令的任务分配情况对象 tb_task_assignment
+ * 任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息对象 tb_task
  *
  * @author HongWei
- * @date 2024-10-13
+ * @date 2024-11-26
  */
-public class TaskAssignment extends BaseEntity
+public class Task extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 任务分配ID */
-    private Long takeId;
+    private Long taskId;
 
     /** 制令ID */
     @Excel(name = "制令ID")
@@ -27,10 +27,6 @@ public class TaskAssignment extends BaseEntity
     /** 员工ID */
     @Excel(name = "员工ID")
     private Long userId;
-
-    /** 机器ID */
-    @Excel(name = "机器ID")
-    private Long machineId;
 
     /** 任务分配时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -53,14 +49,14 @@ public class TaskAssignment extends BaseEntity
     @Excel(name = "是否开始")
     private Integer isStarted;
 
-    public void setTakeId(Long takeId)
+    public void setTaskId(Long taskId)
     {
-        this.takeId = takeId;
+        this.taskId = taskId;
     }
 
-    public Long getTakeId()
+    public Long getTaskId()
     {
-        return takeId;
+        return taskId;
     }
     public void setOrderId(Long orderId)
     {
@@ -79,15 +75,6 @@ public class TaskAssignment extends BaseEntity
     public Long getUserId()
     {
         return userId;
-    }
-    public void setMachineId(Long machineId)
-    {
-        this.machineId = machineId;
-    }
-
-    public Long getMachineId()
-    {
-        return machineId;
     }
     public void setAssignedDate(Date assignedDate)
     {
@@ -138,10 +125,9 @@ public class TaskAssignment extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-                .append("takeId", getTakeId())
+                .append("taskId", getTaskId())
                 .append("orderId", getOrderId())
                 .append("userId", getUserId())
-                .append("machineId", getMachineId())
                 .append("assignedDate", getAssignedDate())
                 .append("isCompleted", getIsCompleted())
                 .append("remarks", getRemarks())

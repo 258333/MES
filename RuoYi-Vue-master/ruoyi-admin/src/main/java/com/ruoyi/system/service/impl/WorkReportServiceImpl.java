@@ -2,10 +2,9 @@ package com.ruoyi.system.service.impl;
 
 import java.util.List;
 
-import com.ruoyi.system.domain.TaskAssignment;
-import com.ruoyi.system.mapper.TaskAssignmentMapper;
+import com.ruoyi.system.domain.Task;
+import com.ruoyi.system.mapper.TaskMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.WorkReportMapper;
 import com.ruoyi.system.domain.WorkReport;
@@ -22,7 +21,7 @@ import com.ruoyi.system.service.IWorkReportService;
 public class WorkReportServiceImpl implements IWorkReportService 
 {
     private final WorkReportMapper workReportMapper;
-    private final TaskAssignmentMapper taskAssignmentMapper;
+    private final TaskMapper taskAssignmentMapper;
 
 
 
@@ -59,9 +58,9 @@ public class WorkReportServiceImpl implements IWorkReportService
     @Override
     public int insertWorkReport(WorkReport workReport,Long taskId)
     {
-        TaskAssignment taskAssignment = taskAssignmentMapper.selectTaskAssignmentByTakeId(taskId);
+        Task taskAssignment = taskAssignmentMapper.selectTaskByTaskId(taskId);
         taskAssignment.setIsCompleted(1);
-        taskAssignmentMapper.updateTaskAssignment(taskAssignment);
+        taskAssignmentMapper.updateTask(taskAssignment);
         return workReportMapper.insertWorkReport(workReport);
     }
 

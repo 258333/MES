@@ -62,9 +62,9 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
             map.put("status",order.getStatus());
             map.put("parentId",order.getParentId());
             map.put("quantity",order.getQuantity());
-            map.put("batchNumber",order.getBatchNumber());
             map.put("operation",order.getOperation());
             map.put("operationId",order.getOperationId());
+            map.put("operationSequence",order.getOperationSequence());
             if(order.getContractId() != null ){
                 // 根据合同id查询合同信息
                 Contracts contract = contractsMapper.selectContractsByContractId(order.getContractId());
@@ -149,9 +149,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
         //编号
         number = contract.getContractId() + "-" + currentDate + "-1";
         orders.setOrderNumber(number);
-        // 2. 生成生产批次号 (合同编号 + 当前日期 + (制令类型))
-        orders.setBatchNumber(number);
-        orders.setStatus("待生产");
+        orders.setStatus("未完成");
         // 3. 插入数据库
         ordersMapper.insertOrders(orders);
         // 4. 查询生成的总制令
@@ -165,13 +163,12 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
         for (ProductDetails product : contract.getProductDetails()) {
             Orders orders1 = new Orders();
             orders1.setType("分制令");
-            orders1.setStatus("待生产");
+            orders1.setStatus("未完成");
             orders1.setParentId(orders.getId());
             number = contract.getContractId() + "-" + currentDate + "-2-" + i++;
             orders1.setOrderNumber(number);
             orders1.setProductId((long) product.getProductId());
             orders1.setQuantity(product.getQuantity());
-            orders1.setBatchNumber(number);
             ordersMapper.insertOrders(orders1);
 
             orders1 = ordersMapper.selectOrdersList(orders1).get(0);
@@ -185,15 +182,15 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
             for (int j = 0; j < n; j++) {
                 Orders orders2 = new Orders();
                 orders2.setType("子制令");
-                orders2.setStatus("待生产");
+                orders2.setStatus("待分配");
                 orders2.setParentId(orders1.getId());
                 orders2.setQuantity(product.getQuantity());
                 number = contract.getContractId() + "-" + currentDate + "-3-" + k++;
                 orders2.setOrderNumber(number);
                 Operation operation = operationMapper.selectOperationByOperationId((long) productOperations.get(j).getOperationId());
                 orders2.setOperationId(operation.getOperationId());
-                orders2.setOperation(productOperations.get(j).getSequenceNumber() + " : " +operation.getOperationName());
-                orders2.setBatchNumber(number);
+                orders2.setOperationSequence((long) productOperations.get(j).getSequenceNumber());
+                orders2.setOperation(operation.getOperationName());
                 ordersMapper.insertOrders(orders2);
             }
 
