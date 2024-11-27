@@ -142,10 +142,10 @@ public class OtherServiceImpl implements IOtherService {
     // 根据operationId查询物料信息
     @Override
     public List<Map<String, Object>> selectMaterialsByOperationId(Long operationId) {
-        System.out.println("operationId : " + operationId);
+//        System.out.println("operationId : " + operationId);
         //在工序物料表中查询物料Id
         List<Long> materialIds = operationMapper.selectMaterialIdsByOperationId(operationId);
-        System.out.println("materialIds : " + materialIds);
+//        System.out.println("materialIds : " + materialIds);
         List<Map<String, Object>> maps = new ArrayList<>();
         if (!materialIds.isEmpty()) {
             //根据物料id查询物料信息

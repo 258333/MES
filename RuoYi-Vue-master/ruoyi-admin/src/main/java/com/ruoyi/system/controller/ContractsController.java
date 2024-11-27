@@ -104,4 +104,16 @@ public class ContractsController extends BaseController
         return toAjax(contractsService.deleteContractsByContractIds(contractIds));
     }
 
+    /**
+     * @param: ContractId
+     * @return: progress 完成进度
+     * @description: 获取合同的完成进度
+     **/
+
+    @GetMapping("/getProgress/{contractId}")
+    @Log(title = "合同进度", businessType = BusinessType.OTHER)
+    public AjaxResult getProgress(@PathVariable("contractId") Long contractId){
+        return success(contractsService.getProgress(contractId));
+    }
+
 }

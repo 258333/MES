@@ -53,8 +53,8 @@ public class OtherController {
 
     //开始任务
     @GetMapping("startTask")
-    public AjaxResult startTask(@RequestParam Long takeId) {
-        Task taskAssignment = taskAssignmentService.selectTaskByTaskId(takeId);
+    public AjaxResult startTask(@RequestParam(name = "taskId") Long taskId) {
+        Task taskAssignment = taskAssignmentService.selectTaskByTaskId(taskId);
         taskAssignment.setIsStarted(1);
         taskAssignmentMapper.updateTask(taskAssignment);
         return AjaxResult.success();

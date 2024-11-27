@@ -1,8 +1,15 @@
 package com.ruoyi.system.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ruoyi.system.domain.Orders;
+import com.ruoyi.system.mapper.OperationMapper;
+import com.ruoyi.system.mapper.OrdersMapper;
+import com.ruoyi.system.mapper.ProductsMapper;
 import com.ruoyi.system.service.IOrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +30,9 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper,Contracts>
     private final ContractsMapper contractsMapper;
 
     private final IOrdersService ordersService;
+    private  final OrdersMapper ordersMapper;
+    private final OperationMapper operationMapper;
+    private final ProductsMapper productsMapper;
 
     /**
      * 查询合同，存储合同相关信息及其产品详情
@@ -90,5 +100,48 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper,Contracts>
     @Override
     public int deleteContractsByContractId(Long contractId) {
         return contractsMapper.deleteContractsByContractId(contractId);
+    }
+
+    /**
+     * 获取合同的完成进度
+     *
+     * @param: [contractId]
+     * @return: Map<String, Object>
+     **/
+
+    @Override
+    public List<Map<String, Object>> getProgress(Long contractId) {
+        List<Map<String,Object>> maps = new ArrayList<>();
+        //根据合同Id查询对应的总制令
+        Orders order1 = new Orders();
+        order1.setContractId(contractId);
+        order1 = ordersMapper.selectOrdersList(order1).get(0);
+        //根据总制令查询对应的分制令
+        List<Orders> orders2 = new ArrayList<>();
+        Orders order2 = new Orders();
+        order2.setParentId(order1.getId());
+        orders2 = ordersMapper.selectOrdersList(order2);
+        //对分制令遍历进行统计
+        for (Orders orders : orders2) {
+            Map<String, Object> map = new HashMap<>();
+            List<Orders> orders3 = new ArrayList<>();
+            Orders order3 = new Orders();
+            order3.setParentId(orders.getId());
+            orders3 = ordersMapper.selectOrdersList(order3);
+            int count = 0;
+            for (Orders value : orders3) {
+                if (value.getStatus().equals("已完成")) {
+                    count++;
+                }
+            }
+            //根据分制令的产品Id查出产品名称
+            String productName = productsMapper.selectProductsByProductId(orders.getProductId()).getProductName();
+            map.put("name", productName);
+            map.put("quantity", orders.getQuantity());
+            map.put("total", orders3.size());
+            map.put("completed", count);
+            maps.add(map);
+        }
+        return maps;
     }
 }

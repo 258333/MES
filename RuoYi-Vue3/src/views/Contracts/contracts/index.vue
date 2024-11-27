@@ -51,13 +51,13 @@
 
     <el-table v-loading="loading" :data="contractsList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="合同编号" align="center" prop="contractNumber" />
-      <el-table-column label="合同名称" align="center" prop="contractName" />
-      <el-table-column label="客户名称" align="center" prop="customerName" />
-      <el-table-column label="联系人" align="center" prop="contactPerson" />
+      <el-table-column label="合同编号" align="center" prop="contractNumber" width="120" />
+      <el-table-column label="合同名称" align="center" prop="contractName" width="120" />
+      <el-table-column label="客户名称" align="center" prop="customerName" width="120" />
+      <el-table-column label="联系人" align="center" prop="contactPerson" width="120" />
       <el-table-column label="联系电话" align="center" prop="contactNumber" />
-      <el-table-column label="客户地址" align="center" prop="address" />
-      <el-table-column label="合同状态" align="center" prop="status">
+      <el-table-column label="客户地址" align="center" prop="address" width="120" />
+      <el-table-column label="合同状态" align="center" prop="status" width="120">
         <template #default="scope">
           <dict-tag :options="contract_status" :value="scope.row.status" />
         </template>
@@ -66,6 +66,8 @@
         <template #default="scope">
           <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['Contracts:contracts:edit']">修改</el-button>
+          <el-button link type="primary" icon="Edit" @click="handleProgress(scope.row.contractId)"
+            v-hasPermi="['Contracts:contracts:edit']">进度</el-button>
           <el-button link type="primary" icon="Delete" @click="handleDelete(scope.row)"
             v-hasPermi="['Contracts:contracts:remove']">删除</el-button>
         </template>
@@ -187,11 +189,30 @@
         </div>
       </template>
     </el-dialog>
+
+    <el-dialog title="完成情况" v-model="openProgress" width="700px" append-to-body>
+      <div class="demo-progress">
+        <el-table :data="progress" style="width: 100%">
+          <!-- 列：产品名称 -->
+          <el-table-column label="产品" prop="name" width="100"></el-table-column>
+          <el-table-column label="数量" prop="quantity" width="100"></el-table-column>
+          <!-- 列：生产需求进度条 -->
+          <el-table-column label="生产进度">
+            <template #default="scope">
+              <div class="progress-container">
+                <el-progress :percentage="calculateProgress(scope.row.completed, scope.row.total)" status="success"
+                  :stroke-width="24" :text-inside="true" />
+              </div>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script setup name="Contracts">
-import { listContracts, getContracts, delContracts, addContracts, updateContracts } from "@/api/Contracts/contracts";
+import { listContracts, getContracts, delContracts, addContracts, updateContracts, getProgressApi } from "@/api/Contracts/contracts";
 import { listProducts } from "@/api/products/products";
 
 const { proxy } = getCurrentInstance();
@@ -207,7 +228,8 @@ const multiple = ref(true);
 const total = ref(0);
 const title = ref("");
 const productsList = ref([]);
-
+const openProgress = ref(false)
+const progress = ref([])
 const data = reactive({
   form: {},
   queryParams: {
@@ -237,7 +259,19 @@ const data = reactive({
 const { queryParams, form, rules } = toRefs(data);
 
 const products = reactive([])
+// 计算完成百分比
+const calculateProgress = (completed, total) => {
+  if (total === 0) return 0;
+  return ((completed / total) * 100).toFixed(2);
+};
 
+// 查看进度按钮
+const handleProgress = (contractId) => {
+  getProgressApi(contractId).then(response => {
+    progress.value = response.data
+  })
+  openProgress.value = true
+}
 /** 查询合同，存储合同相关信息及其产品详情列表 */
 function getList() {
   loading.value = true;
@@ -310,6 +344,7 @@ function handleAdd() {
   open.value = true;
   title.value = "添加合同，存储合同相关信息及其产品详情";
 }
+
 
 /** 修改按钮操作 */
 function handleUpdate(row) {
@@ -417,3 +452,14 @@ const removeProduct = (index) => {
 getList();
 getProductsList();
 </script>
+<style scoped>
+.progress-container {
+  text-align: center;
+  /* 让子元素水平居中 */
+}
+
+el-progress {
+  display: inline-block;
+  /* 使进度条支持居中对齐 */
+}
+</style>

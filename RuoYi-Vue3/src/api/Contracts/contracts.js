@@ -42,3 +42,11 @@ export function delContracts(contractId) {
     method: 'delete'
   })
 }
+
+// 获取合同的完成进度
+export function getProgressApi(contractId){
+  return request({
+    url: '/Contracts/contracts/getProgress/'+contractId,
+    method: 'get'
+  })
+}

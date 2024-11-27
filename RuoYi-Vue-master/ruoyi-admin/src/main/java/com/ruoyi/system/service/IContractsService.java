@@ -1,6 +1,7 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.Contracts;
@@ -60,4 +61,11 @@ public interface IContractsService extends IService<Contracts>
      * @return 结果
      */
     public int deleteContractsByContractId(Long contractId);
+
+    /**
+     * @param: [contractId]
+     * @return: Map<String, Object>
+     * @description: 获取合同的完成进度
+     **/
+    List<Map<String,Object>> getProgress(Long contractId);
 }
