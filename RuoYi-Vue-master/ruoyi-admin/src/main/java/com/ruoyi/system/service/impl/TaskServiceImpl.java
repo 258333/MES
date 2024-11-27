@@ -1,6 +1,8 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.List;
+
+import com.ruoyi.system.domain.dto.TaskMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.TaskMapper;
@@ -89,5 +91,19 @@ public class TaskServiceImpl implements ITaskService
     public int deleteTaskByTaskId(Long taskId)
     {
         return taskMapper.deleteTaskByTaskId(taskId);
+    }
+
+    /**
+     * 存储任务对应的物料信息
+     *
+     * @param: [taskMaterial]
+     * @return: int
+     **/
+    @Override
+    public int insertTaskMaterials(List<TaskMaterial> taskMaterials) {
+        for (TaskMaterial taskMaterial : taskMaterials) {
+            taskMapper.insertTaskMaterials(taskMaterial);
+        }
+        return 1;
     }
 }

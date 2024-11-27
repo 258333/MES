@@ -2,6 +2,10 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.Task;
+import com.ruoyi.system.domain.dto.TaskMaterial;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息Mapper接口
@@ -9,6 +13,7 @@ import com.ruoyi.system.domain.Task;
  * @author HongWei
  * @date 2024-11-26
  */
+@Mapper
 public interface TaskMapper
 {
     /**
@@ -58,4 +63,13 @@ public interface TaskMapper
      * @return 结果
      */
     public int deleteTaskByTaskIds(Long[] taskIds);
+
+    /**
+     * 增加任务对应的物料信息
+     *
+     * @param: [taskMaterial]
+     * @return: int
+     **/
+    @Insert("INSERT INTO tb_task_material (task_id, material_id, quantity) VALUES (#{taskId}, #{materialId}, #{quantity})")
+    int insertTaskMaterials(TaskMaterial taskMaterial);
 }

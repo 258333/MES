@@ -2,6 +2,7 @@ package com.ruoyi.system.service;
 
 import java.util.List;
 import com.ruoyi.system.domain.Task;
+import com.ruoyi.system.domain.dto.TaskMaterial;
 
 /**
  * 任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息Service接口
@@ -58,4 +59,11 @@ public interface ITaskService
      * @return 结果
      */
     public int deleteTaskByTaskId(Long taskId);
+
+    /**
+     * @param: [taskMaterial]
+     * @return: int
+     * 存储任务对应的物料信息
+     **/
+    int insertTaskMaterials(List<TaskMaterial> taskMaterial);
 }

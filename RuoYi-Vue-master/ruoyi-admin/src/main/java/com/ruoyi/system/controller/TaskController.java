@@ -2,6 +2,8 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.system.domain.dto.TaskMaterial;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,5 +102,14 @@ public class TaskController extends BaseController
     public AjaxResult remove(@PathVariable Long[] taskIds)
     {
         return toAjax(taskService.deleteTaskByTaskIds(taskIds));
+    }
+
+    /**
+     * 存储任务对应的物料信息
+     **/
+    @PostMapping("/insertTaskMaterials")
+    public AjaxResult insertTaskMaterials(@RequestBody List<TaskMaterial> taskMaterials){
+        System.out.println(taskMaterials);
+        return toAjax(taskService.insertTaskMaterials(taskMaterials));
     }
 }
