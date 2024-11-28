@@ -4,10 +4,7 @@ import java.util.List;
 import com.ruoyi.system.domain.Task;
 import com.ruoyi.system.domain.TaskMachine;
 import com.ruoyi.system.domain.dto.TaskMaterial;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * 任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息Mapper接口
@@ -92,7 +89,7 @@ public interface TaskMapper
      * @return: com.ruoyi.system.domain.TaskMachine
      **/
     @Select("SELECT * FROM tb_task_machine WHERE task_id = #{taskId}")
-    TaskMachine selectTashMachineByTaskId( Long taskId);
+    TaskMachine selectTaskMachineByTaskId( Long taskId);
 
     /**
      * 根据任务id查询任务和物料的对应关系
@@ -102,4 +99,13 @@ public interface TaskMapper
      **/
     @Select("SELECT * FROM tb_task_material WHERE task_id = #{taskId}")
     List<TaskMaterial> selectTaskMaterialsByTaskId( Long taskId);
+
+    /**
+     * 设置机器的结束使用时间
+     *
+     * @param: [taskMachine]
+     * @return: void
+     **/
+    @Update("UPDATE tb_task_machine SET end_time = NOW() WHERE task_id = #{taskId} AND machine_id = #{machineId}")
+    void updateTaskMachine(TaskMachine taskMachine);
 }

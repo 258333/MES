@@ -134,7 +134,7 @@ public class TaskServiceImpl implements ITaskService {
     public Map<String, Object> selectTaskMaterialsAndMachineAndOrder(Long taskId) {
         Map<String, Object> map = new HashMap<>();
         //根据任务Id查询对应的机器Id
-        TaskMachine taskMachine = taskMapper.selectTashMachineByTaskId(taskId);
+        TaskMachine taskMachine = taskMapper.selectTaskMachineByTaskId(taskId);
         //根据机器Id查询对应的机器名称
         Machine machine = machineMapper.selectMachineByMachineId(taskMachine.getMachineId());
         map.put("machineName", machine.getMachineName());

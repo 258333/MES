@@ -8,10 +8,7 @@ import com.ruoyi.system.service.IOtherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -85,17 +82,17 @@ public class OtherServiceImpl implements IOtherService {
             Map<String, Object> map = new HashMap<>();
             Orders orders = ordersMapper.selectOrdersById(assignment.getOrderId());
             Operation operation = operationMapper.selectOperationByOperationId(assignment.getOperationId());
-            if(orders.getOperationSequence() == 1){
-                map.put("isHandover",0);        //非交接任务
-            }else {
-                Orders  previousOrder = ordersMapper.selectOrdersById(orders.getId() - 1);
-                if(previousOrder.getStatus() != "已完成"){
-                    map.put("isHandover",1);    //是交接任务，并且上一个任务未完成
-                }else {
-                    map.put("isHandover",2);    //是交接任务，并且上一个任务已完成
+            if (orders.getOperationSequence() == 1) {
+                map.put("isHandover", 0);        //非交接任务
+            } else {
+                Orders previousOrder = ordersMapper.selectOrdersById(orders.getId() - 1);
+                if (!Objects.equals(previousOrder.getStatus(), "已完成")) {
+                    map.put("isHandover", 1);    //是交接任务，并且上一个任务未完成
+                } else {
+                    map.put("isHandover", 2);    //是交接任务，并且上一个任务已完成
                 }
             }
-            map.put("order",orders);
+            map.put("order", orders);
             map.put("operation", operation);
             map.put("task", assignment);
             maps.add(map);
@@ -105,11 +102,20 @@ public class OtherServiceImpl implements IOtherService {
 
     //报工
     @Override
-    public void finishTask(Long taskId,Long quantity) {
+    public void finishTask(Long taskId, Long quantity) {
         //查询任务信息
         Task task = taskMapper.selectTaskByTaskId(taskId);
+        //更新任务信息
         task.setIsCompleted(1);
         taskMapper.updateTask(task);
+        //根据任务id查询机器id修改机器状态
+        TaskMachine taskMachine = taskMapper.selectTaskMachineByTaskId(taskId);
+        System.out.println("taskMachine : " + taskMachine);
+        //设置机器的结束使用时间
+        taskMapper.updateTaskMachine(taskMachine);
+        Machine machine = machineMapper.selectMachineByMachineId(taskMachine.getMachineId());
+        machine.setStatus("可用");
+        machineMapper.updateMachine(machine);
         //查询制令信息
         Orders orders = ordersMapper.selectOrdersById(task.getOrderId());
         //判断是否已经完成任务 完成是否有剩余
@@ -192,7 +198,7 @@ public class OtherServiceImpl implements IOtherService {
         map.put("startTime", workReport.getStartTime());
         map.put("endTime", workReport.getEndTime());
         map.put("operationName", operationMapper.selectOperationByOperationId(workReport.getOperationId()).getOperationName());
-        map.put("operationPrice",200);
+        map.put("operationPrice", 200);
         return map;
     }
 
