@@ -17,9 +17,9 @@ public interface IOtherService {
     void updateDatabase(Task taskAssignment);
 
     //查询某个员工的所有任务
-    List<Map<String,Object>> selectTaskAssignmentByUserId(Long userId);
+    List<Map<String,Object>> selectTaskByUserId(Long userId);
 
-    void finishTask(Long takeId, int quantity);
+    void finishTask(Long taskId, Long quantity);
 
     List<Map<String,Object>> selectMaterialsByOperationId(Long operationId);
 

@@ -1,12 +1,16 @@
 package com.ruoyi.system.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.ruoyi.system.domain.*;
 import com.ruoyi.system.domain.dto.TaskMaterial;
+import com.ruoyi.system.mapper.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.TaskMapper;
-import com.ruoyi.system.domain.Task;
 import com.ruoyi.system.service.ITaskService;
 
 /**
@@ -16,10 +20,13 @@ import com.ruoyi.system.service.ITaskService;
  * @date 2024-11-26
  */
 @Service
-public class TaskServiceImpl implements ITaskService
-{
-    @Autowired
-    private TaskMapper taskMapper;
+@RequiredArgsConstructor
+public class TaskServiceImpl implements ITaskService {
+    private final TaskMapper taskMapper;
+    private final MachineMapper machineMapper;
+    private final MaterialMapper materialMapper;
+    private final OperationMapper operationMapper;
+    private final OrdersMapper ordersMapper;
 
     /**
      * 查询任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息
@@ -28,8 +35,7 @@ public class TaskServiceImpl implements ITaskService
      * @return 任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息
      */
     @Override
-    public Task selectTaskByTaskId(Long taskId)
-    {
+    public Task selectTaskByTaskId(Long taskId) {
         return taskMapper.selectTaskByTaskId(taskId);
     }
 
@@ -40,8 +46,7 @@ public class TaskServiceImpl implements ITaskService
      * @return 任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息
      */
     @Override
-    public List<Task> selectTaskList(Task task)
-    {
+    public List<Task> selectTaskList(Task task) {
         return taskMapper.selectTaskList(task);
     }
 
@@ -52,8 +57,7 @@ public class TaskServiceImpl implements ITaskService
      * @return 结果
      */
     @Override
-    public int insertTask(Task task)
-    {
+    public int insertTask(Task task) {
         return taskMapper.insertTask(task);
     }
 
@@ -64,8 +68,7 @@ public class TaskServiceImpl implements ITaskService
      * @return 结果
      */
     @Override
-    public int updateTask(Task task)
-    {
+    public int updateTask(Task task) {
         return taskMapper.updateTask(task);
     }
 
@@ -76,8 +79,7 @@ public class TaskServiceImpl implements ITaskService
      * @return 结果
      */
     @Override
-    public int deleteTaskByTaskIds(Long[] taskIds)
-    {
+    public int deleteTaskByTaskIds(Long[] taskIds) {
         return taskMapper.deleteTaskByTaskIds(taskIds);
     }
 
@@ -88,8 +90,7 @@ public class TaskServiceImpl implements ITaskService
      * @return 结果
      */
     @Override
-    public int deleteTaskByTaskId(Long taskId)
-    {
+    public int deleteTaskByTaskId(Long taskId) {
         return taskMapper.deleteTaskByTaskId(taskId);
     }
 
@@ -105,5 +106,58 @@ public class TaskServiceImpl implements ITaskService
             taskMapper.insertTaskMaterials(taskMaterial);
         }
         return 1;
+    }
+
+    /**
+     * 存储任务对应的机器信息
+     *
+     * @param: [taskId, machineId]
+     * @return: com.ruoyi.common.core.domain.AjaxResult
+     **/
+    @Override
+    public int insertTaskMachine(Long taskId, Long machineId) {
+        //根据MachineId修改机器状态为占用
+        Machine machine = new Machine();
+        machine.setMachineId(machineId);
+        machine.setStatus("占用");
+        machineMapper.updateMachine(machine);
+        return taskMapper.insertTaskMachine(taskId, machineId);
+    }
+
+    /**
+     * 根据任务Id获取对应的物料和机器信息
+     *
+     * @param: taskId
+     * @return: Map<String, Object>
+     **/
+    @Override
+    public Map<String, Object> selectTaskMaterialsAndMachineAndOrder(Long taskId) {
+        Map<String, Object> map = new HashMap<>();
+        //根据任务Id查询对应的机器Id
+        TaskMachine taskMachine = taskMapper.selectTashMachineByTaskId(taskId);
+        //根据机器Id查询对应的机器名称
+        Machine machine = machineMapper.selectMachineByMachineId(taskMachine.getMachineId());
+        map.put("machineName", machine.getMachineName());
+        map.put("taskMachine", taskMachine);
+        //根据任务id查询对应的任务物料对应关系
+        List<TaskMaterial> taskMaterials = taskMapper.selectTaskMaterialsByTaskId(taskId);
+        List<Map<String, Object>> maps = new ArrayList<>();
+        //根据任务物料对应关系查询对应的物料名称
+        for (TaskMaterial taskMaterial : taskMaterials) {
+            Map<String, Object> map1 = new HashMap<>();
+           Material material = materialMapper.selectMaterialByMaterialId(taskMaterial.getMaterialId());
+            map1.put("materialName", material.getMaterialName());
+            map1.put("unit",material.getUnit());
+            map1.put("taskMaterial", taskMaterial);
+            maps.add(map1);
+        }
+        map.put("taskMaterials", maps);
+//        //根据任务id获取任务信息
+//        Task task = taskMapper.selectTaskByTaskId(taskId);
+//        //根据制令id查询制令信息
+//        Orders order = ordersMapper.selectOrdersById(task.getOrderId());
+//        map.put("order", order);
+        System.out.println("map : " + map);
+        return map;
     }
 }

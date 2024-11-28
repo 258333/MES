@@ -2,9 +2,11 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.Task;
+import com.ruoyi.system.domain.TaskMachine;
 import com.ruoyi.system.domain.dto.TaskMaterial;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -72,4 +74,32 @@ public interface TaskMapper
      **/
     @Insert("INSERT INTO tb_task_material (task_id, material_id, quantity) VALUES (#{taskId}, #{materialId}, #{quantity})")
     int insertTaskMaterials(TaskMaterial taskMaterial);
+
+    /**
+     * 存储任务对应的机器信息
+     *
+     * @param: [taskId, machineId]
+     * @return: com.ruoyi.common.core.domain.AjaxResult
+     **/
+    @Insert("INSERT INTO tb_task_machine (task_id, machine_id, start_time) VALUES (#{taskId},#{machineId},NOW())")
+    int insertTaskMachine(@Param("taskId") Long taskId, @Param("machineId") Long machineId);
+
+
+    /**
+     * 根据任务id查询任务和机器的对应关系
+     *
+     * @param: [taskId]
+     * @return: com.ruoyi.system.domain.TaskMachine
+     **/
+    @Select("SELECT * FROM tb_task_machine WHERE task_id = #{taskId}")
+    TaskMachine selectTashMachineByTaskId( Long taskId);
+
+    /**
+     * 根据任务id查询任务和物料的对应关系
+     *
+     * @param: [taskId]
+     * @return: java.util.List<com.ruoyi.system.domain.dto.TaskMaterial>
+     **/
+    @Select("SELECT * FROM tb_task_material WHERE task_id = #{taskId}")
+    List<TaskMaterial> selectTaskMaterialsByTaskId( Long taskId);
 }

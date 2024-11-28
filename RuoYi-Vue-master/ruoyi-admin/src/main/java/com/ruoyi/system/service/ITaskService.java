@@ -1,6 +1,8 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.system.domain.Task;
 import com.ruoyi.system.domain.dto.TaskMaterial;
 
@@ -66,4 +68,20 @@ public interface ITaskService
      * 存储任务对应的物料信息
      **/
     int insertTaskMaterials(List<TaskMaterial> taskMaterial);
+
+    /**
+     * 存储任务对应的机器信息
+     *
+     * @param: [taskId, machineId]
+     * @return: com.ruoyi.common.core.domain.AjaxResult
+     **/
+    int insertTaskMachine(Long taskId, Long machineId);
+
+    /**
+     * 根据任务Id获取对应的物料和机器信息
+     *
+     * @param: taskId
+     * @return: Map<String,Object>
+     **/
+    Map<String,Object> selectTaskMaterialsAndMachineAndOrder(Long taskId);
 }

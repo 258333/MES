@@ -6,14 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ruoyi.system.domain.dto.TaskMaterial;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
@@ -111,5 +104,28 @@ public class TaskController extends BaseController
     public AjaxResult insertTaskMaterials(@RequestBody List<TaskMaterial> taskMaterials){
         System.out.println(taskMaterials);
         return toAjax(taskService.insertTaskMaterials(taskMaterials));
+    }
+    
+    /**
+     * 存储任务对应的机器信息
+     *
+     * @param: [taskId, machineId]
+     * @return: com.ruoyi.common.core.domain.AjaxResult
+     **/
+    @PostMapping("insertTaskMachine")
+    public AjaxResult insertTaskMachine(@RequestParam(name = "taskId") Long taskId,
+                                        @RequestParam(name = "machineId") Long machineId){
+        return toAjax(taskService.insertTaskMachine(taskId, machineId));
+    }
+
+    /**
+     * 根据任务Id获取对应的物料和机器信息
+     *
+     * @param: taskId
+     * @return: Map<String,Object>
+     **/
+    @GetMapping("/selectTaskMaterialsAndMachineAndOrder/{taskId}")
+    public AjaxResult selectTaskMaterialsAndMachineAndOrder(@PathVariable("taskId") Long taskId){
+        return success(taskService.selectTaskMaterialsAndMachineAndOrder(taskId));
     }
 }

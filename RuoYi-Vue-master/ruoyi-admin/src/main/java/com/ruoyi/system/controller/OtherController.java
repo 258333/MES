@@ -48,7 +48,7 @@ public class OtherController {
     //查询某个员工的所欲任务
     @GetMapping("taskAssignment")
     public AjaxResult getTaskAssignment(@RequestParam Long userId) {
-        return AjaxResult.success(otherService.selectTaskAssignmentByUserId(userId));
+        return AjaxResult.success(otherService.selectTaskByUserId(userId));
     }
 
     //开始任务
@@ -61,9 +61,9 @@ public class OtherController {
     }
 
     //报工
-    @GetMapping("finishTask")
-    public AjaxResult finishTask(@RequestParam Long takeId, @RequestParam int quantity) {
-        otherService.finishTask(takeId, quantity);
+    @GetMapping("finishTask/{taskId}/{quantity}")
+    public AjaxResult finishTask(@PathVariable Long taskId,@PathVariable Long quantity) {
+        otherService.finishTask(taskId,quantity);
         return AjaxResult.success();
     }
 

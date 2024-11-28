@@ -21,7 +21,7 @@ public class OtherServiceImpl implements IOtherService {
     private final SysUserMapper sysUserMapper;
     private final MachineMapper machineMapper;
     private final OrdersMapper ordersMapper;
-    private final TaskMapper taskAssignmentMapper;
+    private final TaskMapper taskMapper;
     private final OperationMapper operationMapper;
     private final MaterialMapper materialMapper;
     private final WorkReportMapper workReportMapper;
@@ -64,23 +64,23 @@ public class OtherServiceImpl implements IOtherService {
 
     //在任务分配之后修改所需的参数
     @Override
-    public void updateDatabase(Task taskAssignment) {
+    public void updateDatabase(Task task) {
         //2.修改制令状态
-        Orders orders = ordersMapper.selectOrdersById(taskAssignment.getOrderId());
+        Orders orders = ordersMapper.selectOrdersById(task.getOrderId());
         orders.setStatus("已分配");
         ordersMapper.updateOrders(orders);
     }
 
     //查询某个员工的所有任务
     @Override
-    public List<Map<String, Object>> selectTaskAssignmentByUserId(Long userId) {
-        Task taskAssignment = new Task();
-        taskAssignment.setUserId(userId);
-        taskAssignment.setIsCompleted(0);
-        List<Task> taskAssignments = taskAssignmentMapper.selectTaskList(taskAssignment);
+    public List<Map<String, Object>> selectTaskByUserId(Long userId) {
+        Task task = new Task();
+        task.setUserId(userId);
+        task.setIsCompleted(0);
+        List<Task> tasks = taskMapper.selectTaskList(task);
         //查询机器信息工序信息
         List<Map<String, Object>> maps = new ArrayList<>();
-        for (Task assignment : taskAssignments) {
+        for (Task assignment : tasks) {
             //将这些信息整合到集合中
             Map<String, Object> map = new HashMap<>();
             Orders orders = ordersMapper.selectOrdersById(assignment.getOrderId());
@@ -105,11 +105,13 @@ public class OtherServiceImpl implements IOtherService {
 
     //报工
     @Override
-    public void finishTask(Long takeId, int quantity) {
+    public void finishTask(Long taskId,Long quantity) {
         //查询任务信息
-        Task taskAssignment = taskAssignmentMapper.selectTaskByTaskId(takeId);
+        Task task = taskMapper.selectTaskByTaskId(taskId);
+        task.setIsCompleted(1);
+        taskMapper.updateTask(task);
         //查询制令信息
-        Orders orders = ordersMapper.selectOrdersById(taskAssignment.getOrderId());
+        Orders orders = ordersMapper.selectOrdersById(task.getOrderId());
         //判断是否已经完成任务 完成是否有剩余
         if (orders.getQuantity() < quantity) {
             //任务完成
@@ -117,19 +119,19 @@ public class OtherServiceImpl implements IOtherService {
             orders.setStatus("已完成");
             orders.setQuantity(0L);
             //修改任务完成状态
-            taskAssignment.setIsCompleted(1);
+            task.setIsCompleted(1);
             //更新数据库
             ordersMapper.updateOrders(orders);
-            taskAssignmentMapper.updateTask(taskAssignment);
+            taskMapper.updateTask(task);
             // TODO 将剩余产品加入库存中
             return;
         } else if (orders.getQuantity() == quantity) {
             //正好完成任务
             orders.setStatus("已完成");
             orders.setQuantity(0L);
-            taskAssignment.setIsCompleted(1);
+            task.setIsCompleted(1);
             ordersMapper.updateOrders(orders);
-            taskAssignmentMapper.updateTask(taskAssignment);
+            taskMapper.updateTask(task);
             return;
         } else {
             //任务未完成
@@ -170,12 +172,12 @@ public class OtherServiceImpl implements IOtherService {
         workReport = workReportMapper.selectWorkReportList(workReport).get(0);
         Machine machine = machineMapper.selectMachineByMachineId(workReport.getMachineId());
 
-        Task taskAssignment = new Task();
-        taskAssignment.setOperationId(workReport.getOperationId());
-        taskAssignment = taskAssignmentMapper.selectTaskList(taskAssignment).get(0);
+        Task task = new Task();
+        task.setOperationId(workReport.getOperationId());
+        task = taskMapper.selectTaskList(task).get(0);
 
-        System.out.println("taskAssignment : " + taskAssignment);
-//        List<TaskMaterial> taskMaterials = otherMapper.selectMaterialsByTaskId(taskAssignment.getTakeId());
+        System.out.println("task : " + task);
+//        List<TaskMaterial> taskMaterials = otherMapper.selectMaterialsByTaskId(task.getTakeId());
         String material = "162蜡,168蜡,水溶蜡";
 //        float materialPrice = 0;
 //        System.out.println(taskMaterials);
