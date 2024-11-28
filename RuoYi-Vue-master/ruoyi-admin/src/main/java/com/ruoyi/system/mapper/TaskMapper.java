@@ -1,5 +1,6 @@
 package com.ruoyi.system.mapper;
 
+import java.util.Date;
 import java.util.List;
 import com.ruoyi.system.domain.Task;
 import com.ruoyi.system.domain.TaskMachine;
@@ -97,7 +98,7 @@ public interface TaskMapper
      * @param: [taskId]
      * @return: java.util.List<com.ruoyi.system.domain.dto.TaskMaterial>
      **/
-    @Select("SELECT * FROM tb_task_material WHERE task_id = #{taskId}")
+    @Select("SELECT task_id, material_id, quantity FROM tb_task_material WHERE task_id = #{taskId}")
     List<TaskMaterial> selectTaskMaterialsByTaskId( Long taskId);
 
     /**
@@ -108,4 +109,14 @@ public interface TaskMapper
      **/
     @Update("UPDATE tb_task_machine SET end_time = NOW() WHERE task_id = #{taskId} AND machine_id = #{machineId}")
     void updateTaskMachine(TaskMachine taskMachine);
+
+    /**
+     * 查找在某个时间范围内的任务机器信息
+     *
+     * @param: [checkInTime, checkOutTime]
+     * @return: java.util.List<com.ruoyi.system.domain.TaskMachine>
+     **/
+    @Select("SELECT task_id, machine_id, start_time, end_time FROM tb_task_machine " +
+            "WHERE start_time >= #{checkInTime} AND end_time IS NOT NULL AND end_time <= #{checkOutTime}")
+    List<TaskMachine> selectTaskByStartAndEndTime(@Param("checkInTime") Date checkInTime, @Param("checkOutTime") Date checkOutTime);
 }
