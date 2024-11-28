@@ -123,7 +123,6 @@ public class OtherServiceImpl implements IOtherService {
             //任务完成
             //修改制令状态
             orders.setStatus("已完成");
-            orders.setQuantity(0L);
             //修改任务完成状态
             task.setIsCompleted(1);
             //更新数据库
