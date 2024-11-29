@@ -11,7 +11,7 @@
  Target Server Version : 80039 (8.0.39)
  File Encoding         : 65001
 
- Date: 31/10/2024 08:15:30
+ Date: 29/11/2024 16:09:28
 */
 
 SET NAMES utf8mb4;
@@ -44,17 +44,21 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
 INSERT INTO `gen_table` VALUES (2, 'tb_contracts', '合同表，存储合同相关信息及其产品详情', NULL, NULL, 'Contracts', 'crud', 'element-plus', 'com.ruoyi.system', 'Contracts', 'contracts', '合同，存储合同相关信息及其产品详情', 'HongWei', '0', '/', '{\"parentMenuId\":0}', 'admin', '2024-10-02 14:20:30', '', '2024-10-02 14:35:35', NULL);
 INSERT INTO `gen_table` VALUES (3, 'tb_products', '产品表，存储产品相关信息', NULL, NULL, 'Products', 'crud', 'element-plus', 'com.ruoyi.system', 'products', 'products', '产品，存储产品相关信息', 'HongWei', '0', '/', '{\"parentMenuId\":0}', 'admin', '2024-10-02 17:24:19', '', '2024-10-11 22:10:38', NULL);
-INSERT INTO `gen_table` VALUES (4, 'tb_orders', '制令表，存储总制令、分制令和子制令的信息', '', '', 'Orders', 'tree', 'element-plus', 'com.ruoyi.system', 'orders', 'orders', '制令，存储总制令、分制令和子制令的信息', 'HongWei', '0', '/', '{\"treeCode\":\"id\",\"treeName\":\"order_number\",\"treeParentCode\":\"parent_id\",\"parentMenuId\":0}', 'admin', '2024-10-05 13:46:19', '', '2024-10-05 13:57:25', NULL);
-INSERT INTO `gen_table` VALUES (5, 'tb_task_assignment', '任务分配表，存储每个子制令的任务分配情况', NULL, NULL, 'TaskAssignment', 'crud', 'element-plus', 'com.ruoyi.system', 'taskAssignment', 'taskAssignment', '任务分配，存储每个子制令的任务分配情况', 'HongWei', '0', '/', '{\"parentMenuId\":0}', 'admin', '2024-10-10 10:36:43', '', '2024-10-13 10:39:49', NULL);
+INSERT INTO `gen_table` VALUES (4, 'tb_orders', '制令表，存储总制令、分制令和子制令的信息', '', '', 'Orders', 'tree', 'element-plus', 'com.ruoyi.system', 'orders', 'orders', '制令，存储总制令、分制令和子制令的信息', 'HongWei', '0', '/', '{\"treeCode\":\"id\",\"treeName\":\"order_number\",\"treeParentCode\":\"parent_id\",\"parentMenuId\":0}', 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32', NULL);
 INSERT INTO `gen_table` VALUES (6, 'tb_machine', '机器表，存储所有机器的相关信息', NULL, NULL, 'Machine', 'crud', 'element-plus', 'com.ruoyi.system', 'machine', 'machine', '机器，存储所有机器的相关信息', 'HongWei', '0', '/', '{\"parentMenuId\":0}', 'admin', '2024-10-12 13:07:22', '', '2024-10-13 10:18:48', NULL);
 INSERT INTO `gen_table` VALUES (7, 'tb_operation', '工序表，存储工序及其相关信息', NULL, NULL, 'Operation', 'crud', 'element-plus', 'com.ruoyi.system', 'operation', 'operation', '工序，存储工序及其相关信息', 'HongWei', '0', '/', '{\"parentMenuId\":\"\"}', 'admin', '2024-10-12 13:07:22', '', '2024-10-12 13:08:55', NULL);
+INSERT INTO `gen_table` VALUES (8, 'tb_material', '物料表，存储生产所需的物料信息', NULL, NULL, 'Material', 'crud', 'element-plus', 'com.ruoyi.system', 'material', 'material', '物料，存储生产所需的物料信息', 'HongWei', '0', '/', '{\"parentMenuId\":\"\"}', 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57', NULL);
+INSERT INTO `gen_table` VALUES (9, 'tb_work_report', '报工表，用于记录员工的报工信息', NULL, NULL, 'WorkReport', 'crud', 'element-plus', 'com.ruoyi.system', 'report', 'report', '报工，用于记录员工的报工信息', 'HongWei', '0', '/', '{\"parentMenuId\":\"\"}', 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33', NULL);
+INSERT INTO `gen_table` VALUES (10, 'tb_task', '任务分配表，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息', NULL, NULL, 'Task', 'crud', 'element-plus', 'com.ruoyi.system', 'task', 'task', '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息', 'HongWei', '0', '/', '{\"parentMenuId\":\"\"}', 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40', NULL);
+INSERT INTO `gen_table` VALUES (11, 'tb_task_machine', '任务与机器的关联表，用于记录任务在特定机器上的使用情况', NULL, NULL, 'TaskMachine', 'crud', '', 'com.ruoyi.system', 'system', 'machine', '任务与机器的关联，用于记录任务在特定机器上的使用情况', 'HongWei', '0', '/', NULL, 'admin', '2024-11-27 18:09:28', '', NULL, NULL);
+INSERT INTO `gen_table` VALUES (12, 'tb_checkin', '出勤', NULL, NULL, 'Checkin', 'crud', 'element-plus', 'com.ruoyi.system', 'checkin', 'checkin', '出勤，记录员工的出勤信息', 'HongWei', '0', '/', '{\"parentMenuId\":\"\"}', 'admin', '2024-11-28 09:43:31', '', '2024-11-28 09:44:44', NULL);
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -84,7 +88,7 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -111,22 +115,17 @@ INSERT INTO `gen_table_column` VALUES (32, 3, 'price', '产品单价', 'decimal(
 INSERT INTO `gen_table_column` VALUES (33, 3, 'description', '产品描述', 'text', 'String', 'description', '0', '0', '0', '1', '1', '1', '1', 'LIKE', 'textarea', '', 6, 'admin', '2024-10-02 17:24:19', '', '2024-10-12 12:51:25');
 INSERT INTO `gen_table_column` VALUES (34, 3, 'created_date', '创建日期', 'datetime', 'Date', 'createdDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 7, 'admin', '2024-10-02 17:24:19', '', '2024-10-12 12:51:25');
 INSERT INTO `gen_table_column` VALUES (35, 3, 'modified_date', '修改日期', 'datetime', 'Date', 'modifiedDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 'admin', '2024-10-02 17:24:19', '', '2024-10-12 12:51:25');
-INSERT INTO `gen_table_column` VALUES (36, 4, 'id', '唯一标识', 'int', 'Long', 'id', '1', '1', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (37, 4, 'order_number', '制令编号', 'varchar(50)', 'String', 'orderNumber', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (38, 4, 'parent_id', '父制令 ID', 'int', 'Long', 'parentId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (39, 4, 'type', '制令类型（如：总制令、分制令、子制令）', 'varchar(20)', 'String', 'type', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', 'order_type', 4, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (40, 4, 'contract_id', '关联的合同 ID', 'int', 'Long', 'contractId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (41, 4, 'product_id', '关联的产品 ID', 'int', 'Long', 'productId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (42, 4, 'quantity', '生产数量', 'int', 'Long', 'quantity', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (43, 4, 'batch_number', '批次号', 'varchar(50)', 'String', 'batchNumber', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (44, 4, 'status', '制令状态（如：待生产、生产中、已完成、已发货、已关闭、暂停、异常）', 'varchar(20)', 'String', 'status', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'select', 'order_status', 10, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (45, 4, 'created_date', '创建日期', 'datetime', 'Date', 'createdDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 11, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (46, 4, 'modified_date', '修改日期', 'datetime', 'Date', 'modifiedDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 12, 'admin', '2024-10-05 13:46:19', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (47, 4, 'operation', '工序', 'varchar(100)', 'String', 'operation', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 13, '', '2024-10-10 00:29:29', '', '2024-10-13 09:38:52');
-INSERT INTO `gen_table_column` VALUES (49, 5, 'order_id', '制令ID', 'int', 'Long', 'orderId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2024-10-10 10:36:43', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (50, 5, 'user_id', '员工ID', 'bigint', 'Long', 'userId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-10-10 10:36:43', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (51, 5, 'assigned_date', '任务分配时间', 'datetime', 'Date', 'assignedDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 5, 'admin', '2024-10-10 10:36:43', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (54, 5, 'remarks', '备注', 'varchar(255)', 'String', 'remarks', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-10-10 10:36:43', '', '2024-10-13 14:02:23');
+INSERT INTO `gen_table_column` VALUES (36, 4, 'id', '唯一标识', 'int', 'Long', 'id', '1', '1', '0', '1', NULL, NULL, '1', 'EQ', 'input', '', 1, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (37, 4, 'order_number', '制令编号', 'varchar(50)', 'String', 'orderNumber', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (38, 4, 'parent_id', '父制令 ID', 'int', 'Long', 'parentId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (39, 4, 'type', '制令类型（如：总制令、分制令、子制令）', 'varchar(20)', 'String', 'type', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', 'order_type', 4, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (40, 4, 'contract_id', '关联的合同 ID', 'int', 'Long', 'contractId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (41, 4, 'product_id', '关联的产品 ID', 'int', 'Long', 'productId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (42, 4, 'quantity', '生产数量', 'int', 'Long', 'quantity', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (44, 4, 'status', '制令状态（如：待生产、生产中、已完成、已发货、已关闭、暂停、异常）', 'varchar(20)', 'String', 'status', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'select', 'order_status', 9, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (45, 4, 'created_date', '创建日期', 'datetime', 'Date', 'createdDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 10, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (46, 4, 'modified_date', '修改日期', 'datetime', 'Date', 'modifiedDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 11, 'admin', '2024-10-05 13:46:19', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (47, 4, 'operation', '工序', 'varchar(100)', 'String', 'operation', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 12, '', '2024-10-10 00:29:29', '', '2024-11-26 21:47:32');
 INSERT INTO `gen_table_column` VALUES (56, 6, 'machine_id', '机器ID', 'int', 'Long', 'machineId', '1', '1', '0', '0', NULL, NULL, '1', 'EQ', 'input', '', 1, 'admin', '2024-10-12 13:07:22', '', '2024-10-13 10:18:48');
 INSERT INTO `gen_table_column` VALUES (57, 6, 'machine_name', '机器名称', 'varchar(100)', 'String', 'machineName', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-10-12 13:07:22', '', '2024-10-13 10:18:48');
 INSERT INTO `gen_table_column` VALUES (58, 6, 'machine_type', '机器类型', 'varchar(50)', 'String', 'machineType', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-10-12 13:07:22', '', '2024-10-13 10:18:48');
@@ -140,12 +139,45 @@ INSERT INTO `gen_table_column` VALUES (65, 7, 'description', '工序描述', 'va
 INSERT INTO `gen_table_column` VALUES (66, 7, 'duration', '工序预计时长（小时）', 'decimal(10,2)', 'BigDecimal', 'duration', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2024-10-12 13:07:22', '', '2024-10-12 13:08:55');
 INSERT INTO `gen_table_column` VALUES (67, 7, 'created_date', '创建日期', 'datetime', 'Date', 'createdDate', '0', '0', '0', '0', '0', '0', '0', 'EQ', 'datetime', '', 5, 'admin', '2024-10-12 13:07:22', '', '2024-10-12 13:08:55');
 INSERT INTO `gen_table_column` VALUES (68, 7, 'modified_date', '修改日期', 'datetime', 'Date', 'modifiedDate', '0', '0', '0', '0', '0', '0', '0', 'EQ', 'datetime', '', 6, 'admin', '2024-10-12 13:07:22', '', '2024-10-12 13:08:55');
-INSERT INTO `gen_table_column` VALUES (69, 5, 'take_id', '任务分配ID', 'int', 'Long', 'takeId', '1', '1', '0', '1', NULL, NULL, '1', 'EQ', 'input', '', 1, '', '2024-10-12 16:12:04', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (70, 5, 'machine_id', '机器ID', 'int', 'Long', 'machineId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 4, '', '2024-10-12 16:12:04', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (71, 5, 'is_completed', '是否完成工序', 'tinyint(1)', 'Integer', 'isCompleted', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 6, '', '2024-10-12 16:12:04', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (72, 4, 'operation_id', '工序ID', 'int', 'Long', 'operationId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 6, '', '2024-10-13 09:38:52', '', NULL);
-INSERT INTO `gen_table_column` VALUES (73, 5, 'operation_id', '工序ID', 'int', 'Long', 'operationId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 8, '', '2024-10-13 10:37:56', '', '2024-10-13 14:02:23');
-INSERT INTO `gen_table_column` VALUES (74, 5, 'is_started', '是否开始', 'tinyint(1)', 'Integer', 'isStarted', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 9, '', '2024-10-13 14:02:23', '', NULL);
+INSERT INTO `gen_table_column` VALUES (72, 4, 'operation_id', '工序ID', 'int', 'Long', 'operationId', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 6, '', '2024-10-13 09:38:52', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (75, 8, 'material_id', '物料ID', 'int', 'Long', 'materialId', '1', '1', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (76, 8, 'material_name', '物料名称', 'varchar(100)', 'String', 'materialName', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (77, 8, 'unit', '单位（如吨、公斤、个）', 'varchar(20)', 'String', 'unit', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (78, 8, 'quantity', '库存数量', 'decimal(10,2)', 'BigDecimal', 'quantity', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (79, 8, 'price', '单价（当期出库加权价格）', 'decimal(10,2)', 'BigDecimal', 'price', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (80, 8, 'status', '物料状态（可用、不可用）', 'varchar(20)', 'String', 'status', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'radio', '', 6, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (81, 8, 'description', '物料描述', 'varchar(255)', 'String', 'description', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (82, 8, 'created_date', '创建日期', 'datetime', 'Date', 'createdDate', '0', '0', '0', '0', '0', '0', '0', 'EQ', 'datetime', '', 8, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (83, 8, 'modified_date', '修改日期', 'datetime', 'Date', 'modifiedDate', '0', '0', '0', '0', '0', '0', '0', 'EQ', 'datetime', '', 9, 'admin', '2024-11-02 17:37:07', '', '2024-11-02 17:37:57');
+INSERT INTO `gen_table_column` VALUES (84, 9, 'work_report_id', '唯一标识每条报工记录', 'int', 'Long', 'workReportId', '1', '1', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (85, 9, 'user_id', '标识报工员工的唯一ID', 'int', 'Long', 'userId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (86, 9, 'username', '报工员工的姓名', 'varchar(50)', 'String', 'username', '0', '0', '1', '1', '1', '1', '1', 'LIKE', 'input', '', 3, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (87, 9, 'team_name', '员工所在班组的名称', 'varchar(50)', 'String', 'teamName', '0', '0', '0', '1', '1', '1', '1', 'LIKE', 'input', '', 4, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (88, 9, 'machine_id', '标识使用的机器', 'int', 'Long', 'machineId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (89, 9, 'operation_id', '标识对应工序的唯一ID', 'int', 'Long', 'operationId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (90, 9, 'operation_name', '报工涉及的工序名称', 'varchar(50)', 'String', 'operationName', '0', '0', '0', '1', '1', '1', '1', 'LIKE', 'input', '', 7, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (91, 9, 'quantity', '报工的产品数量', 'int', 'Long', 'quantity', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (92, 9, 'start_time', '报工的开始时间', 'datetime', 'Date', 'startTime', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'datetime', '', 9, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (93, 9, 'end_time', '报工的结束时间', 'datetime', 'Date', 'endTime', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 10, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (94, 9, 'report_status', '报工单的当前状态（如已完成、进行中）', 'varchar(20)', 'String', 'reportStatus', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'radio', '', 11, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (95, 9, 'remarks', '记录额外的报工信息', 'varchar(200)', 'String', 'remarks', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 12, 'admin', '2024-11-03 19:42:48', '', '2024-11-03 19:44:33');
+INSERT INTO `gen_table_column` VALUES (96, 4, 'operation_sequence', NULL, 'int', 'Long', 'operationSequence', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 13, '', '2024-11-26 21:46:58', '', '2024-11-26 21:47:32');
+INSERT INTO `gen_table_column` VALUES (97, 10, 'task_id', '任务分配ID', 'int', 'Long', 'taskId', '1', '1', '0', '1', NULL, NULL, '1', 'EQ', 'input', '', 1, 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (98, 10, 'order_id', '制令ID', 'int', 'Long', 'orderId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (99, 10, 'user_id', '员工ID', 'bigint', 'Long', 'userId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (100, 10, 'assigned_date', '任务分配时间', 'datetime', 'Date', 'assignedDate', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (101, 10, 'is_completed', '是否完成工序', 'tinyint(1)', 'Integer', 'isCompleted', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (102, 10, 'remarks', '备注', 'varchar(255)', 'String', 'remarks', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2024-11-26 22:21:34', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (103, 10, 'operation_id', '工序ID', 'int', 'Long', 'operationId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2024-11-26 22:21:35', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (104, 10, 'is_started', '是否开始', 'tinyint(1)', 'Integer', 'isStarted', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2024-11-26 22:21:35', '', '2024-11-26 22:22:40');
+INSERT INTO `gen_table_column` VALUES (105, 11, 'task_id', '任务分配ID，关联tb_task表', 'int', 'Long', 'taskId', '1', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2024-11-27 18:09:28', '', NULL);
+INSERT INTO `gen_table_column` VALUES (106, 11, 'machine_id', '机器ID，关联tb_machine表', 'int', 'Long', 'machineId', '1', '0', '0', '1', NULL, NULL, NULL, 'EQ', 'input', '', 2, 'admin', '2024-11-27 18:09:28', '', NULL);
+INSERT INTO `gen_table_column` VALUES (107, 11, 'start_time', '任务开始使用机器的时间', 'datetime', 'Date', 'startTime', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'datetime', '', 3, 'admin', '2024-11-27 18:09:28', '', NULL);
+INSERT INTO `gen_table_column` VALUES (108, 11, 'end_time', '任务结束使用机器的时间，可为空表示任务未完成', 'datetime', 'Date', 'endTime', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2024-11-27 18:09:28', '', NULL);
+INSERT INTO `gen_table_column` VALUES (109, 12, 'id', '唯一标识', 'bigint', 'Long', 'id', '1', '1', '0', '1', NULL, NULL, '1', 'EQ', 'input', '', 1, 'admin', '2024-11-28 09:43:31', '', '2024-11-28 09:44:44');
+INSERT INTO `gen_table_column` VALUES (110, 12, 'employee_id', '员工ID', 'bigint', 'Long', 'employeeId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2024-11-28 09:43:31', '', '2024-11-28 09:44:44');
+INSERT INTO `gen_table_column` VALUES (111, 12, 'check_in_time', '出勤时间', 'datetime', 'Date', 'checkInTime', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'datetime', '', 3, 'admin', '2024-11-28 09:43:31', '', '2024-11-28 09:44:44');
+INSERT INTO `gen_table_column` VALUES (112, 12, 'check_out_time', '退勤时间', 'datetime', 'Date', 'checkOutTime', '0', '0', '0', '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2024-11-28 09:43:31', '', '2024-11-28 09:44:44');
 
 -- ----------------------------
 -- Table structure for qrtz_blob_triggers
@@ -448,7 +480,7 @@ CREATE TABLE `sys_dict_data`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 118 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -500,6 +532,7 @@ INSERT INTO `sys_dict_data` VALUES (114, 7, '异常', '7', 'order_status', NULL,
 INSERT INTO `sys_dict_data` VALUES (115, 1, '待执行', '待执行', 'task_assignment_status', NULL, 'default', 'N', '0', 'admin', '2024-10-10 10:41:05', 'admin', '2024-10-10 10:41:34', NULL);
 INSERT INTO `sys_dict_data` VALUES (116, 2, '进行中', '进行中', 'task_assignment_status', NULL, 'default', 'N', '0', 'admin', '2024-10-10 10:41:23', '', NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (117, 3, '已完成', '已完成', 'task_assignment_status', NULL, 'default', 'N', '0', 'admin', '2024-10-10 10:41:48', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (118, 4, '蜡模车间', '4', 'product_category', NULL, 'default', 'N', '0', 'admin', '2024-10-31 16:00:09', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_dict_type
@@ -603,7 +636,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 353 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 446 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -861,6 +894,99 @@ INSERT INTO `sys_logininfor` VALUES (349, '258111', '192.168.43.1', '内网IP', 
 INSERT INTO `sys_logininfor` VALUES (350, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-10-18 13:13:21');
 INSERT INTO `sys_logininfor` VALUES (351, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-10-20 15:47:21');
 INSERT INTO `sys_logininfor` VALUES (352, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-10-21 09:46:56');
+INSERT INTO `sys_logininfor` VALUES (353, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-10-31 15:47:31');
+INSERT INTO `sys_logininfor` VALUES (354, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-10-31 15:49:14');
+INSERT INTO `sys_logininfor` VALUES (355, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-10-31 17:24:08');
+INSERT INTO `sys_logininfor` VALUES (356, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-10-31 17:30:06');
+INSERT INTO `sys_logininfor` VALUES (357, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-02 15:21:59');
+INSERT INTO `sys_logininfor` VALUES (358, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-02 15:24:50');
+INSERT INTO `sys_logininfor` VALUES (359, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '退出成功', '2024-11-02 16:02:14');
+INSERT INTO `sys_logininfor` VALUES (360, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-02 16:02:16');
+INSERT INTO `sys_logininfor` VALUES (361, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-02 16:11:24');
+INSERT INTO `sys_logininfor` VALUES (362, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-02 16:14:20');
+INSERT INTO `sys_logininfor` VALUES (363, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-02 16:21:01');
+INSERT INTO `sys_logininfor` VALUES (364, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-02 16:29:02');
+INSERT INTO `sys_logininfor` VALUES (365, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-02 16:29:58');
+INSERT INTO `sys_logininfor` VALUES (366, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-02 17:25:38');
+INSERT INTO `sys_logininfor` VALUES (367, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '退出成功', '2024-11-02 18:10:57');
+INSERT INTO `sys_logininfor` VALUES (368, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-02 18:11:04');
+INSERT INTO `sys_logininfor` VALUES (369, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '退出成功', '2024-11-02 18:11:32');
+INSERT INTO `sys_logininfor` VALUES (370, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-02 18:11:33');
+INSERT INTO `sys_logininfor` VALUES (371, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-02 18:12:44');
+INSERT INTO `sys_logininfor` VALUES (372, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-02 18:19:29');
+INSERT INTO `sys_logininfor` VALUES (373, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-02 19:25:27');
+INSERT INTO `sys_logininfor` VALUES (374, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-03 19:42:33');
+INSERT INTO `sys_logininfor` VALUES (375, '258111', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-03 20:00:26');
+INSERT INTO `sys_logininfor` VALUES (376, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-03 20:17:38');
+INSERT INTO `sys_logininfor` VALUES (377, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-03 20:40:27');
+INSERT INTO `sys_logininfor` VALUES (378, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-03 20:46:41');
+INSERT INTO `sys_logininfor` VALUES (379, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-03 21:18:38');
+INSERT INTO `sys_logininfor` VALUES (380, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-03 21:45:35');
+INSERT INTO `sys_logininfor` VALUES (381, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-03 22:07:05');
+INSERT INTO `sys_logininfor` VALUES (382, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '退出成功', '2024-11-03 22:24:27');
+INSERT INTO `sys_logininfor` VALUES (383, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-03 22:24:29');
+INSERT INTO `sys_logininfor` VALUES (384, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-03 22:49:31');
+INSERT INTO `sys_logininfor` VALUES (385, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-03 23:33:26');
+INSERT INTO `sys_logininfor` VALUES (386, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-03 23:42:20');
+INSERT INTO `sys_logininfor` VALUES (387, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 00:17:20');
+INSERT INTO `sys_logininfor` VALUES (388, '258111', '172.20.10.6', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-04 00:22:41');
+INSERT INTO `sys_logininfor` VALUES (389, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 00:22:49');
+INSERT INTO `sys_logininfor` VALUES (390, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-04 09:50:17');
+INSERT INTO `sys_logininfor` VALUES (391, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 09:51:18');
+INSERT INTO `sys_logininfor` VALUES (392, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 09:53:05');
+INSERT INTO `sys_logininfor` VALUES (393, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 10:13:10');
+INSERT INTO `sys_logininfor` VALUES (394, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 10:14:08');
+INSERT INTO `sys_logininfor` VALUES (395, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2024-11-04 10:19:29');
+INSERT INTO `sys_logininfor` VALUES (396, '258111', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-04 10:19:37');
+INSERT INTO `sys_logininfor` VALUES (397, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 11:09:25');
+INSERT INTO `sys_logininfor` VALUES (398, '258111', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-04 11:17:54');
+INSERT INTO `sys_logininfor` VALUES (399, '258111', '172.20.10.5', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-04 11:24:24');
+INSERT INTO `sys_logininfor` VALUES (400, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-26 20:41:03');
+INSERT INTO `sys_logininfor` VALUES (401, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-26 20:43:04');
+INSERT INTO `sys_logininfor` VALUES (402, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-26 21:23:26');
+INSERT INTO `sys_logininfor` VALUES (403, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-26 22:40:21');
+INSERT INTO `sys_logininfor` VALUES (404, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-26 23:29:51');
+INSERT INTO `sys_logininfor` VALUES (405, '258111', '127.0.0.1', '内网IP', 'Mobile Safari', 'Mac OS X (iPhone)', '0', '登录成功', '2024-11-27 08:26:58');
+INSERT INTO `sys_logininfor` VALUES (406, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-27 08:58:07');
+INSERT INTO `sys_logininfor` VALUES (407, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-27 10:05:01');
+INSERT INTO `sys_logininfor` VALUES (408, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-27 12:47:17');
+INSERT INTO `sys_logininfor` VALUES (409, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 14:56:41');
+INSERT INTO `sys_logininfor` VALUES (410, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 15:25:01');
+INSERT INTO `sys_logininfor` VALUES (411, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 15:33:01');
+INSERT INTO `sys_logininfor` VALUES (412, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 16:10:38');
+INSERT INTO `sys_logininfor` VALUES (413, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 16:41:29');
+INSERT INTO `sys_logininfor` VALUES (414, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 17:15:56');
+INSERT INTO `sys_logininfor` VALUES (415, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 18:03:31');
+INSERT INTO `sys_logininfor` VALUES (416, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-27 18:09:15');
+INSERT INTO `sys_logininfor` VALUES (417, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-27 18:16:01');
+INSERT INTO `sys_logininfor` VALUES (418, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-27 18:54:37');
+INSERT INTO `sys_logininfor` VALUES (419, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-28 08:14:08');
+INSERT INTO `sys_logininfor` VALUES (420, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 08:14:11');
+INSERT INTO `sys_logininfor` VALUES (421, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 09:17:03');
+INSERT INTO `sys_logininfor` VALUES (422, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 09:17:03');
+INSERT INTO `sys_logininfor` VALUES (423, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 09:26:27');
+INSERT INTO `sys_logininfor` VALUES (424, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 09:58:38');
+INSERT INTO `sys_logininfor` VALUES (425, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 15:27:48');
+INSERT INTO `sys_logininfor` VALUES (426, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 16:16:51');
+INSERT INTO `sys_logininfor` VALUES (427, '258111', '10.84.181.135', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 17:22:13');
+INSERT INTO `sys_logininfor` VALUES (428, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 17:23:03');
+INSERT INTO `sys_logininfor` VALUES (429, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 17:23:35');
+INSERT INTO `sys_logininfor` VALUES (430, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-28 17:24:00');
+INSERT INTO `sys_logininfor` VALUES (431, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-29 14:42:57');
+INSERT INTO `sys_logininfor` VALUES (432, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-29 15:17:00');
+INSERT INTO `sys_logininfor` VALUES (433, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2024-11-29 15:50:43');
+INSERT INTO `sys_logininfor` VALUES (434, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-29 15:51:22');
+INSERT INTO `sys_logininfor` VALUES (435, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '退出成功', '2024-11-29 15:52:26');
+INSERT INTO `sys_logininfor` VALUES (436, '258222', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '1', '用户不存在/密码错误', '2024-11-29 15:52:31');
+INSERT INTO `sys_logininfor` VALUES (437, '258222', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-29 15:52:38');
+INSERT INTO `sys_logininfor` VALUES (438, '258222', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '退出成功', '2024-11-29 15:56:53');
+INSERT INTO `sys_logininfor` VALUES (439, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-29 15:56:54');
+INSERT INTO `sys_logininfor` VALUES (440, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '退出成功', '2024-11-29 15:57:11');
+INSERT INTO `sys_logininfor` VALUES (441, '258222', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-29 15:57:18');
+INSERT INTO `sys_logininfor` VALUES (442, '258222', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-29 16:02:32');
+INSERT INTO `sys_logininfor` VALUES (443, '258222', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '退出成功', '2024-11-29 16:05:33');
+INSERT INTO `sys_logininfor` VALUES (444, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '1', '用户不存在/密码错误', '2024-11-29 16:05:35');
+INSERT INTO `sys_logininfor` VALUES (445, '258111', '192.168.43.1', '内网IP', 'Chrome Mobile', 'Android 1.x', '0', '登录成功', '2024-11-29 16:05:47');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -888,7 +1014,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2036 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2060 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -996,12 +1122,6 @@ INSERT INTO `sys_menu` VALUES (2014, '制令，存储总制令、分制令和子
 INSERT INTO `sys_menu` VALUES (2015, '制令，存储总制令、分制令和子制令的信息修改', 2012, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'orders:orders:edit', '#', 'admin', '2024-10-05 13:59:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2016, '制令，存储总制令、分制令和子制令的信息删除', 2012, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'orders:orders:remove', '#', 'admin', '2024-10-05 13:59:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2017, '制令，存储总制令、分制令和子制令的信息导出', 2012, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'orders:orders:export', '#', 'admin', '2024-10-05 13:59:57', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2018, '任务', 0, 1, 'taskAssignment', 'taskAssignment/taskAssignment/index', NULL, '', 1, 0, 'C', '0', '0', 'taskAssignment:taskAssignment:list', '#', 'admin', '2024-10-10 10:47:57', 'admin', '2024-10-12 13:15:22', '任务分配，存储每个子制令的任务分配情况菜单');
-INSERT INTO `sys_menu` VALUES (2019, '任务分配，存储每个子制令的任务分配情况查询', 2018, 1, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'taskAssignment:taskAssignment:query', '#', 'admin', '2024-10-10 10:47:57', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2020, '任务分配，存储每个子制令的任务分配情况新增', 2018, 2, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'taskAssignment:taskAssignment:add', '#', 'admin', '2024-10-10 10:47:57', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2021, '任务分配，存储每个子制令的任务分配情况修改', 2018, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'taskAssignment:taskAssignment:edit', '#', 'admin', '2024-10-10 10:47:57', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2022, '任务分配，存储每个子制令的任务分配情况删除', 2018, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'taskAssignment:taskAssignment:remove', '#', 'admin', '2024-10-10 10:47:57', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2023, '任务分配，存储每个子制令的任务分配情况导出', 2018, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'taskAssignment:taskAssignment:export', '#', 'admin', '2024-10-10 10:47:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2024, '机器', 0, 1, 'machine', 'machine/machine/index', NULL, '', 1, 0, 'C', '0', '0', 'machine:machine:list', '#', 'admin', '2024-10-12 13:12:23', 'admin', '2024-10-12 13:13:12', '机器，存储所有机器的相关信息菜单');
 INSERT INTO `sys_menu` VALUES (2025, '机器，存储所有机器的相关信息查询', 2024, 1, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'machine:machine:query', '#', 'admin', '2024-10-12 13:12:24', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2026, '机器，存储所有机器的相关信息新增', 2024, 2, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'machine:machine:add', '#', 'admin', '2024-10-12 13:12:24', '', NULL, '');
@@ -1014,6 +1134,30 @@ INSERT INTO `sys_menu` VALUES (2032, '工序，存储工序及其相关信息新
 INSERT INTO `sys_menu` VALUES (2033, '工序，存储工序及其相关信息修改', 2030, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'operation:operation:edit', '#', 'admin', '2024-10-12 13:14:40', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2034, '工序，存储工序及其相关信息删除', 2030, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'operation:operation:remove', '#', 'admin', '2024-10-12 13:14:40', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2035, '工序，存储工序及其相关信息导出', 2030, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'operation:operation:export', '#', 'admin', '2024-10-12 13:14:40', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2036, '物料', 0, 1, 'material', 'material/material/index', NULL, '', 1, 0, 'C', '0', '0', 'material:material:list', '#', 'admin', '2024-11-02 17:40:04', 'admin', '2024-11-02 17:40:52', '物料，存储生产所需的物料信息菜单');
+INSERT INTO `sys_menu` VALUES (2037, '物料，存储生产所需的物料信息查询', 2036, 1, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'material:material:query', '#', 'admin', '2024-11-02 17:40:04', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2038, '物料，存储生产所需的物料信息新增', 2036, 2, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'material:material:add', '#', 'admin', '2024-11-02 17:40:04', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2039, '物料，存储生产所需的物料信息修改', 2036, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'material:material:edit', '#', 'admin', '2024-11-02 17:40:04', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2040, '物料，存储生产所需的物料信息删除', 2036, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'material:material:remove', '#', 'admin', '2024-11-02 17:40:04', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2041, '物料，存储生产所需的物料信息导出', 2036, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'material:material:export', '#', 'admin', '2024-11-02 17:40:04', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2042, '报工', 0, 1, 'report', 'report/report/index', NULL, '', 1, 0, 'C', '0', '0', 'report:report:list', '#', 'admin', '2024-11-03 19:48:08', 'admin', '2024-11-03 19:48:48', '报工，用于记录员工的报工信息菜单');
+INSERT INTO `sys_menu` VALUES (2043, '报工，用于记录员工的报工信息查询', 2042, 1, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'report:report:query', '#', 'admin', '2024-11-03 19:48:08', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2044, '报工，用于记录员工的报工信息新增', 2042, 2, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'report:report:add', '#', 'admin', '2024-11-03 19:48:08', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2045, '报工，用于记录员工的报工信息修改', 2042, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'report:report:edit', '#', 'admin', '2024-11-03 19:48:08', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2046, '报工，用于记录员工的报工信息删除', 2042, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'report:report:remove', '#', 'admin', '2024-11-03 19:48:08', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2047, '报工，用于记录员工的报工信息导出', 2042, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'report:report:export', '#', 'admin', '2024-11-03 19:48:08', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2048, '任务', 0, 1, 'task', 'task/task/index', NULL, '', 1, 0, 'C', '0', '0', 'task:task:list', '#', 'admin', '2024-11-26 22:32:08', 'admin', '2024-11-26 22:33:22', '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息菜单');
+INSERT INTO `sys_menu` VALUES (2049, '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息查询', 2048, 1, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'task:task:query', '#', 'admin', '2024-11-26 22:32:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2050, '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息新增', 2048, 2, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'task:task:add', '#', 'admin', '2024-11-26 22:32:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2051, '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息修改', 2048, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'task:task:edit', '#', 'admin', '2024-11-26 22:32:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2052, '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息删除', 2048, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'task:task:remove', '#', 'admin', '2024-11-26 22:32:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2053, '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息导出', 2048, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'task:task:export', '#', 'admin', '2024-11-26 22:32:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2054, '出勤', 0, 1, 'checkin', 'checkin/checkin/index', NULL, '', 1, 0, 'C', '0', '0', 'checkin:checkin:list', '#', 'admin', '2024-11-28 09:46:51', 'admin', '2024-11-28 09:48:01', '出勤，记录员工的出勤信息菜单');
+INSERT INTO `sys_menu` VALUES (2055, '出勤，记录员工的出勤信息查询', 2054, 1, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'checkin:checkin:query', '#', 'admin', '2024-11-28 09:46:51', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2056, '出勤，记录员工的出勤信息新增', 2054, 2, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'checkin:checkin:add', '#', 'admin', '2024-11-28 09:46:51', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2057, '出勤，记录员工的出勤信息修改', 2054, 3, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'checkin:checkin:edit', '#', 'admin', '2024-11-28 09:46:51', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2058, '出勤，记录员工的出勤信息删除', 2054, 4, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'checkin:checkin:remove', '#', 'admin', '2024-11-28 09:46:51', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2059, '出勤，记录员工的出勤信息导出', 2054, 5, '#', '', NULL, '', 1, 0, 'F', '0', '0', 'checkin:checkin:export', '#', 'admin', '2024-11-28 09:46:51', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -1065,7 +1209,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 284 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 385 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -1254,6 +1398,107 @@ INSERT INTO `sys_oper_log` VALUES (280, '代码生成', 2, 'com.ruoyi.generator.
 INSERT INTO `sys_oper_log` VALUES (281, '合同，存储合同相关信息及其产品详情', 2, 'com.ruoyi.system.controller.ContractsController.edit()', 'PUT', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":33,\"contractName\":\"10008\",\"contractNumber\":\"10008\",\"createdDate\":\"2024-10-13\",\"customerName\":\"10008\",\"modifiedDate\":\"2024-10-13 09:46:58\",\"params\":{},\"productDetails\":[{\"allPrice\":90.0,\"productCode\":\"1003\",\"productId\":3,\"productName\":\"产品3\",\"quantity\":3,\"unitPrice\":30.0},{\"allPrice\":120.0,\"productCode\":\"1004\",\"productId\":4,\"productName\":\"产品4\",\"quantity\":3,\"unitPrice\":40.0}],\"status\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-13 12:31:13', 17);
 INSERT INTO `sys_oper_log` VALUES (282, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.synchDb()', 'GET', 1, 'admin', '研发部门', '/tool/gen/synchDb/tb_task_assignment', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-13 14:02:23', 40);
 INSERT INTO `sys_oper_log` VALUES (283, '用户头像', 2, 'com.ruoyi.web.controller.system.SysProfileController.avatar()', 'POST', 1, '258111', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"imgUrl\":\"/profile/avatar/2024/10/18/1729223916958_20241018115837A001.png\",\"code\":200}', 0, NULL, '2024-10-18 11:58:37', 52);
+INSERT INTO `sys_oper_log` VALUES (284, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.add()', 'POST', 1, 'admin', '研发部门', '/system/dict/data', '127.0.0.1', '内网IP', '{\"createBy\":\"admin\",\"default\":false,\"dictLabel\":\"蜡模车间\",\"dictSort\":4,\"dictType\":\"product_category\",\"dictValue\":\"4\",\"listClass\":\"default\",\"params\":{},\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-31 16:00:09', 10);
+INSERT INTO `sys_oper_log` VALUES (285, '产品，存储产品相关信息', 1, 'com.ruoyi.system.controller.ProductsController.add()', 'POST', 1, 'admin', '研发部门', '/products/products', '127.0.0.1', '内网IP', '{\"category\":\"4\",\"description\":\"射蜡班组\",\"params\":{},\"price\":200,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡班组\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-31 16:01:03', 9);
+INSERT INTO `sys_oper_log` VALUES (286, '产品，存储产品相关信息', 2, 'com.ruoyi.system.controller.ProductsController.edit()', 'PUT', 1, 'admin', '研发部门', '/products/products', '127.0.0.1', '内网IP', '{\"category\":\"4\",\"createdDate\":\"2024-10-31 16:01:03\",\"description\":\"射蜡件\",\"modifiedDate\":\"2024-10-31 16:01:03\",\"params\":{},\"price\":200,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-31 16:31:52', 9);
+INSERT INTO `sys_oper_log` VALUES (287, '工序，存储工序及其相关信息', 3, 'com.ruoyi.system.controller.OperationController.remove()', 'DELETE', 1, 'admin', '研发部门', '/operation/operation/8', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-31 16:34:38', 8);
+INSERT INTO `sys_oper_log` VALUES (288, '合同，存储合同相关信息及其产品详情', 3, 'com.ruoyi.system.controller.ContractsController.remove()', 'DELETE', 1, 'admin', '研发部门', '/Contracts/contracts/29', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_2` FOREIGN KEY (`contract_id`) REFERENCES `tb_contracts` (`contract_id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\Contracts\\ContractsMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.ContractsMapper.deleteContractsByContractIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_contracts where contract_id in           (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_2` FOREIGN KEY (`contract_id`) REFERENCES `tb_contracts` (`contract_id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_2` FOREIGN KEY (`contract_id`) REFERENCES `tb_contracts` (`contract_id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_2` FOREIGN KEY (`contract_id`) REFERENCES `tb_contracts` (`contract_id`))', '2024-10-31 17:24:29', 171);
+INSERT INTO `sys_oper_log` VALUES (289, '合同，存储合同相关信息及其产品详情', 1, 'com.ruoyi.system.controller.ContractsController.add()', 'POST', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":34,\"contractName\":\"测试射蜡件1\",\"contractNumber\":\"10009\",\"customerName\":\"1\",\"params\":{},\"productDetails\":[{\"allPrice\":2000.0,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\",\"quantity\":10,\"unitPrice\":200.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-31 17:25:40', 166);
+INSERT INTO `sys_oper_log` VALUES (290, '合同，存储合同相关信息及其产品详情', 2, 'com.ruoyi.system.controller.ContractsController.edit()', 'PUT', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":34,\"contractName\":\"测试射蜡件1\",\"contractNumber\":\"10009\",\"createdDate\":\"2024-10-31\",\"customerName\":\"1\",\"modifiedDate\":\"2024-10-31 17:25:40\",\"params\":{},\"productDetails\":[{\"allPrice\":2000.0,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\",\"quantity\":10,\"unitPrice\":200.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-10-31 17:26:26', 12);
+INSERT INTO `sys_oper_log` VALUES (291, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\"tables\":\"tb_material\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-02 17:37:07', 311);
+INSERT INTO `sys_oper_log` VALUES (292, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', '研发部门', '/tool/gen', '127.0.0.1', '内网IP', '{\"businessName\":\"material\",\"className\":\"Material\",\"columns\":[{\"capJavaField\":\"MaterialId\",\"columnComment\":\"物料ID\",\"columnId\":75,\"columnName\":\"material_id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-11-02 17:37:07\",\"dictType\":\"\",\"edit\":false,\"htmlType\":\"input\",\"increment\":true,\"insert\":true,\"isIncrement\":\"1\",\"isInsert\":\"1\",\"isPk\":\"1\",\"isRequired\":\"0\",\"javaField\":\"materialId\",\"javaType\":\"Long\",\"list\":false,\"params\":{},\"pk\":true,\"query\":false,\"queryType\":\"EQ\",\"required\":false,\"sort\":1,\"superColumn\":false,\"tableId\":8,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"MaterialName\",\"columnComment\":\"物料名称\",\"columnId\":76,\"columnName\":\"material_name\",\"columnType\":\"varchar(100)\",\"createBy\":\"admin\",\"createTime\":\"2024-11-02 17:37:07\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"materialName\",\"javaType\":\"String\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"LIKE\",\"required\":true,\"sort\":2,\"superColumn\":false,\"tableId\":8,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"Unit\",\"columnComment\":\"单位（如吨、公斤、个）\",\"columnId\":77,\"columnName\":\"unit\",\"columnType\":\"varchar(20)\",\"createBy\":\"admin\",\"createTime\":\"2024-11-02 17:37:07\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"0\",\"javaField\":\"unit\",\"javaType\":\"String\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":false,\"sort\":3,\"superColumn\":false,\"tableId\":8,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"Quantity\",\"columnComment\":\"库存数量\",\"columnId\":78,\"columnName\":\"quantity\",\"columnType\":\"decimal(10,2)\",\"createBy\":\"admin\",\"createTime\":\"2024-11-02 17:37:07\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQue', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-02 17:37:57', 25);
+INSERT INTO `sys_oper_log` VALUES (293, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{\"tables\":\"tb_material\"}', NULL, 0, NULL, '2024-11-02 17:38:01', 315);
+INSERT INTO `sys_oper_log` VALUES (294, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"material/material/index\",\"createTime\":\"2024-11-02 17:40:04\",\"icon\":\"#\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2036,\"menuName\":\"物料\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":0,\"path\":\"material\",\"perms\":\"material:material:list\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-02 17:40:52', 46);
+INSERT INTO `sys_oper_log` VALUES (295, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\"tables\":\"tb_work_report\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-03 19:42:48', 149);
+INSERT INTO `sys_oper_log` VALUES (296, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', '研发部门', '/tool/gen', '127.0.0.1', '内网IP', '{\"businessName\":\"report\",\"className\":\"WorkReport\",\"columns\":[{\"capJavaField\":\"WorkReportId\",\"columnComment\":\"唯一标识每条报工记录\",\"columnId\":84,\"columnName\":\"work_report_id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-11-03 19:42:48\",\"dictType\":\"\",\"edit\":false,\"htmlType\":\"input\",\"increment\":true,\"insert\":true,\"isIncrement\":\"1\",\"isInsert\":\"1\",\"isPk\":\"1\",\"isRequired\":\"0\",\"javaField\":\"workReportId\",\"javaType\":\"Long\",\"list\":false,\"params\":{},\"pk\":true,\"query\":false,\"queryType\":\"EQ\",\"required\":false,\"sort\":1,\"superColumn\":false,\"tableId\":9,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"UserId\",\"columnComment\":\"标识报工员工的唯一ID\",\"columnId\":85,\"columnName\":\"user_id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-11-03 19:42:48\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"userId\",\"javaType\":\"Long\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":true,\"sort\":2,\"superColumn\":false,\"tableId\":9,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"Username\",\"columnComment\":\"报工员工的姓名\",\"columnId\":86,\"columnName\":\"username\",\"columnType\":\"varchar(50)\",\"createBy\":\"admin\",\"createTime\":\"2024-11-03 19:42:48\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"username\",\"javaType\":\"String\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"LIKE\",\"required\":true,\"sort\":3,\"superColumn\":false,\"tableId\":9,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"TeamName\",\"columnComment\":\"员工所在班组的名称\",\"columnId\":87,\"columnName\":\"team_name\",\"columnType\":\"varchar(50)\",\"createBy\":\"admin\",\"createTime\":\"2024-11-03 19:42:48\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQ', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-03 19:44:33', 26);
+INSERT INTO `sys_oper_log` VALUES (297, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{\"tables\":\"tb_work_report\"}', NULL, 0, NULL, '2024-11-03 19:45:08', 26);
+INSERT INTO `sys_oper_log` VALUES (298, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"report/report/index\",\"createTime\":\"2024-11-03 19:48:08\",\"icon\":\"#\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2042,\"menuName\":\"报工\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":0,\"path\":\"report\",\"perms\":\"report:report:list\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-03 19:48:48', 33);
+INSERT INTO `sys_oper_log` VALUES (299, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '127.0.0.1', '内网IP', '{\"endTime\":\"2024-11-03\",\"machineId\":1,\"operationId\":10,\"operationName\":\"10\",\"params\":{},\"quantity\":150,\"remarks\":\"生产进展顺利\",\"reportStatus\":\"已完成\",\"startTime\":\"2024-11-03\",\"teamName\":\"射蜡班组\",\"userId\":101,\"username\":\"123\",\"workReportId\":1}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-03 20:04:26', 206);
+INSERT INTO `sys_oper_log` VALUES (300, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '192.168.43.1', '内网IP', '{\"params\":{}}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\report\\WorkReportMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.WorkReportMapper.insertWorkReport-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into tb_work_report\r\n### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1', '2024-11-03 21:50:42', 31);
+INSERT INTO `sys_oper_log` VALUES (301, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '192.168.43.1', '内网IP', '{\"params\":{}}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\report\\WorkReportMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.WorkReportMapper.insertWorkReport-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into tb_work_report\r\n### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1', '2024-11-03 21:53:05', 0);
+INSERT INTO `sys_oper_log` VALUES (302, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '192.168.43.1', '内网IP', '{\"endTime\":\"2024-11-03\",\"machineId\":30,\"operationId\":9,\"operationName\":\"射水溶芯\",\"params\":{},\"quantity\":3,\"remarks\":\"无\",\"reportStatus\":\"已完成\",\"startTime\":\"2024-11-03\",\"teamName\":\"射蜡班组\",\"userId\":101,\"username\":\"258111\",\"workReportId\":2}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-03 21:57:00', 0);
+INSERT INTO `sys_oper_log` VALUES (303, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '192.168.43.1', '内网IP', '{\"taskId\":\"7\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-03 22:12:43', 13);
+INSERT INTO `sys_oper_log` VALUES (304, '角色管理', 2, 'com.ruoyi.web.controller.system.SysRoleController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/role', '127.0.0.1', '内网IP', '{\"admin\":false,\"createTime\":\"2024-10-07 16:47:55\",\"dataScope\":\"1\",\"delFlag\":\"0\",\"deptCheckStrictly\":true,\"flag\":false,\"menuCheckStrictly\":true,\"menuIds\":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047],\"params\":{},\"roleId\":100,\"roleKey\":\"worker\",\"roleName\":\"员工\",\"roleSort\":3,\"status\":\"0\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-04 10:19:26', 71);
+INSERT INTO `sys_oper_log` VALUES (305, '合同，存储合同相关信息及其产品详情', 2, 'com.ruoyi.system.controller.ContractsController.edit()', 'PUT', 1, '258111', NULL, '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"address\":\"石家庄铁道大学\",\"contactNumber\":\"1234567890\",\"contactPerson\":\"李宏威\",\"contractId\":1,\"contractName\":\"mes系统\",\"contractNumber\":\"10001\",\"createdDate\":\"2024-10-02\",\"customerName\":\"李宏威\",\"endDate\":\"2024-10-31\",\"modifiedDate\":\"2024-10-04 16:15:00\",\"params\":{},\"productDetails\":[{\"allPrice\":10.0,\"productCode\":\"1001\",\"productId\":0,\"productName\":\"产品1\",\"quantity\":1,\"unitPrice\":10.0},{\"allPrice\":40.0,\"productCode\":\"1004\",\"productId\":0,\"productName\":\"产品4\",\"quantity\":1,\"unitPrice\":40.0}],\"startDate\":\"2024-10-01\",\"status\":\"1\",\"totalValue\":1200000}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-04 10:20:26', 48);
+INSERT INTO `sys_oper_log` VALUES (306, '合同，存储合同相关信息及其产品详情', 2, 'com.ruoyi.system.controller.ContractsController.edit()', 'PUT', 1, '258111', NULL, '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"address\":\"石家庄铁道大学\",\"contactNumber\":\"1233332131\",\"contactPerson\":\"lhw\",\"contractId\":11,\"contractName\":\"lhw\",\"contractNumber\":\"10002\",\"createdDate\":\"2024-10-04\",\"customerName\":\"lhw\",\"endDate\":\"2024-10-31\",\"modifiedDate\":\"2024-10-04 17:11:09\",\"params\":{},\"productDetails\":[{\"allPrice\":20.0,\"productCode\":\"1001\",\"productId\":1,\"productName\":\"产品1\",\"quantity\":2,\"unitPrice\":10.0},{\"allPrice\":200.0,\"productCode\":\"1002\",\"productId\":2,\"productName\":\"产品2\",\"quantity\":10,\"unitPrice\":20.0},{\"allPrice\":800.0,\"productCode\":\"1004\",\"productId\":4,\"productName\":\"产品4\",\"quantity\":20,\"unitPrice\":40.0},{\"allPrice\":3000.0,\"productCode\":\"1003\",\"productId\":3,\"productName\":\"产品3\",\"quantity\":100,\"unitPrice\":30.0}],\"startDate\":\"2024-10-04\",\"status\":\"0\",\"totalValue\":10000}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-04 10:20:32', 16);
+INSERT INTO `sys_oper_log` VALUES (307, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '172.20.10.5', '内网IP', '{\"taskId\":\"8\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-04 11:43:38', 45);
+INSERT INTO `sys_oper_log` VALUES (308, '报工，用于记录员工的报工信息', 1, 'com.ruoyi.system.controller.WorkReportController.add()', 'POST', 1, '258111', NULL, '/report/report', '172.20.10.5', '内网IP', '{\"taskId\":\"8\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-04 11:45:53', 29);
+INSERT INTO `sys_oper_log` VALUES (309, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/84', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:00:47', 63);
+INSERT INTO `sys_oper_log` VALUES (310, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/115', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:05:35', 7);
+INSERT INTO `sys_oper_log` VALUES (311, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/113', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:05:42', 8);
+INSERT INTO `sys_oper_log` VALUES (312, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/85', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:05:45', 6);
+INSERT INTO `sys_oper_log` VALUES (313, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/86', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:05:51', 3);
+INSERT INTO `sys_oper_log` VALUES (314, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/86', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:05:56', 5);
+INSERT INTO `sys_oper_log` VALUES (315, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/88', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:06:12', 4);
+INSERT INTO `sys_oper_log` VALUES (316, '任务分配，存储每个子制令的任务分配情况', 3, 'com.ruoyi.system.controller.TaskAssignmentController.remove()', 'DELETE', 1, 'admin', '研发部门', '/taskAssignment/taskAssignment/9', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:07:14', 11);
+INSERT INTO `sys_oper_log` VALUES (317, '任务分配，存储每个子制令的任务分配情况', 3, 'com.ruoyi.system.controller.TaskAssignmentController.remove()', 'DELETE', 1, 'admin', '研发部门', '/taskAssignment/taskAssignment/8', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_material`, CONSTRAINT `tb_task_material_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task_assignment` (`take_id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\taskAssignment\\TaskAssignmentMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.TaskAssignmentMapper.deleteTaskAssignmentByTakeIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_task_assignment where take_id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_material`, CONSTRAINT `tb_task_material_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task_assignment` (`take_id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_material`, CONSTRAINT `tb_task_material_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task_assignment` (`take_id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_material`, CONSTRAINT `tb_task_material_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task_assignment` (`take_id`))', '2024-11-26 21:07:16', 7);
+INSERT INTO `sys_oper_log` VALUES (318, '合同，存储合同相关信息及其产品详情', 1, 'com.ruoyi.system.controller.ContractsController.add()', 'POST', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":35,\"contractName\":\"1\",\"contractNumber\":\"1\",\"customerName\":\"1\",\"params\":{},\"productDetails\":[{\"allPrice\":100.0,\"productCode\":\"1001\",\"productId\":1,\"productName\":\"产品1\",\"quantity\":10,\"unitPrice\":10.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:10:42', 52);
+INSERT INTO `sys_oper_log` VALUES (319, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/126', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_orders`, CONSTRAINT `tb_orders_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:10:52', 4);
+INSERT INTO `sys_oper_log` VALUES (320, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/129', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:29:43', 12);
+INSERT INTO `sys_oper_log` VALUES (321, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/128', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:29:44', 5);
+INSERT INTO `sys_oper_log` VALUES (322, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/127', '127.0.0.1', '内网IP', '{}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\orders\\OrdersMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.OrdersMapper.deleteOrdersByIds-Inline\r\n### The error occurred while setting parameters\r\n### SQL: delete from tb_orders where id in          (               ?          )\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))\n; Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`ry_vue`.`tb_task_assignment`, CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`))', '2024-11-26 21:29:46', 6);
+INSERT INTO `sys_oper_log` VALUES (323, '任务分配，存储每个子制令的任务分配情况', 3, 'com.ruoyi.system.controller.TaskAssignmentController.remove()', 'DELETE', 1, 'admin', '研发部门', '/taskAssignment/taskAssignment/10', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:29:52', 7);
+INSERT INTO `sys_oper_log` VALUES (324, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/127', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:29:56', 6);
+INSERT INTO `sys_oper_log` VALUES (325, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/126', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:29:57', 8);
+INSERT INTO `sys_oper_log` VALUES (326, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/125', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:29:58', 5);
+INSERT INTO `sys_oper_log` VALUES (327, '合同，存储合同相关信息及其产品详情', 3, 'com.ruoyi.system.controller.ContractsController.remove()', 'DELETE', 1, 'admin', '研发部门', '/Contracts/contracts/35', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:30:08', 6);
+INSERT INTO `sys_oper_log` VALUES (328, '合同，存储合同相关信息及其产品详情', 1, 'com.ruoyi.system.controller.ContractsController.add()', 'POST', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":36,\"contractName\":\"1\",\"contractNumber\":\"1\",\"customerName\":\"1\",\"params\":{},\"productDetails\":[{\"allPrice\":2000.0,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\",\"quantity\":10,\"unitPrice\":200.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:30:19', 107);
+INSERT INTO `sys_oper_log` VALUES (329, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.synchDb()', 'GET', 1, 'admin', '研发部门', '/tool/gen/synchDb/tb_orders', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:46:58', 83);
+INSERT INTO `sys_oper_log` VALUES (330, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', '研发部门', '/tool/gen', '127.0.0.1', '内网IP', '{\"businessName\":\"orders\",\"className\":\"Orders\",\"columns\":[{\"capJavaField\":\"Id\",\"columnComment\":\"唯一标识\",\"columnId\":36,\"columnName\":\"id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-10-05 13:46:19\",\"dictType\":\"\",\"edit\":false,\"htmlType\":\"input\",\"increment\":true,\"insert\":true,\"isIncrement\":\"1\",\"isInsert\":\"1\",\"isPk\":\"1\",\"isQuery\":\"1\",\"isRequired\":\"0\",\"javaField\":\"id\",\"javaType\":\"Long\",\"list\":false,\"params\":{},\"pk\":true,\"query\":true,\"queryType\":\"EQ\",\"required\":false,\"sort\":1,\"superColumn\":false,\"tableId\":4,\"updateBy\":\"\",\"updateTime\":\"2024-11-26 21:46:58\",\"usableColumn\":false},{\"capJavaField\":\"OrderNumber\",\"columnComment\":\"制令编号\",\"columnId\":37,\"columnName\":\"order_number\",\"columnType\":\"varchar(50)\",\"createBy\":\"admin\",\"createTime\":\"2024-10-05 13:46:19\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"orderNumber\",\"javaType\":\"String\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"LIKE\",\"required\":true,\"sort\":2,\"superColumn\":false,\"tableId\":4,\"updateBy\":\"\",\"updateTime\":\"2024-11-26 21:46:58\",\"usableColumn\":false},{\"capJavaField\":\"ParentId\",\"columnComment\":\"父制令 ID\",\"columnId\":38,\"columnName\":\"parent_id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-10-05 13:46:19\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"0\",\"javaField\":\"parentId\",\"javaType\":\"Long\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":false,\"sort\":3,\"superColumn\":true,\"tableId\":4,\"updateBy\":\"\",\"updateTime\":\"2024-11-26 21:46:58\",\"usableColumn\":true},{\"capJavaField\":\"Type\",\"columnComment\":\"制令类型（如：总制令、分制令、子制令）\",\"columnId\":39,\"columnName\":\"type\",\"columnType\":\"varchar(20)\",\"createBy\":\"admin\",\"createTime\":\"2024-10-05 13:46:19\",\"dictType\":\"order_type\",\"edit\":true,\"htmlType\":\"select\",\"increment\"', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 21:47:32', 28);
+INSERT INTO `sys_oper_log` VALUES (331, '制令，存储总制令、分制令和子制令的信息', 3, 'com.ruoyi.system.controller.OrdersController.remove()', 'DELETE', 1, 'admin', '研发部门', '/orders/orders/138', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:02:55', 34);
+INSERT INTO `sys_oper_log` VALUES (332, '合同，存储合同相关信息及其产品详情', 3, 'com.ruoyi.system.controller.ContractsController.remove()', 'DELETE', 1, 'admin', '研发部门', '/Contracts/contracts/36', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:03:14', 5);
+INSERT INTO `sys_oper_log` VALUES (333, '合同，存储合同相关信息及其产品详情', 1, 'com.ruoyi.system.controller.ContractsController.add()', 'POST', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":37,\"contractName\":\"1\",\"contractNumber\":\"1\",\"customerName\":\"1\",\"params\":{},\"productDetails\":[{\"allPrice\":2000.0,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\",\"quantity\":10,\"unitPrice\":200.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:03:26', 172);
+INSERT INTO `sys_oper_log` VALUES (334, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.synchDb()', 'GET', 1, 'admin', '研发部门', '/tool/gen/synchDb/tb_task_assignment', '127.0.0.1', '内网IP', '{}', NULL, 1, '同步数据失败，原表结构不存在', '2024-11-26 22:21:23', 61);
+INSERT INTO `sys_oper_log` VALUES (335, '代码生成', 3, 'com.ruoyi.generator.controller.GenController.remove()', 'DELETE', 1, 'admin', '研发部门', '/tool/gen/5', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:21:27', 15);
+INSERT INTO `sys_oper_log` VALUES (336, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\"tables\":\"tb_task\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:21:35', 130);
+INSERT INTO `sys_oper_log` VALUES (337, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', '研发部门', '/tool/gen', '127.0.0.1', '内网IP', '{\"businessName\":\"task\",\"className\":\"Task\",\"columns\":[{\"capJavaField\":\"TaskId\",\"columnComment\":\"任务分配ID\",\"columnId\":97,\"columnName\":\"task_id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-11-26 22:21:34\",\"dictType\":\"\",\"edit\":false,\"htmlType\":\"input\",\"increment\":true,\"insert\":true,\"isIncrement\":\"1\",\"isInsert\":\"1\",\"isPk\":\"1\",\"isQuery\":\"1\",\"isRequired\":\"0\",\"javaField\":\"taskId\",\"javaType\":\"Long\",\"list\":false,\"params\":{},\"pk\":true,\"query\":true,\"queryType\":\"EQ\",\"required\":false,\"sort\":1,\"superColumn\":false,\"tableId\":10,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"OrderId\",\"columnComment\":\"制令ID\",\"columnId\":98,\"columnName\":\"order_id\",\"columnType\":\"int\",\"createBy\":\"admin\",\"createTime\":\"2024-11-26 22:21:34\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"orderId\",\"javaType\":\"Long\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":true,\"sort\":2,\"superColumn\":false,\"tableId\":10,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"UserId\",\"columnComment\":\"员工ID\",\"columnId\":99,\"columnName\":\"user_id\",\"columnType\":\"bigint\",\"createBy\":\"admin\",\"createTime\":\"2024-11-26 22:21:34\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"userId\",\"javaType\":\"Long\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":true,\"sort\":3,\"superColumn\":false,\"tableId\":10,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"AssignedDate\",\"columnComment\":\"任务分配时间\",\"columnId\":100,\"columnName\":\"assigned_date\",\"columnType\":\"datetime\",\"createBy\":\"admin\",\"createTime\":\"2024-11-26 22:21:34\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"datetime\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"0\",\"ja', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:22:40', 83);
+INSERT INTO `sys_oper_log` VALUES (338, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2018', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"存在子菜单,不允许删除\",\"code\":601}', 0, NULL, '2024-11-26 22:30:22', 11);
+INSERT INTO `sys_oper_log` VALUES (339, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2019', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"菜单已分配,不允许删除\",\"code\":601}', 0, NULL, '2024-11-26 22:30:29', 10);
+INSERT INTO `sys_oper_log` VALUES (340, '角色管理', 2, 'com.ruoyi.web.controller.system.SysRoleController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/role', '127.0.0.1', '内网IP', '{\"admin\":false,\"createTime\":\"2024-10-07 16:47:55\",\"dataScope\":\"1\",\"delFlag\":\"0\",\"deptCheckStrictly\":true,\"flag\":false,\"menuCheckStrictly\":true,\"menuIds\":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047],\"params\":{},\"roleId\":100,\"roleKey\":\"worker\",\"roleName\":\"员工\",\"roleSort\":3,\"status\":\"0\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:30:42', 36);
+INSERT INTO `sys_oper_log` VALUES (341, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2023', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:30:50', 12);
+INSERT INTO `sys_oper_log` VALUES (342, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2022', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:30:53', 9);
+INSERT INTO `sys_oper_log` VALUES (343, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2021', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:30:55', 12);
+INSERT INTO `sys_oper_log` VALUES (344, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2020', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:30:57', 10);
+INSERT INTO `sys_oper_log` VALUES (345, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2019', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:31:00', 10);
+INSERT INTO `sys_oper_log` VALUES (346, '菜单管理', 3, 'com.ruoyi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', '研发部门', '/system/menu/2018', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:31:02', 9);
+INSERT INTO `sys_oper_log` VALUES (347, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{\"tables\":\"tb_task\"}', NULL, 0, NULL, '2024-11-26 22:31:14', 71);
+INSERT INTO `sys_oper_log` VALUES (348, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"task/task/index\",\"createTime\":\"2024-11-26 22:32:08\",\"icon\":\"#\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2048,\"menuName\":\"任务\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":0,\"path\":\"task\",\"perms\":\"task:task:list\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 22:33:22', 9);
+INSERT INTO `sys_oper_log` VALUES (349, '任务分配，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息', 3, 'com.ruoyi.system.controller.TaskController.remove()', 'DELETE', 1, 'admin', '研发部门', '/task/task/12', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-26 23:32:22', 9);
+INSERT INTO `sys_oper_log` VALUES (350, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', NULL, 1, 'Cannot invoke \"com.ruoyi.system.domain.Operation.getOperationName()\" because the return value of \"com.ruoyi.system.mapper.OperationMapper.selectOperationByOperationId(java.lang.Long)\" is null', '2024-11-27 10:35:01', 20);
+INSERT INTO `sys_oper_log` VALUES (351, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', NULL, 1, 'Cannot invoke \"com.ruoyi.system.domain.Operation.getOperationName()\" because the return value of \"com.ruoyi.system.mapper.OperationMapper.selectOperationByOperationId(java.lang.Long)\" is null', '2024-11-27 10:35:05', 17);
+INSERT INTO `sys_oper_log` VALUES (352, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', NULL, 1, 'Cannot invoke \"com.ruoyi.system.domain.Operation.getOperationName()\" because the return value of \"com.ruoyi.system.mapper.OperationMapper.selectOperationByOperationId(java.lang.Long)\" is null', '2024-11-27 10:35:05', 28);
+INSERT INTO `sys_oper_log` VALUES (353, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', NULL, 1, 'Cannot invoke \"com.ruoyi.system.domain.Operation.getOperationName()\" because the return value of \"com.ruoyi.system.mapper.OperationMapper.selectOperationByOperationId(java.lang.Long)\" is null', '2024-11-27 10:38:04', 27);
+INSERT INTO `sys_oper_log` VALUES (354, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', NULL, 1, 'Cannot invoke \"com.ruoyi.system.domain.Operation.getOperationName()\" because the return value of \"com.ruoyi.system.mapper.OperationMapper.selectOperationByOperationId(java.lang.Long)\" is null', '2024-11-27 10:39:10', 36);
+INSERT INTO `sys_oper_log` VALUES (355, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-27 10:42:15', 26);
+INSERT INTO `sys_oper_log` VALUES (356, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-27 10:42:41', 14);
+INSERT INTO `sys_oper_log` VALUES (357, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-27 10:44:18', 30);
+INSERT INTO `sys_oper_log` VALUES (358, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-27 10:44:24', 15);
+INSERT INTO `sys_oper_log` VALUES (359, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-27 10:44:55', 25);
+INSERT INTO `sys_oper_log` VALUES (360, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\"tables\":\"tb_task_machine\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-27 18:09:29', 82);
+INSERT INTO `sys_oper_log` VALUES (361, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":1}]}', 0, NULL, '2024-11-27 18:54:41', 28);
+INSERT INTO `sys_oper_log` VALUES (362, '合同，存储合同相关信息及其产品详情', 1, 'com.ruoyi.system.controller.ContractsController.add()', 'POST', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":38,\"contractName\":\"2\",\"contractNumber\":\"2\",\"customerName\":\"2\",\"params\":{},\"productDetails\":[{\"allPrice\":2000.0,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\",\"quantity\":10,\"unitPrice\":200.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 09:06:16', 83);
+INSERT INTO `sys_oper_log` VALUES (363, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":7}]}', 0, NULL, '2024-11-28 09:28:44', 20);
+INSERT INTO `sys_oper_log` VALUES (364, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/38', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-28 09:28:59', 22);
+INSERT INTO `sys_oper_log` VALUES (365, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":7}]}', 0, NULL, '2024-11-28 09:29:02', 12);
+INSERT INTO `sys_oper_log` VALUES (366, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/38', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":0}]}', 0, NULL, '2024-11-28 09:29:04', 11);
+INSERT INTO `sys_oper_log` VALUES (367, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\"tables\":\"tb_checkin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 09:43:31', 28);
+INSERT INTO `sys_oper_log` VALUES (368, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', '研发部门', '/tool/gen', '127.0.0.1', '内网IP', '{\"businessName\":\"checkin\",\"className\":\"Checkin\",\"columns\":[{\"capJavaField\":\"Id\",\"columnComment\":\"唯一标识\",\"columnId\":109,\"columnName\":\"id\",\"columnType\":\"bigint\",\"createBy\":\"admin\",\"createTime\":\"2024-11-28 09:43:31\",\"dictType\":\"\",\"edit\":false,\"htmlType\":\"input\",\"increment\":true,\"insert\":true,\"isIncrement\":\"1\",\"isInsert\":\"1\",\"isPk\":\"1\",\"isQuery\":\"1\",\"isRequired\":\"0\",\"javaField\":\"id\",\"javaType\":\"Long\",\"list\":false,\"params\":{},\"pk\":true,\"query\":true,\"queryType\":\"EQ\",\"required\":false,\"sort\":1,\"superColumn\":false,\"tableId\":12,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"EmployeeId\",\"columnComment\":\"员工ID\",\"columnId\":110,\"columnName\":\"employee_id\",\"columnType\":\"bigint\",\"createBy\":\"admin\",\"createTime\":\"2024-11-28 09:43:31\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"input\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"employeeId\",\"javaType\":\"Long\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":true,\"sort\":2,\"superColumn\":false,\"tableId\":12,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"CheckInTime\",\"columnComment\":\"出勤时间\",\"columnId\":111,\"columnName\":\"check_in_time\",\"columnType\":\"datetime\",\"createBy\":\"admin\",\"createTime\":\"2024-11-28 09:43:31\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"datetime\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQuery\":\"1\",\"isRequired\":\"1\",\"javaField\":\"checkInTime\",\"javaType\":\"Date\",\"list\":true,\"params\":{},\"pk\":false,\"query\":true,\"queryType\":\"EQ\",\"required\":true,\"sort\":3,\"superColumn\":false,\"tableId\":12,\"updateBy\":\"\",\"usableColumn\":false},{\"capJavaField\":\"CheckOutTime\",\"columnComment\":\"退勤时间\",\"columnId\":112,\"columnName\":\"check_out_time\",\"columnType\":\"datetime\",\"createBy\":\"admin\",\"createTime\":\"2024-11-28 09:43:31\",\"dictType\":\"\",\"edit\":true,\"htmlType\":\"datetime\",\"increment\":false,\"insert\":true,\"isEdit\":\"1\",\"isIncrement\":\"0\",\"isInsert\":\"1\",\"isList\":\"1\",\"isPk\":\"0\",\"isQu', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 09:44:44', 47);
+INSERT INTO `sys_oper_log` VALUES (369, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{\"tables\":\"tb_checkin\"}', NULL, 0, NULL, '2024-11-28 09:44:50', 581);
+INSERT INTO `sys_oper_log` VALUES (370, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"checkin/checkin/index\",\"createTime\":\"2024-11-28 09:46:51\",\"icon\":\"#\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2054,\"menuName\":\"出勤，记录员工的出勤信息\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":0,\"path\":\"checkin\",\"perms\":\"checkin:checkin:list\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 09:47:48', 15);
+INSERT INTO `sys_oper_log` VALUES (371, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"checkin/checkin/index\",\"createTime\":\"2024-11-28 09:46:51\",\"icon\":\"#\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2054,\"menuName\":\"出勤\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":0,\"path\":\"checkin\",\"perms\":\"checkin:checkin:list\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 09:48:01', 12);
+INSERT INTO `sys_oper_log` VALUES (372, '角色管理', 2, 'com.ruoyi.web.controller.system.SysRoleController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/role', '127.0.0.1', '内网IP', '{\"admin\":false,\"createTime\":\"2024-10-07 16:47:55\",\"dataScope\":\"1\",\"delFlag\":\"0\",\"deptCheckStrictly\":true,\"flag\":false,\"menuCheckStrictly\":true,\"menuIds\":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059],\"params\":{},\"roleId\":100,\"roleKey\":\"worker\",\"roleName\":\"员工\",\"roleSort\":3,\"status\":\"0\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 09:48:17', 24);
+INSERT INTO `sys_oper_log` VALUES (373, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28\",\"params\":{}}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'employee_id\' doesn\'t have a default value\r\n### The error may exist in file [D:\\Project\\RuoYi\\MES\\RuoYi-Vue-master\\ruoyi-admin\\target\\classes\\mapper\\checkin\\CheckinMapper.xml]\r\n### The error may involve com.ruoyi.system.mapper.CheckinMapper.insertCheckin-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into tb_checkin          ( check_in_time )           values ( ? )\r\n### Cause: java.sql.SQLException: Field \'employee_id\' doesn\'t have a default value\n; Field \'employee_id\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'employee_id\' doesn\'t have a default value', '2024-11-28 09:59:33', 268);
+INSERT INTO `sys_oper_log` VALUES (374, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28\",\"id\":1,\"params\":{},\"userId\":101}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 10:02:56', 220);
+INSERT INTO `sys_oper_log` VALUES (375, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28\",\"id\":2,\"params\":{},\"userId\":101}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 10:23:27', 11);
+INSERT INTO `sys_oper_log` VALUES (376, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28 10:49:30\",\"id\":3,\"params\":{},\"userId\":101}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 10:49:30', 31);
+INSERT INTO `sys_oper_log` VALUES (377, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28 10:51:37\",\"id\":4,\"params\":{},\"userId\":101}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 10:51:37', 8);
+INSERT INTO `sys_oper_log` VALUES (378, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28 16:18:53\",\"id\":5,\"params\":{},\"userId\":101}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 16:18:53', 66);
+INSERT INTO `sys_oper_log` VALUES (379, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258111', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-28 17:24:23\",\"id\":6,\"params\":{},\"userId\":101}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-28 17:24:23', 12);
+INSERT INTO `sys_oper_log` VALUES (380, '产品，存储产品相关信息', 1, 'com.ruoyi.system.controller.ProductsController.add()', 'POST', 1, 'admin', '研发部门', '/products/products', '127.0.0.1', '内网IP', '{\"category\":\"4\",\"description\":\"修蜡件\",\"params\":{},\"price\":200,\"productCode\":\"1006\",\"productId\":6,\"productName\":\"修蜡件\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-29 14:43:57', 22);
+INSERT INTO `sys_oper_log` VALUES (381, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/38', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":2}]}', 0, NULL, '2024-11-29 15:17:08', 46);
+INSERT INTO `sys_oper_log` VALUES (382, '合同进度', 0, 'com.ruoyi.system.controller.ContractsController.getProgress()', 'GET', 1, 'admin', '研发部门', '/Contracts/contracts/getProgress/37', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"total\":7,\"quantity\":10,\"name\":\"射蜡件\",\"completed\":7}]}', 0, NULL, '2024-11-29 15:17:10', 40);
+INSERT INTO `sys_oper_log` VALUES (383, '合同，存储合同相关信息及其产品详情', 1, 'com.ruoyi.system.controller.ContractsController.add()', 'POST', 1, 'admin', '研发部门', '/Contracts/contracts', '127.0.0.1', '内网IP', '{\"contractId\":39,\"contractName\":\"3\",\"contractNumber\":\"3\",\"customerName\":\"3\",\"params\":{},\"productDetails\":[{\"allPrice\":2000.0,\"productCode\":\"1005\",\"productId\":5,\"productName\":\"射蜡件\",\"quantity\":10,\"unitPrice\":200.0},{\"allPrice\":2000.0,\"productCode\":\"1006\",\"productId\":6,\"productName\":\"修蜡件\",\"quantity\":10,\"unitPrice\":200.0},{\"allPrice\":100.0,\"productCode\":\"1001\",\"productId\":1,\"productName\":\"产品1\",\"quantity\":10,\"unitPrice\":10.0}]}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-29 15:18:04', 144);
+INSERT INTO `sys_oper_log` VALUES (384, '出勤，记录员工的出勤信息', 1, 'com.ruoyi.system.controller.CheckinController.add()', 'POST', 1, '258222', NULL, '/checkin/checkin', '192.168.43.1', '内网IP', '{\"checkInTime\":\"2024-11-29 15:52:53\",\"id\":7,\"params\":{},\"userId\":102}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-11-29 15:52:53', 15);
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1308,7 +1553,7 @@ CREATE TABLE `sys_role`  (
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (1, '超级管理员', 'admin', 1, '1', 1, 1, '0', '0', 'admin', '2024-10-01 11:04:21', '', NULL, '超级管理员');
 INSERT INTO `sys_role` VALUES (2, '普通角色', 'common', 2, '2', 1, 1, '0', '0', 'admin', '2024-10-01 11:04:21', '', NULL, '普通角色');
-INSERT INTO `sys_role` VALUES (100, '员工', 'worker', 3, '1', 1, 1, '0', '0', 'admin', '2024-10-07 16:47:55', 'admin', '2024-10-07 16:48:22', NULL);
+INSERT INTO `sys_role` VALUES (100, '员工', 'worker', 3, '1', 1, 1, '0', '0', 'admin', '2024-10-07 16:47:55', 'admin', '2024-11-28 09:48:17', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -1425,26 +1670,6 @@ INSERT INTO `sys_role_menu` VALUES (2, 1057);
 INSERT INTO `sys_role_menu` VALUES (2, 1058);
 INSERT INTO `sys_role_menu` VALUES (2, 1059);
 INSERT INTO `sys_role_menu` VALUES (2, 1060);
-INSERT INTO `sys_role_menu` VALUES (100, 1);
-INSERT INTO `sys_role_menu` VALUES (100, 100);
-INSERT INTO `sys_role_menu` VALUES (100, 101);
-INSERT INTO `sys_role_menu` VALUES (100, 102);
-INSERT INTO `sys_role_menu` VALUES (100, 1000);
-INSERT INTO `sys_role_menu` VALUES (100, 1001);
-INSERT INTO `sys_role_menu` VALUES (100, 1002);
-INSERT INTO `sys_role_menu` VALUES (100, 1003);
-INSERT INTO `sys_role_menu` VALUES (100, 1004);
-INSERT INTO `sys_role_menu` VALUES (100, 1005);
-INSERT INTO `sys_role_menu` VALUES (100, 1006);
-INSERT INTO `sys_role_menu` VALUES (100, 1007);
-INSERT INTO `sys_role_menu` VALUES (100, 1008);
-INSERT INTO `sys_role_menu` VALUES (100, 1009);
-INSERT INTO `sys_role_menu` VALUES (100, 1010);
-INSERT INTO `sys_role_menu` VALUES (100, 1011);
-INSERT INTO `sys_role_menu` VALUES (100, 1012);
-INSERT INTO `sys_role_menu` VALUES (100, 1013);
-INSERT INTO `sys_role_menu` VALUES (100, 1014);
-INSERT INTO `sys_role_menu` VALUES (100, 1015);
 INSERT INTO `sys_role_menu` VALUES (100, 2000);
 INSERT INTO `sys_role_menu` VALUES (100, 2001);
 INSERT INTO `sys_role_menu` VALUES (100, 2002);
@@ -1463,6 +1688,42 @@ INSERT INTO `sys_role_menu` VALUES (100, 2014);
 INSERT INTO `sys_role_menu` VALUES (100, 2015);
 INSERT INTO `sys_role_menu` VALUES (100, 2016);
 INSERT INTO `sys_role_menu` VALUES (100, 2017);
+INSERT INTO `sys_role_menu` VALUES (100, 2024);
+INSERT INTO `sys_role_menu` VALUES (100, 2025);
+INSERT INTO `sys_role_menu` VALUES (100, 2026);
+INSERT INTO `sys_role_menu` VALUES (100, 2027);
+INSERT INTO `sys_role_menu` VALUES (100, 2028);
+INSERT INTO `sys_role_menu` VALUES (100, 2029);
+INSERT INTO `sys_role_menu` VALUES (100, 2030);
+INSERT INTO `sys_role_menu` VALUES (100, 2031);
+INSERT INTO `sys_role_menu` VALUES (100, 2032);
+INSERT INTO `sys_role_menu` VALUES (100, 2033);
+INSERT INTO `sys_role_menu` VALUES (100, 2034);
+INSERT INTO `sys_role_menu` VALUES (100, 2035);
+INSERT INTO `sys_role_menu` VALUES (100, 2036);
+INSERT INTO `sys_role_menu` VALUES (100, 2037);
+INSERT INTO `sys_role_menu` VALUES (100, 2038);
+INSERT INTO `sys_role_menu` VALUES (100, 2039);
+INSERT INTO `sys_role_menu` VALUES (100, 2040);
+INSERT INTO `sys_role_menu` VALUES (100, 2041);
+INSERT INTO `sys_role_menu` VALUES (100, 2042);
+INSERT INTO `sys_role_menu` VALUES (100, 2043);
+INSERT INTO `sys_role_menu` VALUES (100, 2044);
+INSERT INTO `sys_role_menu` VALUES (100, 2045);
+INSERT INTO `sys_role_menu` VALUES (100, 2046);
+INSERT INTO `sys_role_menu` VALUES (100, 2047);
+INSERT INTO `sys_role_menu` VALUES (100, 2048);
+INSERT INTO `sys_role_menu` VALUES (100, 2049);
+INSERT INTO `sys_role_menu` VALUES (100, 2050);
+INSERT INTO `sys_role_menu` VALUES (100, 2051);
+INSERT INTO `sys_role_menu` VALUES (100, 2052);
+INSERT INTO `sys_role_menu` VALUES (100, 2053);
+INSERT INTO `sys_role_menu` VALUES (100, 2054);
+INSERT INTO `sys_role_menu` VALUES (100, 2055);
+INSERT INTO `sys_role_menu` VALUES (100, 2056);
+INSERT INTO `sys_role_menu` VALUES (100, 2057);
+INSERT INTO `sys_role_menu` VALUES (100, 2058);
+INSERT INTO `sys_role_menu` VALUES (100, 2059);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1494,11 +1755,11 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '258', '00', 'Lhw258333@gmail.com', '18832122809', '0', '/profile/avatar/2024/10/10/258_1_20241010104221A001.jpg', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-10-21 09:46:56', 'admin', '2024-10-01 11:04:21', '', '2024-10-21 09:46:56', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '258', '00', 'Lhw258333@gmail.com', '18832122809', '0', '/profile/avatar/2024/10/10/258_1_20241010104221A001.jpg', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-11-29 15:50:44', 'admin', '2024-10-01 11:04:21', '', '2024-11-29 15:50:43', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-10-01 11:04:21', 'admin', '2024-10-01 11:04:21', '', NULL, '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, '员工1', '员工1', '00', '', '', '0', '', '$2a$10$73kVBk62zvaEYMSsJmajCeP8xtlx6GBTqCsXeA2u42oUkADVd.uie', '0', '2', '', NULL, 'admin', '2024-10-06 20:18:46', '', NULL, NULL);
-INSERT INTO `sys_user` VALUES (101, NULL, '258111', '258111', '00', '', '', '0', '/profile/avatar/2024/10/18/1729223916958_20241018115837A001.png', '$2a$10$F.rhypWnp6cMy.2QiLs3EO5JPr2jjo6bL8sOjIt/bn/zZjpWbMNB6', '0', '0', '192.168.43.1', '2024-10-18 13:13:22', 'admin', '2024-10-07 16:43:43', 'admin', '2024-10-18 13:13:21', NULL);
-INSERT INTO `sys_user` VALUES (102, NULL, '258222', '258222', '00', '', '', '0', '', '$2a$10$upWiPCk4LLmOekuIotjr9eGWF3V1JUgQ98HDtH6EGt6U/x9h/Ttl2', '0', '0', '', NULL, 'admin', '2024-10-07 16:44:39', 'admin', '2024-10-07 16:48:39', NULL);
+INSERT INTO `sys_user` VALUES (101, NULL, '258111', '258111', '00', '', '', '0', '/profile/avatar/2024/10/18/1729223916958_20241018115837A001.png', '$2a$10$F.rhypWnp6cMy.2QiLs3EO5JPr2jjo6bL8sOjIt/bn/zZjpWbMNB6', '0', '0', '192.168.43.1', '2024-11-29 16:05:47', 'admin', '2024-10-07 16:43:43', 'admin', '2024-11-29 16:05:47', NULL);
+INSERT INTO `sys_user` VALUES (102, NULL, '258222', '258222', '00', '', '', '0', '', '$2a$10$upWiPCk4LLmOekuIotjr9eGWF3V1JUgQ98HDtH6EGt6U/x9h/Ttl2', '0', '0', '192.168.43.1', '2024-11-29 16:02:32', 'admin', '2024-10-07 16:44:39', 'admin', '2024-11-29 16:02:32', NULL);
 INSERT INTO `sys_user` VALUES (103, NULL, '258333', '258333', '00', '', '', '0', '', '$2a$10$i5uMC.PiCASjFotROjB8Wev4H6CFADqgpUq5BWMTWhb51e269RBq2', '0', '0', '127.0.0.1', '2024-10-13 13:24:17', 'admin', '2024-10-07 16:44:51', 'admin', '2024-10-13 13:24:16', NULL);
 
 -- ----------------------------
@@ -1537,6 +1798,26 @@ INSERT INTO `sys_user_role` VALUES (102, 100);
 INSERT INTO `sys_user_role` VALUES (103, 100);
 
 -- ----------------------------
+-- Table structure for tb_checkin
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_checkin`;
+CREATE TABLE `tb_checkin`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
+  `user_id` bigint NOT NULL COMMENT '员工ID',
+  `check_in_time` datetime NOT NULL COMMENT '出勤时间',
+  `check_out_time` datetime NULL DEFAULT NULL COMMENT '退勤时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '出勤表，记录员工的出勤信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_checkin
+-- ----------------------------
+INSERT INTO `tb_checkin` VALUES (4, 101, '2024-11-26 10:51:37', '2024-11-28 16:16:54');
+INSERT INTO `tb_checkin` VALUES (5, 101, '2024-11-26 16:18:53', '2024-11-28 17:22:48');
+INSERT INTO `tb_checkin` VALUES (6, 101, '2024-11-28 17:24:23', '2024-11-28 17:25:14');
+INSERT INTO `tb_checkin` VALUES (7, 102, '2024-11-29 15:52:54', '2024-11-29 16:04:25');
+
+-- ----------------------------
 -- Table structure for tb_contracts
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_contracts`;
@@ -1556,15 +1837,14 @@ CREATE TABLE `tb_contracts`  (
   `product_details` json NULL COMMENT '产品编号及数量信息 (JSON格式)',
   `contract_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '合同名称',
   PRIMARY KEY (`contract_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '合同表，存储合同相关信息及其产品详情' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '合同表，存储合同相关信息及其产品详情' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_contracts
 -- ----------------------------
-INSERT INTO `tb_contracts` VALUES (1, '10001', '李宏威', '李宏威', '18888888888', '石家庄铁道大学', '2024-10-01', '2024-10-31', 1200000.00, '1', '2024-10-02 00:00:00', '2024-10-04 16:15:00', '[{\"allPrice\": 10.0, \"quantity\": 1, \"productId\": null, \"unitPrice\": 10.0, \"productCode\": \"1001\", \"productName\": \"产品1\"}, {\"allPrice\": 40.0, \"quantity\": 1, \"productId\": null, \"unitPrice\": 40.0, \"productCode\": \"1004\", \"productName\": \"产品4\"}]', 'mes系统');
-INSERT INTO `tb_contracts` VALUES (11, '10002', 'lhw', 'lhw', '15555555555', '石家庄铁道大学', '2024-10-04', '2024-10-31', 10000.00, '0', '2024-10-04 00:00:00', '2024-10-04 17:11:09', '[{\"allPrice\": 20.0, \"quantity\": 2, \"productId\": 1, \"unitPrice\": 10.0, \"productCode\": \"1001\", \"productName\": \"产品1\"}, {\"allPrice\": 200.0, \"quantity\": 10, \"productId\": 2, \"unitPrice\": 20.0, \"productCode\": \"1002\", \"productName\": \"产品2\"}, {\"allPrice\": 800.0, \"quantity\": 20, \"productId\": 4, \"unitPrice\": 40.0, \"productCode\": \"1004\", \"productName\": \"产品4\"}, {\"allPrice\": 3000.0, \"quantity\": 100, \"productId\": 3, \"unitPrice\": 30.0, \"productCode\": \"1003\", \"productName\": \"产品3\"}]', 'lhw');
-INSERT INTO `tb_contracts` VALUES (29, '10007', '10007', NULL, NULL, NULL, NULL, NULL, NULL, '1', '2024-10-12 00:00:00', '2024-10-12 17:28:51', '[{\"allPrice\": 30.0, \"quantity\": 3, \"productId\": 1, \"unitPrice\": 10.0, \"productCode\": \"1001\", \"productName\": \"产品1\"}, {\"allPrice\": 60.0, \"quantity\": 3, \"productId\": 2, \"unitPrice\": 20.0, \"productCode\": \"1002\", \"productName\": \"产品2\"}]', '10007');
-INSERT INTO `tb_contracts` VALUES (33, '10008', '10008', NULL, NULL, NULL, NULL, NULL, NULL, '1', '2024-10-13 00:00:00', '2024-10-13 09:46:58', '[{\"allPrice\": 90.0, \"quantity\": 3, \"productId\": 3, \"unitPrice\": 30.0, \"productCode\": \"1003\", \"productName\": \"产品3\"}, {\"allPrice\": 120.0, \"quantity\": 3, \"productId\": 4, \"unitPrice\": 40.0, \"productCode\": \"1004\", \"productName\": \"产品4\"}]', '10008');
+INSERT INTO `tb_contracts` VALUES (37, '1', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-26 22:03:26', '2024-11-26 22:03:26', '[{\"allPrice\": 2000.0, \"quantity\": 10, \"productId\": 5, \"unitPrice\": 200.0, \"productCode\": \"1005\", \"productName\": \"射蜡件\"}]', '1');
+INSERT INTO `tb_contracts` VALUES (38, '2', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-28 09:06:16', '2024-11-28 09:06:16', '[{\"allPrice\": 2000.0, \"quantity\": 10, \"productId\": 5, \"unitPrice\": 200.0, \"productCode\": \"1005\", \"productName\": \"射蜡件\"}]', '2');
+INSERT INTO `tb_contracts` VALUES (39, '3', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-29 15:18:04', '2024-11-29 15:18:04', '[{\"allPrice\": 2000.0, \"quantity\": 10, \"productId\": 5, \"unitPrice\": 200.0, \"productCode\": \"1005\", \"productName\": \"射蜡件\"}, {\"allPrice\": 2000.0, \"quantity\": 10, \"productId\": 6, \"unitPrice\": 200.0, \"productCode\": \"1006\", \"productName\": \"修蜡件\"}, {\"allPrice\": 100.0, \"quantity\": 10, \"productId\": 1, \"unitPrice\": 10.0, \"productCode\": \"1001\", \"productName\": \"产品1\"}]', '3');
 
 -- ----------------------------
 -- Table structure for tb_machine
@@ -1579,18 +1859,18 @@ CREATE TABLE `tb_machine`  (
   `created_date` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   `modified_date` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   PRIMARY KEY (`machine_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '机器表，存储所有机器的相关信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '机器表，存储所有机器的相关信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_machine
 -- ----------------------------
-INSERT INTO `tb_machine` VALUES (1, '激光切割机-1', '激光切割机', '占用', '用于材料切割的激光设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
-INSERT INTO `tb_machine` VALUES (2, '激光切割机-2', '激光切割机', '可用', '用于材料切割的激光设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
+INSERT INTO `tb_machine` VALUES (1, '激光切割机-1', '激光切割机', '可用', '用于材料切割的激光设备', '2024-10-12 13:03:46', '2024-11-28 08:31:29');
+INSERT INTO `tb_machine` VALUES (2, '激光切割机-2', '激光切割机', '可用', '用于材料切割的激光设备', '2024-10-12 13:03:46', '2024-11-28 08:31:29');
 INSERT INTO `tb_machine` VALUES (3, '激光切割机-3', '激光切割机', '可用', '用于材料切割的激光设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
-INSERT INTO `tb_machine` VALUES (4, '焊接机-1', '焊接机', '占用', '用于金属焊接的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
-INSERT INTO `tb_machine` VALUES (5, '焊接机-2', '焊接机', '占用', '用于金属焊接的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
+INSERT INTO `tb_machine` VALUES (4, '焊接机-1', '焊接机', '可用', '用于金属焊接的设备', '2024-10-12 13:03:46', '2024-11-28 08:31:29');
+INSERT INTO `tb_machine` VALUES (5, '焊接机-2', '焊接机', '可用', '用于金属焊接的设备', '2024-10-12 13:03:46', '2024-11-28 08:31:29');
 INSERT INTO `tb_machine` VALUES (6, '焊接机-3', '焊接机', '可用', '用于金属焊接的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
-INSERT INTO `tb_machine` VALUES (7, '组装机器人-1', '组装机器人', '占用', '用于产品组装的机器人', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
+INSERT INTO `tb_machine` VALUES (7, '组装机器人-1', '组装机器人', '可用', '用于产品组装的机器人', '2024-10-12 13:03:46', '2024-11-28 08:31:29');
 INSERT INTO `tb_machine` VALUES (8, '组装机器人-2', '组装机器人', '可用', '用于产品组装的机器人', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
 INSERT INTO `tb_machine` VALUES (9, '打磨机-1', '打磨机', '可用', '用于产品表面处理的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
 INSERT INTO `tb_machine` VALUES (10, '打磨机-2', '打磨机', '可用', '用于产品表面处理的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
@@ -1598,6 +1878,20 @@ INSERT INTO `tb_machine` VALUES (11, '铣削机-1', '铣削机', '可用', '用�
 INSERT INTO `tb_machine` VALUES (12, '铣削机-2', '铣削机', '可用', '用于材料铣削的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
 INSERT INTO `tb_machine` VALUES (13, '冲压机-1', '冲压机', '可用', '用于金属冲压的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
 INSERT INTO `tb_machine` VALUES (14, '冲压机-2', '冲压机', '维护中', '用于金属冲压的设备', '2024-10-12 13:03:46', '2024-10-12 13:03:46');
+INSERT INTO `tb_machine` VALUES (30, '射蜡机1', '铸造设备', '可用', '用于射蜡的高精度机器1', '2024-10-31 16:50:59', '2024-11-29 16:07:15');
+INSERT INTO `tb_machine` VALUES (31, '射蜡机2', '铸造设备', '可用', '用于射蜡的高精度机器2', '2024-10-31 16:50:59', '2024-10-31 16:50:59');
+INSERT INTO `tb_machine` VALUES (32, '射蜡机3', '铸造设备', '可用', '用于射蜡的高精度机器3', '2024-10-31 16:50:59', '2024-10-31 16:50:59');
+INSERT INTO `tb_machine` VALUES (33, '射蜡机4', '铸造设备', '可用', '用于射蜡的高精度机器4', '2024-10-31 16:50:59', '2024-10-31 16:50:59');
+INSERT INTO `tb_machine` VALUES (34, '射蜡机5', '铸造设备', '可用', '用于射蜡的高精度机器5', '2024-10-31 16:50:59', '2024-10-31 16:50:59');
+INSERT INTO `tb_machine` VALUES (35, '电热板1', '加热设备', '可用', '用于蜡件的加热处理1', '2024-10-31 16:51:28', '2024-10-31 16:51:28');
+INSERT INTO `tb_machine` VALUES (36, '电热板2', '加热设备', '可用', '用于蜡件的加热处理2', '2024-10-31 16:51:28', '2024-10-31 16:51:28');
+INSERT INTO `tb_machine` VALUES (37, '冰水机1', '冷却设备', '可用', '用于蜡件的快速冷却1', '2024-10-31 16:51:28', '2024-10-31 16:51:28');
+INSERT INTO `tb_machine` VALUES (38, '冰水机2', '冷却设备', '可用', '用于蜡件的快速冷却2', '2024-10-31 16:51:28', '2024-10-31 16:51:28');
+INSERT INTO `tb_machine` VALUES (39, '催化燃烧', '燃烧设备', '可用', '用于蜡件的催化燃烧处理', '2024-10-31 16:51:28', '2024-11-29 15:53:20');
+INSERT INTO `tb_machine` VALUES (40, '中央空调', '空调设备', '可用', '用于车间内的温度控制', '2024-10-31 16:51:28', '2024-10-31 16:51:28');
+INSERT INTO `tb_machine` VALUES (41, '修蜡机-1', '修蜡设备', '可用', '用于修蜡件的设备', '2024-11-29 15:00:46', '2024-11-29 15:00:46');
+INSERT INTO `tb_machine` VALUES (42, '热处理机-1', '热处理设备', '可用', '用于蜡件热处理的设备', '2024-11-29 15:00:46', '2024-11-29 15:00:46');
+INSERT INTO `tb_machine` VALUES (43, '气枪', '辅助设备', '可用', '用于吹除蜡削的设备', '2024-11-29 15:07:18', '2024-11-29 15:07:18');
 
 -- ----------------------------
 -- Table structure for tb_material
@@ -1614,7 +1908,7 @@ CREATE TABLE `tb_material`  (
   `created_date` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   `modified_date` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   PRIMARY KEY (`material_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '物料表，存储生产所需的物料信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '物料表，存储生产所需的物料信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_material
@@ -1624,6 +1918,21 @@ INSERT INTO `tb_material` VALUES (2, '焊接材料', '公斤', 200.00, 30.00, '�
 INSERT INTO `tb_material` VALUES (3, '包装盒', '个', 500.00, 2.50, '可用', '用于成品的包装', '2024-10-12 15:48:44', '2024-10-12 15:48:44');
 INSERT INTO `tb_material` VALUES (4, '油漆', '升', 300.00, 50.00, '可用', '用于喷涂的油漆', '2024-10-12 15:48:44', '2024-10-12 15:48:44');
 INSERT INTO `tb_material` VALUES (5, '塑料件', '个', 150.00, 15.00, '可用', '用于组装的塑料件', '2024-10-12 15:48:44', '2024-10-12 15:48:44');
+INSERT INTO `tb_material` VALUES (6, '162蜡', '公斤', 100.00, 10.00, '可用', '用于蜡模制造的162蜡', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (7, '168蜡', '公斤', 150.00, 12.00, '可用', '用于蜡模制造的168蜡', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (8, '自制蜡', '公斤', 200.00, 8.00, '可用', '工厂自制的蜡材料', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (9, '水溶蜡', '公斤', 50.00, 15.00, '可用', '用于水溶芯的水溶蜡', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (10, '尿素', '公斤', 80.00, 5.00, '可用', '用于尿素芯的尿素', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (11, '脱模剂', '升', 30.00, 20.00, '可用', '用于蜡模的脱模处理', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (12, '石英芯', '个', 500.00, 1.50, '可用', '用于增强蜡模的石英芯', '2024-10-31 16:14:06', '2024-10-31 16:14:06');
+INSERT INTO `tb_material` VALUES (13, '地板蜡', '公斤', 100.00, 15.00, '可用', '用于蜡件表面缺陷修补的主料', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (14, '煤油', '升', 50.00, 20.00, '可用', '用于清洗和混合的主料', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (15, '红蜡', '公斤', 75.00, 25.00, '可用', '用于特定工艺的主料', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (16, '锯条', '个', 200.00, 0.50, '可用', '用于切割的辅料', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (17, '牙套配件', '个', 150.00, 3.00, '可用', '用于上牙套和修牙套工序的配件', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (18, '烫处理材料', '升', 30.00, 40.00, '可用', '用于烫工序的化学试剂或材料', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (19, '堵孔材料', '个', 120.00, 2.00, '可用', '用于堵孔工序的物料', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
+INSERT INTO `tb_material` VALUES (20, '清洗剂', '升', 25.00, 15.00, '可用', '用于涮芯工序的清洗剂', '2024-11-29 15:10:53', '2024-11-29 15:10:53');
 
 -- ----------------------------
 -- Table structure for tb_operation
@@ -1637,7 +1946,7 @@ CREATE TABLE `tb_operation`  (
   `created_date` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   `modified_date` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   PRIMARY KEY (`operation_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '工序表，存储工序及其相关信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '工序表，存储工序及其相关信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_operation
@@ -1649,6 +1958,21 @@ INSERT INTO `tb_operation` VALUES (4, '打磨', '对产品进行打磨', 1.00, '
 INSERT INTO `tb_operation` VALUES (5, '检验', '对成品进行质量检验', 1.00, '2024-10-12 13:03:46', '2024-10-12 13:03:46');
 INSERT INTO `tb_operation` VALUES (6, '包装', '对产品进行包装', 1.50, '2024-10-12 13:03:46', '2024-10-12 13:03:46');
 INSERT INTO `tb_operation` VALUES (7, '运输', '将产品运输到仓库', 2.00, '2024-10-12 13:03:46', '2024-10-12 13:03:46');
+INSERT INTO `tb_operation` VALUES (9, '射水溶芯', '射水溶芯工序', 1.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (10, '射尿素芯', '射尿素芯工序', 1.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (11, '化芯', '化芯工序', 2.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (12, '射刺头', '射刺头工序', 1.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (13, '射冷蜡块', '射冷蜡块工序', 1.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (14, '射牙套', '射牙套工序', 1.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (15, '射帽', '射帽工序', 1.00, '2024-10-31 16:13:16', '2024-10-31 16:13:16');
+INSERT INTO `tb_operation` VALUES (16, '修水溶芯', '修水溶芯工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (17, '修尿素芯', '修尿素芯工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (18, '上牙套', '上牙套工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (19, '修牙套', '修牙套工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (20, '修帽', '修帽工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (21, '烫', '烫工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (22, '堵孔', '堵孔工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
+INSERT INTO `tb_operation` VALUES (23, '涮芯', '涮芯工序', NULL, '2024-11-29 14:51:18', '2024-11-29 14:51:18');
 
 -- ----------------------------
 -- Table structure for tb_operation_machine
@@ -1680,6 +2004,38 @@ INSERT INTO `tb_operation_machine` VALUES (5, 11);
 INSERT INTO `tb_operation_machine` VALUES (5, 12);
 INSERT INTO `tb_operation_machine` VALUES (6, 13);
 INSERT INTO `tb_operation_machine` VALUES (6, 14);
+INSERT INTO `tb_operation_machine` VALUES (9, 30);
+INSERT INTO `tb_operation_machine` VALUES (10, 30);
+INSERT INTO `tb_operation_machine` VALUES (12, 30);
+INSERT INTO `tb_operation_machine` VALUES (13, 30);
+INSERT INTO `tb_operation_machine` VALUES (14, 30);
+INSERT INTO `tb_operation_machine` VALUES (15, 30);
+INSERT INTO `tb_operation_machine` VALUES (9, 31);
+INSERT INTO `tb_operation_machine` VALUES (10, 31);
+INSERT INTO `tb_operation_machine` VALUES (12, 31);
+INSERT INTO `tb_operation_machine` VALUES (13, 31);
+INSERT INTO `tb_operation_machine` VALUES (14, 31);
+INSERT INTO `tb_operation_machine` VALUES (15, 31);
+INSERT INTO `tb_operation_machine` VALUES (9, 32);
+INSERT INTO `tb_operation_machine` VALUES (10, 32);
+INSERT INTO `tb_operation_machine` VALUES (12, 32);
+INSERT INTO `tb_operation_machine` VALUES (13, 32);
+INSERT INTO `tb_operation_machine` VALUES (14, 32);
+INSERT INTO `tb_operation_machine` VALUES (15, 32);
+INSERT INTO `tb_operation_machine` VALUES (9, 33);
+INSERT INTO `tb_operation_machine` VALUES (10, 33);
+INSERT INTO `tb_operation_machine` VALUES (12, 33);
+INSERT INTO `tb_operation_machine` VALUES (13, 33);
+INSERT INTO `tb_operation_machine` VALUES (14, 33);
+INSERT INTO `tb_operation_machine` VALUES (15, 33);
+INSERT INTO `tb_operation_machine` VALUES (9, 34);
+INSERT INTO `tb_operation_machine` VALUES (10, 34);
+INSERT INTO `tb_operation_machine` VALUES (12, 34);
+INSERT INTO `tb_operation_machine` VALUES (13, 34);
+INSERT INTO `tb_operation_machine` VALUES (14, 34);
+INSERT INTO `tb_operation_machine` VALUES (15, 34);
+INSERT INTO `tb_operation_machine` VALUES (11, 35);
+INSERT INTO `tb_operation_machine` VALUES (11, 36);
 
 -- ----------------------------
 -- Table structure for tb_operation_materials
@@ -1705,6 +2061,43 @@ INSERT INTO `tb_operation_materials` VALUES (3, 5, 20.00);
 INSERT INTO `tb_operation_materials` VALUES (4, 4, 10.00);
 INSERT INTO `tb_operation_materials` VALUES (5, 3, 50.00);
 INSERT INTO `tb_operation_materials` VALUES (6, 3, 100.00);
+INSERT INTO `tb_operation_materials` VALUES (9, 6, 5.00);
+INSERT INTO `tb_operation_materials` VALUES (9, 7, 3.00);
+INSERT INTO `tb_operation_materials` VALUES (9, 8, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (9, 9, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (10, 6, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (10, 7, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (10, 8, 4.00);
+INSERT INTO `tb_operation_materials` VALUES (10, 10, 3.00);
+INSERT INTO `tb_operation_materials` VALUES (11, 6, 6.00);
+INSERT INTO `tb_operation_materials` VALUES (11, 7, 4.00);
+INSERT INTO `tb_operation_materials` VALUES (11, 8, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (11, 11, 1.50);
+INSERT INTO `tb_operation_materials` VALUES (12, 6, 3.00);
+INSERT INTO `tb_operation_materials` VALUES (12, 7, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (12, 8, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (12, 12, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (13, 6, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (13, 7, 4.00);
+INSERT INTO `tb_operation_materials` VALUES (13, 8, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (14, 6, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (14, 7, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (14, 8, 3.00);
+INSERT INTO `tb_operation_materials` VALUES (14, 11, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (15, 6, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (15, 7, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (15, 8, 3.00);
+INSERT INTO `tb_operation_materials` VALUES (16, 13, 1.00);
+INSERT INTO `tb_operation_materials` VALUES (16, 15, 0.50);
+INSERT INTO `tb_operation_materials` VALUES (17, 14, 0.50);
+INSERT INTO `tb_operation_materials` VALUES (17, 20, 0.10);
+INSERT INTO `tb_operation_materials` VALUES (18, 17, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (19, 13, 0.50);
+INSERT INTO `tb_operation_materials` VALUES (19, 17, 2.00);
+INSERT INTO `tb_operation_materials` VALUES (20, 15, 0.10);
+INSERT INTO `tb_operation_materials` VALUES (21, 18, 0.30);
+INSERT INTO `tb_operation_materials` VALUES (22, 19, 1.20);
+INSERT INTO `tb_operation_materials` VALUES (23, 20, 0.25);
 
 -- ----------------------------
 -- Table structure for tb_orders
@@ -1719,11 +2112,11 @@ CREATE TABLE `tb_orders`  (
   `operation_id` int NULL DEFAULT NULL COMMENT '工序ID',
   `product_id` int NULL DEFAULT NULL COMMENT '关联的产品 ID',
   `quantity` int NULL DEFAULT NULL COMMENT '生产数量',
-  `batch_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '批次号',
   `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '制令状态（如：待生产、生产中、已完成、已发货、已关闭、暂停、异常）',
   `created_date` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   `modified_date` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   `operation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '工序',
+  `operation_sequence` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_number`(`order_number` ASC) USING BTREE,
   INDEX `parent_id`(`parent_id` ASC) USING BTREE,
@@ -1734,25 +2127,51 @@ CREATE TABLE `tb_orders`  (
   CONSTRAINT `tb_orders_ibfk_2` FOREIGN KEY (`contract_id`) REFERENCES `tb_contracts` (`contract_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_orders_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `tb_products` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_orders_ibfk_4` FOREIGN KEY (`operation_id`) REFERENCES `tb_operation` (`operation_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 116 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '制令表，存储总制令、分制令和子制令的信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 179 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '制令表，存储总制令、分制令和子制令的信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_orders
 -- ----------------------------
-INSERT INTO `tb_orders` VALUES (84, '29-20241012-1', NULL, '总制令', 29, NULL, NULL, NULL, '29-20241012-1', '待生产', '2024-10-12 17:28:51', '2024-10-13 09:37:55', NULL);
-INSERT INTO `tb_orders` VALUES (85, '29-20241012-2-1', 84, '分制令', NULL, NULL, 1, 3, '29-20241012-2-1', '待生产', '2024-10-12 17:28:51', '2024-10-13 09:37:55', NULL);
-INSERT INTO `tb_orders` VALUES (86, '29-20241012-3-1', 85, '子制令', NULL, 1, NULL, 0, '29-20241012-3-1', '已完成', '2024-10-12 17:28:51', '2024-10-13 18:19:33', '1 : 切割');
-INSERT INTO `tb_orders` VALUES (87, '29-20241012-3-2', 85, '子制令', NULL, 2, NULL, 3, '29-20241012-3-2', '生产中', '2024-10-12 17:28:51', '2024-10-13 09:38:22', '2 : 焊接');
-INSERT INTO `tb_orders` VALUES (88, '29-20241012-3-3', 85, '子制令', NULL, 3, NULL, 3, '29-20241012-3-3', '生产中', '2024-10-12 17:28:51', '2024-10-13 09:38:22', '3 : 组装');
-INSERT INTO `tb_orders` VALUES (89, '29-20241012-2-2', 84, '分制令', NULL, NULL, 2, 3, '29-20241012-2-2', '待生产', '2024-10-12 17:28:51', '2024-10-13 09:37:55', NULL);
-INSERT INTO `tb_orders` VALUES (90, '29-20241012-3-4', 89, '子制令', NULL, 2, NULL, 3, '29-20241012-3-4', '生产中', '2024-10-12 17:28:51', '2024-10-13 09:38:22', '1 : 焊接');
-INSERT INTO `tb_orders` VALUES (91, '29-20241012-3-5', 89, '子制令', NULL, 4, NULL, 3, '29-20241012-3-5', '待生产', '2024-10-12 17:28:51', '2024-10-13 09:38:22', '2 : 打磨');
-INSERT INTO `tb_orders` VALUES (110, '33-20241013-1', NULL, '总制令', 33, NULL, NULL, NULL, '33-20241013-1', '待生产', '2024-10-13 09:46:58', '2024-10-13 09:46:58', NULL);
-INSERT INTO `tb_orders` VALUES (111, '33-20241013-2-1', 110, '分制令', NULL, NULL, 3, 3, '33-20241013-2-1', '待生产', '2024-10-13 09:46:58', '2024-10-13 09:46:58', NULL);
-INSERT INTO `tb_orders` VALUES (112, '33-20241013-3-1', 111, '子制令', NULL, 1, NULL, 3, '33-20241013-3-1', '待生产', '2024-10-13 09:46:58', '2024-10-13 09:46:58', '1 : 切割');
-INSERT INTO `tb_orders` VALUES (113, '33-20241013-3-2', 111, '子制令', NULL, 3, NULL, 3, '33-20241013-3-2', '待生产', '2024-10-13 09:46:58', '2024-10-13 09:46:58', '2 : 组装');
-INSERT INTO `tb_orders` VALUES (114, '33-20241013-2-2', 110, '分制令', NULL, NULL, 4, 3, '33-20241013-2-2', '待生产', '2024-10-13 09:46:58', '2024-10-13 09:46:58', NULL);
-INSERT INTO `tb_orders` VALUES (115, '33-20241013-3-3', 114, '子制令', NULL, 5, NULL, 3, '33-20241013-3-3', '待生产', '2024-10-13 09:46:58', '2024-10-13 09:46:58', '1 : 检验');
+INSERT INTO `tb_orders` VALUES (139, '37-20241126-1', NULL, '总制令', 37, NULL, NULL, NULL, '待生产', '2024-11-26 22:03:26', '2024-11-26 22:03:26', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (140, '37-20241126-2-1', 139, '分制令', NULL, NULL, 5, 10, '待生产', '2024-11-26 22:03:26', '2024-11-26 22:03:26', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (141, '37-20241126-3-1', 140, '子制令', NULL, 9, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '射水溶芯', 1);
+INSERT INTO `tb_orders` VALUES (142, '37-20241126-3-2', 140, '子制令', NULL, 10, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '射尿素芯', 2);
+INSERT INTO `tb_orders` VALUES (143, '37-20241126-3-3', 140, '子制令', NULL, 11, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '化芯', 3);
+INSERT INTO `tb_orders` VALUES (144, '37-20241126-3-4', 140, '子制令', NULL, 12, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '射刺头', 4);
+INSERT INTO `tb_orders` VALUES (145, '37-20241126-3-5', 140, '子制令', NULL, 13, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '射冷蜡块', 5);
+INSERT INTO `tb_orders` VALUES (146, '37-20241126-3-6', 140, '子制令', NULL, 14, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '射牙套', 6);
+INSERT INTO `tb_orders` VALUES (147, '37-20241126-3-7', 140, '子制令', NULL, 15, NULL, 10, '已完成', '2024-11-26 22:03:26', '2024-11-28 16:33:13', '射帽', 7);
+INSERT INTO `tb_orders` VALUES (148, '38-20241128-1', NULL, '总制令', 38, NULL, NULL, NULL, '未完成', '2024-11-28 09:06:16', '2024-11-28 09:06:16', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (149, '38-20241128-2-1', 148, '分制令', NULL, NULL, 5, 10, '未完成', '2024-11-28 09:06:16', '2024-11-28 09:06:16', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (150, '38-20241128-3-1', 149, '子制令', NULL, 9, NULL, 0, '已完成', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '射水溶芯', 1);
+INSERT INTO `tb_orders` VALUES (151, '38-20241128-3-2', 149, '子制令', NULL, 10, NULL, 0, '已完成', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '射尿素芯', 2);
+INSERT INTO `tb_orders` VALUES (152, '38-20241128-3-3', 149, '子制令', NULL, 11, NULL, 10, '已分配', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '化芯', 3);
+INSERT INTO `tb_orders` VALUES (153, '38-20241128-3-4', 149, '子制令', NULL, 12, NULL, 10, '待分配', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '射刺头', 4);
+INSERT INTO `tb_orders` VALUES (154, '38-20241128-3-5', 149, '子制令', NULL, 13, NULL, 10, '待分配', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '射冷蜡块', 5);
+INSERT INTO `tb_orders` VALUES (155, '38-20241128-3-6', 149, '子制令', NULL, 14, NULL, 10, '待分配', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '射牙套', 6);
+INSERT INTO `tb_orders` VALUES (156, '38-20241128-3-7', 149, '子制令', NULL, 15, NULL, 10, '待分配', '2024-11-28 09:06:16', '2024-11-28 09:06:16', '射帽', 7);
+INSERT INTO `tb_orders` VALUES (157, '39-20241129-1', NULL, '总制令', 39, NULL, NULL, NULL, '未完成', '2024-11-29 15:18:04', '2024-11-29 15:18:04', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (158, '39-20241129-2-1', 157, '分制令', NULL, NULL, 5, 10, '未完成', '2024-11-29 15:18:04', '2024-11-29 15:18:04', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (159, '39-20241129-3-1', 158, '子制令', NULL, 9, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '射水溶芯', 1);
+INSERT INTO `tb_orders` VALUES (160, '39-20241129-3-2', 158, '子制令', NULL, 10, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '射尿素芯', 2);
+INSERT INTO `tb_orders` VALUES (161, '39-20241129-3-3', 158, '子制令', NULL, 11, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '化芯', 3);
+INSERT INTO `tb_orders` VALUES (162, '39-20241129-3-4', 158, '子制令', NULL, 12, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '射刺头', 4);
+INSERT INTO `tb_orders` VALUES (163, '39-20241129-3-5', 158, '子制令', NULL, 13, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '射冷蜡块', 5);
+INSERT INTO `tb_orders` VALUES (164, '39-20241129-3-6', 158, '子制令', NULL, 14, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '射牙套', 6);
+INSERT INTO `tb_orders` VALUES (165, '39-20241129-3-7', 158, '子制令', NULL, 15, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '射帽', 7);
+INSERT INTO `tb_orders` VALUES (166, '39-20241129-2-2', 157, '分制令', NULL, NULL, 6, 10, '未完成', '2024-11-29 15:18:04', '2024-11-29 15:18:04', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (167, '39-20241129-3-8', 166, '子制令', NULL, 16, NULL, 0, '已完成', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '修水溶芯', 1);
+INSERT INTO `tb_orders` VALUES (168, '39-20241129-3-9', 166, '子制令', NULL, 17, NULL, 0, '已完成', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '修尿素芯', 2);
+INSERT INTO `tb_orders` VALUES (169, '39-20241129-3-10', 166, '子制令', NULL, 18, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '上牙套', 3);
+INSERT INTO `tb_orders` VALUES (170, '39-20241129-3-11', 166, '子制令', NULL, 19, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '修牙套', 4);
+INSERT INTO `tb_orders` VALUES (171, '39-20241129-3-12', 166, '子制令', NULL, 20, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '修帽', 5);
+INSERT INTO `tb_orders` VALUES (172, '39-20241129-3-13', 166, '子制令', NULL, 21, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '烫', 6);
+INSERT INTO `tb_orders` VALUES (173, '39-20241129-3-14', 166, '子制令', NULL, 22, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '堵孔', 7);
+INSERT INTO `tb_orders` VALUES (174, '39-20241129-3-15', 166, '子制令', NULL, 23, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '涮芯', 8);
+INSERT INTO `tb_orders` VALUES (175, '39-20241129-2-3', 157, '分制令', NULL, NULL, 1, 10, '未完成', '2024-11-29 15:18:04', '2024-11-29 15:18:04', NULL, NULL);
+INSERT INTO `tb_orders` VALUES (176, '39-20241129-3-16', 175, '子制令', NULL, 1, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '切割', 1);
+INSERT INTO `tb_orders` VALUES (177, '39-20241129-3-17', 175, '子制令', NULL, 2, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '焊接', 2);
+INSERT INTO `tb_orders` VALUES (178, '39-20241129-3-18', 175, '子制令', NULL, 3, NULL, 10, '待分配', '2024-11-29 15:18:04', '2024-11-29 15:18:04', '组装', 3);
 
 -- ----------------------------
 -- Table structure for tb_product_operation
@@ -1779,6 +2198,21 @@ INSERT INTO `tb_product_operation` VALUES (2, 4, 2);
 INSERT INTO `tb_product_operation` VALUES (3, 1, 1);
 INSERT INTO `tb_product_operation` VALUES (3, 3, 2);
 INSERT INTO `tb_product_operation` VALUES (4, 5, 1);
+INSERT INTO `tb_product_operation` VALUES (5, 9, 1);
+INSERT INTO `tb_product_operation` VALUES (5, 10, 2);
+INSERT INTO `tb_product_operation` VALUES (5, 11, 3);
+INSERT INTO `tb_product_operation` VALUES (5, 12, 4);
+INSERT INTO `tb_product_operation` VALUES (5, 13, 5);
+INSERT INTO `tb_product_operation` VALUES (5, 14, 6);
+INSERT INTO `tb_product_operation` VALUES (5, 15, 7);
+INSERT INTO `tb_product_operation` VALUES (6, 16, 1);
+INSERT INTO `tb_product_operation` VALUES (6, 17, 2);
+INSERT INTO `tb_product_operation` VALUES (6, 18, 3);
+INSERT INTO `tb_product_operation` VALUES (6, 19, 4);
+INSERT INTO `tb_product_operation` VALUES (6, 20, 5);
+INSERT INTO `tb_product_operation` VALUES (6, 21, 6);
+INSERT INTO `tb_product_operation` VALUES (6, 22, 7);
+INSERT INTO `tb_product_operation` VALUES (6, 23, 8);
 
 -- ----------------------------
 -- Table structure for tb_products
@@ -1794,7 +2228,7 @@ CREATE TABLE `tb_products`  (
   `created_date` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   `modified_date` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   PRIMARY KEY (`product_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '产品表，存储产品相关信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '产品表，存储产品相关信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_products
@@ -1803,39 +2237,76 @@ INSERT INTO `tb_products` VALUES (1, '产品1', '1001', '1', 10.00, '产品1', '
 INSERT INTO `tb_products` VALUES (2, '产品2', '1002', '2', 20.00, '产品2', '2024-10-02 17:33:48', '2024-10-11 22:10:02');
 INSERT INTO `tb_products` VALUES (3, '产品3', '1003', '3', 30.00, '产品3', '2024-10-02 17:34:14', '2024-10-11 22:10:02');
 INSERT INTO `tb_products` VALUES (4, '产品4', '1004', '1', 40.00, '产品4', '2024-10-02 17:34:33', '2024-10-11 22:10:02');
+INSERT INTO `tb_products` VALUES (5, '射蜡件', '1005', '4', 200.00, '射蜡件', '2024-10-31 16:01:03', '2024-10-31 16:01:03');
+INSERT INTO `tb_products` VALUES (6, '修蜡件', '1006', '4', 200.00, '修蜡件', '2024-11-29 14:43:57', '2024-11-29 14:43:57');
 
 -- ----------------------------
--- Table structure for tb_task_assignment
+-- Table structure for tb_task
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_task_assignment`;
-CREATE TABLE `tb_task_assignment`  (
-  `take_id` int NOT NULL AUTO_INCREMENT COMMENT '任务分配ID',
+DROP TABLE IF EXISTS `tb_task`;
+CREATE TABLE `tb_task`  (
+  `task_id` int NOT NULL AUTO_INCREMENT COMMENT '任务分配ID',
   `order_id` int NOT NULL COMMENT '制令ID',
   `user_id` bigint NOT NULL COMMENT '员工ID',
-  `machine_id` int NOT NULL COMMENT '机器ID',
   `assigned_date` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '任务分配时间',
   `is_completed` tinyint(1) NULL DEFAULT 0 COMMENT '是否完成工序',
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `operation_id` int NOT NULL COMMENT '工序ID',
   `is_started` tinyint(1) NULL DEFAULT 0 COMMENT '是否开始',
-  PRIMARY KEY (`take_id`) USING BTREE,
+  PRIMARY KEY (`task_id`) USING BTREE,
   INDEX `order_id`(`order_id` ASC) USING BTREE,
   INDEX `user_id`(`user_id` ASC) USING BTREE,
-  INDEX `machine_id`(`machine_id` ASC) USING BTREE,
   INDEX `operation_id`(`operation_id` ASC) USING BTREE,
-  CONSTRAINT `tb_task_assignment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tb_task_assignment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tb_task_assignment_ibfk_3` FOREIGN KEY (`machine_id`) REFERENCES `tb_machine` (`machine_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tb_task_assignment_ibfk_4` FOREIGN KEY (`operation_id`) REFERENCES `tb_operation` (`operation_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '任务分配表，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息' ROW_FORMAT = Dynamic;
+  CONSTRAINT `tb_task_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `tb_orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `tb_task_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `tb_task_ibfk_4` FOREIGN KEY (`operation_id`) REFERENCES `tb_operation` (`operation_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '任务分配表，存储每个子制令的任务分配情况，包括机器、物料、工序及完成状态等信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of tb_task_assignment
+-- Records of tb_task
 -- ----------------------------
-INSERT INTO `tb_task_assignment` VALUES (2, 86, 101, 1, '2024-10-13 11:04:10', 1, NULL, 1, 1);
-INSERT INTO `tb_task_assignment` VALUES (3, 87, 102, 4, '2024-10-13 11:05:49', 0, NULL, 2, 0);
-INSERT INTO `tb_task_assignment` VALUES (4, 88, 103, 7, '2024-10-13 12:39:47', 0, NULL, 3, 0);
-INSERT INTO `tb_task_assignment` VALUES (5, 90, 101, 5, '2024-10-13 13:29:48', 0, NULL, 2, 1);
+INSERT INTO `tb_task` VALUES (13, 141, 101, '2024-11-26 23:32:52', 1, NULL, 9, 1);
+INSERT INTO `tb_task` VALUES (14, 142, 101, '2024-11-26 23:32:56', 1, NULL, 10, 1);
+INSERT INTO `tb_task` VALUES (15, 143, 101, '2024-11-28 08:24:09', 1, NULL, 11, 1);
+INSERT INTO `tb_task` VALUES (16, 144, 101, '2024-11-28 08:24:13', 1, NULL, 12, 1);
+INSERT INTO `tb_task` VALUES (17, 145, 101, '2024-11-28 08:49:59', 1, NULL, 13, 1);
+INSERT INTO `tb_task` VALUES (18, 146, 101, '2024-11-28 08:50:01', 1, NULL, 14, 1);
+INSERT INTO `tb_task` VALUES (19, 147, 101, '2024-11-28 08:50:03', 1, NULL, 15, 1);
+INSERT INTO `tb_task` VALUES (20, 150, 101, '2024-11-28 09:06:29', 1, NULL, 9, 1);
+INSERT INTO `tb_task` VALUES (21, 151, 101, '2024-11-28 09:06:31', 1, NULL, 10, 1);
+INSERT INTO `tb_task` VALUES (22, 152, 101, '2024-11-28 09:06:33', 0, NULL, 11, 0);
+INSERT INTO `tb_task` VALUES (23, 168, 101, '2024-11-29 15:51:13', 1, NULL, 17, 1);
+INSERT INTO `tb_task` VALUES (24, 167, 102, '2024-11-29 15:52:19', 1, NULL, 16, 1);
+
+-- ----------------------------
+-- Table structure for tb_task_machine
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_task_machine`;
+CREATE TABLE `tb_task_machine`  (
+  `task_id` int NOT NULL COMMENT '任务分配ID，关联tb_task表',
+  `machine_id` int NOT NULL COMMENT '机器ID，关联tb_machine表',
+  `start_time` datetime NOT NULL COMMENT '任务开始使用机器的时间',
+  `end_time` datetime NULL DEFAULT NULL COMMENT '任务结束使用机器的时间，可为空表示任务未完成',
+  PRIMARY KEY (`task_id`, `machine_id`) USING BTREE,
+  INDEX `machine_id`(`machine_id` ASC) USING BTREE,
+  CONSTRAINT `tb_task_machine_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task` (`task_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `tb_task_machine_ibfk_2` FOREIGN KEY (`machine_id`) REFERENCES `tb_machine` (`machine_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '任务与机器的关联表，用于记录任务在特定机器上的使用情况' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_task_machine
+-- ----------------------------
+INSERT INTO `tb_task_machine` VALUES (13, 39, '2024-11-27 17:23:26', '2024-11-28 08:34:58');
+INSERT INTO `tb_task_machine` VALUES (14, 30, '2024-11-28 08:31:49', '2024-11-28 08:57:57');
+INSERT INTO `tb_task_machine` VALUES (15, 30, '2024-11-28 08:40:37', '2024-11-28 08:58:03');
+INSERT INTO `tb_task_machine` VALUES (16, 30, '2024-11-28 08:43:05', '2024-11-28 08:58:05');
+INSERT INTO `tb_task_machine` VALUES (17, 30, '2024-11-28 08:52:32', '2024-11-28 08:58:06');
+INSERT INTO `tb_task_machine` VALUES (18, 30, '2024-11-28 08:54:31', '2024-11-28 08:58:07');
+INSERT INTO `tb_task_machine` VALUES (19, 30, '2024-11-28 08:57:33', '2024-11-28 08:57:51');
+INSERT INTO `tb_task_machine` VALUES (20, 30, '2024-11-28 17:24:05', '2024-11-28 17:24:15');
+INSERT INTO `tb_task_machine` VALUES (21, 30, '2024-11-28 17:24:41', '2024-11-28 17:25:04');
+INSERT INTO `tb_task_machine` VALUES (23, 30, '2024-11-29 16:07:15', '2024-11-29 16:07:25');
+INSERT INTO `tb_task_machine` VALUES (24, 39, '2024-11-29 15:53:20', '2024-11-29 15:55:10');
 
 -- ----------------------------
 -- Table structure for tb_task_material
@@ -1847,12 +2318,56 @@ CREATE TABLE `tb_task_material`  (
   `quantity` decimal(10, 2) NOT NULL COMMENT '物料使用量',
   PRIMARY KEY (`task_id`, `material_id`) USING BTREE,
   INDEX `material_id`(`material_id` ASC) USING BTREE,
-  CONSTRAINT `tb_task_material_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task_assignment` (`take_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `tb_task_material_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tb_task` (`task_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_task_material_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `tb_material` (`material_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '任务物料关联表，记录每个任务使用的物料及其数量' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_task_material
+-- ----------------------------
+INSERT INTO `tb_task_material` VALUES (13, 7, 4.00);
+INSERT INTO `tb_task_material` VALUES (13, 9, 8.00);
+INSERT INTO `tb_task_material` VALUES (14, 6, 9.00);
+INSERT INTO `tb_task_material` VALUES (14, 8, 8.00);
+INSERT INTO `tb_task_material` VALUES (15, 11, 2.00);
+INSERT INTO `tb_task_material` VALUES (16, 12, 9.00);
+INSERT INTO `tb_task_material` VALUES (17, 8, 10.00);
+INSERT INTO `tb_task_material` VALUES (18, 8, 3.00);
+INSERT INTO `tb_task_material` VALUES (18, 11, 5.00);
+INSERT INTO `tb_task_material` VALUES (19, 8, 5.00);
+INSERT INTO `tb_task_material` VALUES (20, 7, 1.00);
+INSERT INTO `tb_task_material` VALUES (20, 8, 2.00);
+INSERT INTO `tb_task_material` VALUES (20, 9, 9.00);
+INSERT INTO `tb_task_material` VALUES (21, 6, 5.00);
+INSERT INTO `tb_task_material` VALUES (21, 7, 2.00);
+INSERT INTO `tb_task_material` VALUES (21, 8, 4.00);
+INSERT INTO `tb_task_material` VALUES (21, 10, 3.00);
+INSERT INTO `tb_task_material` VALUES (23, 20, 1.00);
+INSERT INTO `tb_task_material` VALUES (24, 13, 1.00);
+INSERT INTO `tb_task_material` VALUES (24, 15, 2.00);
+
+-- ----------------------------
+-- Table structure for tb_work_report
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_work_report`;
+CREATE TABLE `tb_work_report`  (
+  `work_report_id` int NOT NULL AUTO_INCREMENT COMMENT '唯一标识每条报工记录',
+  `user_id` int NOT NULL COMMENT '标识报工员工的唯一ID',
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '报工员工的姓名',
+  `team_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '员工所在班组的名称',
+  `machine_id` int NOT NULL COMMENT '标识使用的机器',
+  `operation_id` int NOT NULL COMMENT '标识对应工序的唯一ID',
+  `operation_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '报工涉及的工序名称',
+  `quantity` int NOT NULL COMMENT '报工的产品数量',
+  `start_time` datetime NOT NULL COMMENT '报工的开始时间',
+  `end_time` datetime NULL DEFAULT NULL COMMENT '报工的结束时间',
+  `report_status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '报工单的当前状态（如已完成、进行中）',
+  `remarks` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '记录额外的报工信息',
+  PRIMARY KEY (`work_report_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '报工表，用于记录员工的报工信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_work_report
 -- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

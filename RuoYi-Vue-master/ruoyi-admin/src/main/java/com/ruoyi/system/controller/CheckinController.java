@@ -104,6 +104,7 @@ public class CheckinController extends BaseController
     //扫码退勤打卡
     @PostMapping("/checkout")
     public AjaxResult checkout(@RequestParam Long userId){
+        System.err.println("controller"+userId);
         return success(checkinService.checkout(userId));
     }
 }

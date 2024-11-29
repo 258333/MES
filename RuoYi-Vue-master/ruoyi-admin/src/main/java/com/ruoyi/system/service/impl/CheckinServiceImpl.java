@@ -127,6 +127,7 @@ public class CheckinServiceImpl implements ICheckinService
     @Override
     public List<Map<String,Object>> checkout(Long userId) {
         List<Map<String,Object>> maps = new ArrayList<>();
+        System.err.println(userId);
         //1.修改打卡的结束时间为当前时间
         //获取当前的打卡信息
         Checkin checkin = checkinMapper.selectCheckinByUserId(userId);
